@@ -5,5 +5,5 @@
   "description": "GameBoy Advance emulator and debugger.",
   "repo_url": "https://github.com/ioncodes/ayyboy-advance",
   "commit_url_template": "https://github.com/ioncodes/ayyboy-advance/commit/{sha}",
-  "accent_color": "#a8c8e6"
+  "accent_color": "#A0C4FF"
 }

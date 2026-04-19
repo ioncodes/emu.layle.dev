@@ -5,5 +5,5 @@
   "description": "A WIP GameCube/Wii emulator and debugger written in Rust.",
   "repo_url": "https://github.com/ioncodes/gecko",
   "commit_url_template": "https://github.com/ioncodes/gecko/commit/{sha}",
-  "accent_color": "#9fd9a5"
+  "accent_color": "#CAFFBF"
 }
