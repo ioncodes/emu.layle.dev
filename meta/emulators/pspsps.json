@@ -1,0 +1,9 @@
+{
+  "slug": "pspsps",
+  "name": "pspsps",
+  "console": "PlayStation 1",
+  "description": "A PlayStation 1 emulator and debugger, shaders included.",
+  "repo_url": "https://github.com/ioncodes/pspsps",
+  "commit_url_template": "https://github.com/ioncodes/pspsps/commit/{sha}",
+  "accent_color": "#ffc494"
+}

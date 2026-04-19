@@ -1,0 +1,92 @@
+---
+import type { Submission } from "@/lib/schema";
+
+interface Props {
+  emu: string;
+  current: Submission;
+  allCommits: Submission[];
+}
+
+const { emu, current, allCommits } = Astro.props;
+const idx = allCommits.findIndex((c) => c.commit_short === current.commit_short);
+const older = allCommits[idx + 1];
+const newer = allCommits[idx - 1];
+---
+
+<nav class="commit-nav flex items-center gap-2" aria-label="Commit navigation">
+  <a
+    href={older ? `/${emu}/${older.commit_short}` : undefined}
+    aria-label="Older commit"
+    aria-disabled={!older}
+    class:list={[
+      "rounded border border-neutral-300 px-2 py-1 font-mono text-xs dark:border-neutral-700",
+      older
+        ? "hover:bg-neutral-100 dark:hover:bg-neutral-800"
+        : "cursor-not-allowed opacity-40",
+    ]}
+  >
+    ←
+  </a>
+  <a
+    href={newer ? `/${emu}/${newer.commit_short}` : undefined}
+    aria-label="Newer commit"
+    aria-disabled={!newer}
+    class:list={[
+      "rounded border border-neutral-300 px-2 py-1 font-mono text-xs dark:border-neutral-700",
+      newer
+        ? "hover:bg-neutral-100 dark:hover:bg-neutral-800"
+        : "cursor-not-allowed opacity-40",
+    ]}
+  >
+    →
+  </a>
+  <div class="relative">
+    <input
+      id="commit-combo-input"
+      type="search"
+      role="combobox"
+      aria-controls="commit-combo-list"
+      aria-expanded="false"
+      aria-autocomplete="list"
+      autocomplete="off"
+      placeholder="Jump to commit..."
+      value={current.commit_short}
+      class="w-64 rounded border border-neutral-300 bg-white px-2 py-1 font-mono text-xs outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+    />
+    <ul
+      id="commit-combo-list"
+      role="listbox"
+      class="absolute top-full left-0 z-40 mt-1 hidden max-h-72 w-96 max-w-[80vw] overflow-y-auto rounded border border-neutral-300 bg-white text-xs shadow-lg dark:border-neutral-700 dark:bg-neutral-900"
+    >
+    </ul>
+    <noscript>
+      <select
+        onchange="if(this.value) location.href = `/{emu}/` + this.value"
+        class="ml-2 rounded border border-neutral-300 bg-white px-2 py-1 font-mono text-xs dark:border-neutral-700 dark:bg-neutral-900"
+      >
+        {
+          allCommits.map((c) => (
+            <option value={c.commit_short} selected={c.commit_short === current.commit_short}>
+              {c.commit_short} {c.commit_message.slice(0, 60)}
+            </option>
+          ))
+        }
+      </select>
+    </noscript>
+  </div>
+</nav>
+
+<script
+  is:inline
+  type="application/json"
+  id="commits-data"
+  set:html={JSON.stringify({
+    emu,
+    currentShort: current.commit_short,
+    commits: allCommits.map((c) => ({
+      short: c.commit_short,
+      msg: c.commit_message,
+      ts: c.commit_timestamp,
+    })),
+  })}
+/>

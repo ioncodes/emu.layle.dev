@@ -1,0 +1,53 @@
+---
+import { getCommits } from "@/lib/meta";
+import type { Emulator } from "@/lib/schema";
+
+interface Props {
+  emulators: Emulator[];
+  currentSlug: string;
+}
+
+// Pick readable text color for a given accent hex.
+function textOn(hex: string): string {
+  const h = hex.replace("#", "");
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return lum > 0.6 ? "#111" : "#fff";
+}
+
+const { emulators, currentSlug } = Astro.props;
+const tabs = emulators.map((e) => ({
+  emulator: e,
+  hasCommits: getCommits(e.slug).length > 0,
+  activeStyle: `background-color: ${e.accent_color}; color: ${textOn(e.accent_color)};`,
+}));
+---
+
+<nav class="flex flex-wrap items-center gap-2" aria-label="Emulators">
+  {
+    tabs.map(({ emulator: e, hasCommits, activeStyle }) => {
+      const active = e.slug === currentSlug;
+      return (
+        <a
+          href={active || !hasCommits ? undefined : `/${e.slug}`}
+          aria-current={active ? "page" : undefined}
+          aria-disabled={!hasCommits && !active}
+          title={hasCommits ? e.console : `${e.console} (no submissions yet)`}
+          style={active ? activeStyle : undefined}
+          class:list={[
+            "inline-flex items-center rounded px-3 text-sm font-medium leading-none h-8",
+            active
+              ? ""
+              : hasCommits
+              ? "border border-neutral-300 text-neutral-700 hover:bg-neutral-100 dark:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-800"
+              : "border border-dashed border-neutral-300 text-neutral-400 dark:border-neutral-700 dark:text-neutral-600 cursor-not-allowed",
+          ]}
+        >
+          {e.name} <span class="ml-1 opacity-70">({e.console})</span>
+        </a>
+      );
+    })
+  }
+</nav>

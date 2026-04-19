@@ -1,0 +1,14 @@
+---
+import { getCommits, getEmulators } from "@/lib/meta";
+
+export function getStaticPaths() {
+  return getEmulators().map((e) => ({ params: { emu: e.slug } }));
+}
+
+const { emu } = Astro.params;
+const commits = getCommits(emu!);
+if (commits.length === 0) {
+  return Astro.redirect("/");
+}
+return Astro.redirect(`/${emu}/${commits[0].commit_short}`);
+---

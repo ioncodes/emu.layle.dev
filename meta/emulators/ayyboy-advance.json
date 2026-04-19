@@ -1,0 +1,9 @@
+{
+  "slug": "ayyboy-advance",
+  "name": "ayyboy advance",
+  "console": "Game Boy Advance",
+  "description": "GameBoy Advance emulator and debugger.",
+  "repo_url": "https://github.com/ioncodes/ayyboy-advance",
+  "commit_url_template": "https://github.com/ioncodes/ayyboy-advance/commit/{sha}",
+  "accent_color": "#a8c8e6"
+}
