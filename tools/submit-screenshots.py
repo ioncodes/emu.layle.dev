@@ -22,7 +22,7 @@ import os
 import re
 import subprocess
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
@@ -286,7 +286,7 @@ def load_env_files(*, explicit: Path | None, archive_repo: Path) -> list[Path]:
 
 def run_submission(
     *, emulator: str, input_dir: Path, archive_repo: Path,
-    title_map_path: Path | None, submitted_by: str | None,
+    title_map_path: Path | None, submitted_by: str | None, branch: str | None,
     dry_run: bool, allow_dirty: bool, no_push: bool,
     emu_repo: Path, env: dict[str, str] | None = None, now: datetime | None = None,
 ) -> dict[str, Any]:
@@ -299,6 +299,8 @@ def run_submission(
 
     check_clean_worktree(emu_repo, input_dir, allow_dirty=allow_dirty)
     commit = read_git_commit(emu_repo)
+    if branch:
+        commit = replace(commit, branch=branch)
     games_scanned = scan_input(input_dir)
     if not games_scanned:
         raise click.ClickException(f"no game directories found under {input_dir}")
@@ -398,13 +400,15 @@ def run_submission(
               type=click.Path(path_type=Path, exists=True, dir_okay=False),
               default=None, help="File with 'game_id=Title' lines. Acts as an allowlist.")
 @click.option("--submitted-by", default=None, help="Override submitter (default: git user.name).")
+@click.option("--branch", default=None, help="Override branch name. Useful for detached HEAD checkouts.")
 @click.option("--dry-run", is_flag=True, help="Print what would happen. No uploads, no writes.")
 @click.option("--allow-dirty", is_flag=True, help="Allow submitting from a dirty working tree.")
 @click.option("--no-push", is_flag=True, help="Commit the JSON but do not push.")
 def cli(
     emulator: str, emu_repo: Path | None, input_dir: Path | None,
     archive_repo: Path | None, env_file: Path | None, title_map_path: Path | None,
-    submitted_by: str | None, dry_run: bool, allow_dirty: bool, no_push: bool,
+    submitted_by: str | None, branch: str | None,
+    dry_run: bool, allow_dirty: bool, no_push: bool,
 ) -> None:
     emu_repo = (emu_repo or Path.cwd()).resolve()
     input_dir = (input_dir or emu_repo / "screenshots").resolve()
@@ -415,7 +419,7 @@ def cli(
 
     run_submission(
         emulator=emulator, input_dir=input_dir, archive_repo=archive_repo,
-        title_map_path=title_map_path, submitted_by=submitted_by,
+        title_map_path=title_map_path, submitted_by=submitted_by, branch=branch,
         dry_run=dry_run, allow_dirty=allow_dirty, no_push=no_push, emu_repo=emu_repo,
     )
 
