@@ -25,7 +25,7 @@ One file per emulator.
 
 ## `submissions/<emulator>/<YYYY-MM-DD>-<short_sha>.json`
 
-One file per submission. Each submission pins one emulator commit to a set of PNGs.
+One file per submission. A submission pins one emulator commit to a set of known games and their PNGs. A game can appear in `games` with zero entries in `screenshots`. The site shows "No screenshots available" for those.
 
 ```json
 {
@@ -38,10 +38,13 @@ One file per submission. Each submission pins one emulator commit to a set of PN
   "commit_timestamp": "2026-04-15T14:32:11Z",
   "submitted_at": "2026-04-17T09:12:00Z",
   "submitted_by": "layle",
+  "games": [
+    { "game_id": "GALE01", "game_title": "Super Smash Bros. Melee" },
+    { "game_id": "GCRASH", "game_title": "Broken Game" }
+  ],
   "screenshots": [
     {
       "game_id": "GALE01",
-      "game_title": "Super Smash Bros. Melee",
       "frame_index": 0,
       "r2_key": "gecko/a3f9b2c/GALE01/0.png",
       "width": 640,
@@ -52,10 +55,11 @@ One file per submission. Each submission pins one emulator commit to a set of PN
 }
 ```
 
-- `game_id`: opaque string from the emulator (GameCube disc ID, GBA header code, …). Must match `[A-Za-z0-9_-]+`.
-- `frame_index`: which frame the screenshot has been taken from.
-- `r2_key`: relative to bucket, the site prefixes `https://screenshots.layle.dev/`.
-- `screenshots`: array sorted by `(game_id, frame_index)` for diffing.
+- `games`: every known game at this commit. Sorted by `game_id`.
+- `game_id`: opaque string from the emulator (GameCube disc ID, GBA header code, ...). Must match `[A-Za-z0-9_-]+`.
+- `frame_index`: 0-based integer, unique within `(game_id, commit)`. Gaps allowed.
+- `r2_key`: relative to the bucket. The site prefixes `https://screenshots.layle.dev/`.
+- `screenshots`: sorted by `(game_id, frame_index)`. `game_title` is only in `games`.
 
 ## `games/<emulator>/<game_id>.json`
 

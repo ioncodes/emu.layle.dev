@@ -5,6 +5,13 @@ dist/
 # deps
 node_modules/
 
+# python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
 # env
 .env
 .env.production
