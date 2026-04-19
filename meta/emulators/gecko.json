@@ -1,0 +1,9 @@
+{
+  "slug": "gecko",
+  "name": "gecko",
+  "console": "GameCube/Wii",
+  "description": "A WIP GameCube/Wii emulator and debugger written in Rust.",
+  "repo_url": "https://github.com/ioncodes/gecko",
+  "commit_url_template": "https://github.com/ioncodes/gecko/commit/{sha}",
+  "accent_color": "#6b9fff"
+}
