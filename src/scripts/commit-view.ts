@@ -217,7 +217,10 @@ function wireCommitCombo() {
     return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
-  input.addEventListener("focus", () => render(input.value));
+  input.addEventListener("focus", () => {
+    input.select();
+    render("");
+  });
   input.addEventListener("input", () => render(input.value));
   input.addEventListener("blur", () => {
     // defer so click on item fires first

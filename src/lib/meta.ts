@@ -70,6 +70,11 @@ export function getGameRows(emulator: string, commitShort: string): GameRow[] {
     game: g,
     frames: framesByGame.get(g.game_id) ?? [],
   }));
-  rows.sort((a, b) => a.game.game_title.localeCompare(b.game.game_title));
+  rows.sort((a, b) => {
+    const aHas = a.frames.length > 0;
+    const bHas = b.frames.length > 0;
+    if (aHas !== bHas) return aHas ? -1 : 1;
+    return a.game.game_title.localeCompare(b.game.game_title);
+  });
   return rows;
 }
