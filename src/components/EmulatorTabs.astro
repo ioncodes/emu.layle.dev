@@ -18,20 +18,24 @@ function textOn(hex: string): string {
 }
 
 const { emulators, currentSlug } = Astro.props;
-const tabs = emulators.map((e) => ({
-  emulator: e,
-  hasCommits: getCommits(e.slug).length > 0,
-  activeStyle: `background-color: ${e.accent_color}; color: ${textOn(e.accent_color)};`,
-}));
+const tabs = emulators.map((e) => {
+  const commits = getCommits(e.slug);
+  return {
+    emulator: e,
+    hasCommits: commits.length > 0,
+    latestHref: commits.length > 0 ? `/${e.slug}/${commits[0].commit_short}` : undefined,
+    activeStyle: `background-color: ${e.accent_color}; color: ${textOn(e.accent_color)};`,
+  };
+});
 ---
 
 <nav class="flex flex-wrap items-center gap-2" aria-label="Emulators">
   {
-    tabs.map(({ emulator: e, hasCommits, activeStyle }) => {
+    tabs.map(({ emulator: e, hasCommits, latestHref, activeStyle }) => {
       const active = e.slug === currentSlug;
       return (
         <a
-          href={active || !hasCommits ? undefined : `/${e.slug}`}
+          href={active || !hasCommits ? undefined : latestHref}
           aria-current={active ? "page" : undefined}
           aria-disabled={!hasCommits && !active}
           title={hasCommits ? e.console : `${e.console} (no submissions yet)`}
