@@ -16,12 +16,14 @@ One file per emulator.
   "description": "A GameCube emulator written in Rust.",
   "repo_url": "https://github.com/ioncodes/gecko",
   "commit_url_template": "https://github.com/ioncodes/gecko/commit/{sha}",
-  "accent_color": "#6b9fff"
+  "accent_color": "#6b9fff",
+  "icon": "simple-icons:nintendogamecube"
 }
 ```
 
 - `slug`: matches the filename and the R2 key prefix. `[a-z0-9-]+`.
 - `commit_url_template`: the site substitutes `{sha}` when rendering commit links.
+- `icon` (optional): an [Iconify](https://icon-sets.iconify.design/) slug in `prefix:name` form.
 
 ## `submissions/<emulator>/<YYYY-MM-DD>-<short_sha>.json`
 

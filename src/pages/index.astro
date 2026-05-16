@@ -2,9 +2,15 @@
 import { getCommits, getEmulators } from "@/lib/meta";
 import "../styles/global.css";
 
+function iconUrl(slug: string, color: string): string {
+  const [prefix, name] = slug.split(":");
+  return `https://api.iconify.design/${prefix}/${name}.svg?color=${encodeURIComponent(color)}`;
+}
+
 const emulators = getEmulators().map((e) => ({
   ...e,
   hasCommits: getCommits(e.slug).length > 0,
+  iconSrc: e.icon ? iconUrl(e.icon, e.accent_color) : null,
 }));
 ---
 
@@ -36,12 +42,23 @@ const emulators = getEmulators().map((e) => ({
                     : "border-dashed border-neutral-200 text-neutral-400 dark:border-neutral-800 dark:text-neutral-600 cursor-not-allowed",
                 ]}
               >
-                <div class="flex items-baseline gap-2">
-                  <span
-                    class="inline-block h-2 w-2 rounded-full"
-                    style={`background-color: ${e.accent_color};`}
-                    aria-hidden="true"
-                  />
+                <div class="flex items-center gap-3">
+                  {e.iconSrc ? (
+                    <img
+                      src={e.iconSrc}
+                      alt=""
+                      width="20"
+                      height="20"
+                      loading="lazy"
+                      class="h-5 w-5 shrink-0"
+                    />
+                  ) : (
+                    <span
+                      class="inline-block h-2 w-2 rounded-full"
+                      style={`background-color: ${e.accent_color};`}
+                      aria-hidden="true"
+                    />
+                  )}
                   <span class="font-medium">{e.name}</span>
                   <span class="text-xs text-neutral-500">{e.console}</span>
                   {!e.hasCommits && (

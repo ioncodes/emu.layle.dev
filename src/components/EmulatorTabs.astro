@@ -17,22 +17,31 @@ function textOn(hex: string): string {
   return lum > 0.6 ? "#111" : "#fff";
 }
 
+function iconUrl(slug: string, color: string): string {
+  const [prefix, name] = slug.split(":");
+  return `https://api.iconify.design/${prefix}/${name}.svg?color=${encodeURIComponent(color)}`;
+}
+
 const { emulators, currentSlug } = Astro.props;
 const tabs = emulators.map((e) => {
   const commits = getCommits(e.slug);
+  const onAccent = textOn(e.accent_color);
   return {
     emulator: e,
     hasCommits: commits.length > 0,
     latestHref: commits.length > 0 ? `/${e.slug}/${commits[0].commit_short}` : undefined,
-    activeStyle: `background-color: ${e.accent_color}; color: ${textOn(e.accent_color)};`,
+    activeStyle: `background-color: ${e.accent_color}; color: ${onAccent};`,
+    iconInactive: e.icon ? iconUrl(e.icon, e.accent_color) : null,
+    iconActive: e.icon ? iconUrl(e.icon, onAccent) : null,
   };
 });
 ---
 
 <nav class="flex flex-wrap items-center gap-2" aria-label="Emulators">
   {
-    tabs.map(({ emulator: e, hasCommits, latestHref, activeStyle }) => {
+    tabs.map(({ emulator: e, hasCommits, latestHref, activeStyle, iconActive, iconInactive }) => {
       const active = e.slug === currentSlug;
+      const iconSrc = active ? iconActive : iconInactive;
       return (
         <a
           href={active || !hasCommits ? undefined : latestHref}
@@ -41,7 +50,7 @@ const tabs = emulators.map((e) => {
           title={hasCommits ? e.console : `${e.console} (no submissions yet)`}
           style={active ? activeStyle : undefined}
           class:list={[
-            "inline-flex items-center rounded px-3 text-sm font-medium leading-none h-8",
+            "inline-flex items-center gap-1.5 rounded px-3 text-sm font-medium leading-none h-8",
             active
               ? ""
               : hasCommits
@@ -49,7 +58,12 @@ const tabs = emulators.map((e) => {
               : "border border-dashed border-neutral-300 text-neutral-400 dark:border-neutral-700 dark:text-neutral-600 cursor-not-allowed",
           ]}
         >
-          {e.name} <span class="ml-1 opacity-70">({e.console})</span>
+          {iconSrc && (
+            <img src={iconSrc} alt="" width="14" height="14" loading="lazy" class="h-3.5 w-3.5 shrink-0" />
+          )}
+          <span>
+            {e.name} <span class="ml-1 opacity-70">({e.console})</span>
+          </span>
         </a>
       );
     })
