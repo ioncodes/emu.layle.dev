@@ -18,6 +18,7 @@ hydrateRowsOnScroll();
 wireFilter();
 wireFrameViewer();
 wireCommitCombo();
+wireCompareCombo();
 
 function hydrateRowsOnScroll() {
   const rows = document.querySelectorAll<HTMLElement>('.game-row[data-has-frames="true"]');
@@ -241,6 +242,111 @@ function wireCommitCombo() {
     } else if (ev.key === "Escape") {
       hide();
       input.blur();
+    }
+  });
+
+  list.addEventListener("mousedown", (ev) => {
+    const target = (ev.target as HTMLElement).closest("li[role='option']") as HTMLElement | null;
+    if (!target) return;
+    navTo(target.dataset.short ?? "");
+  });
+}
+
+function wireCompareCombo() {
+  const dataTag = document.getElementById("compare-data");
+  const trigger = document.getElementById("compare-combo-trigger") as HTMLButtonElement | null;
+  const input = document.getElementById("compare-combo-input") as HTMLInputElement | null;
+  const list = document.getElementById("compare-combo-list");
+  if (!dataTag || !trigger || !input || !list) return;
+
+  const payload = JSON.parse(dataTag.textContent ?? "{}") as {
+    emu: string;
+    currentShort: string;
+    commits: CommitEntry[];
+  };
+  const { emu, currentShort, commits } = payload;
+  let highlight = -1;
+
+  function escapeText(s: string): string {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  function render(q: string) {
+    const ql = q.toLowerCase();
+    const matches = commits.filter(
+      (c) => c.short.toLowerCase().startsWith(ql) || c.msg.toLowerCase().includes(ql),
+    );
+    if (matches.length === 0) {
+      list!.innerHTML = '<li class="px-3 py-2 text-neutral-500">No matches</li>';
+    } else {
+      list!.innerHTML = matches
+        .map(
+          (c, i) =>
+            `<li role="option" data-short="${c.short}" data-idx="${i}"` +
+            ` class="cursor-pointer px-3 py-2 hover:bg-neutral-100 dark:hover:bg-neutral-800">` +
+            `<span class="font-mono">${c.short}</span>` +
+            `<span class="ml-2 text-neutral-600 dark:text-neutral-400">${escapeText(c.msg)}</span>` +
+            `</li>`,
+        )
+        .join("");
+    }
+    highlight = -1;
+    list!.classList.remove("hidden");
+    input!.setAttribute("aria-expanded", "true");
+  }
+
+  function show() {
+    trigger!.classList.add("hidden");
+    input!.classList.remove("hidden");
+    input!.value = "";
+    input!.focus();
+    render("");
+  }
+
+  function hide() {
+    list!.classList.add("hidden");
+    input!.classList.add("hidden");
+    trigger!.classList.remove("hidden");
+    input!.setAttribute("aria-expanded", "false");
+    trigger!.setAttribute("aria-expanded", "false");
+  }
+
+  function setHighlight(i: number) {
+    const items = list!.querySelectorAll<HTMLElement>("li[role='option']");
+    items.forEach((el, idx) => {
+      el.classList.toggle("bg-neutral-100", idx === i);
+      el.classList.toggle("dark:bg-neutral-800", idx === i);
+    });
+    highlight = i;
+    const el = items[i];
+    if (el) el.scrollIntoView({ block: "nearest" });
+  }
+
+  function navTo(short: string) {
+    if (!short || short === currentShort) return;
+    window.location.href = `/${emu}/compare/${currentShort}/${short}`;
+  }
+
+  trigger.addEventListener("click", () => {
+    trigger.setAttribute("aria-expanded", "true");
+    show();
+  });
+  input.addEventListener("input", () => render(input.value));
+  input.addEventListener("blur", () => setTimeout(hide, 120));
+  input.addEventListener("keydown", (ev) => {
+    const items = list!.querySelectorAll<HTMLElement>("li[role='option']");
+    if (ev.key === "ArrowDown") {
+      ev.preventDefault();
+      if (items.length) setHighlight(Math.min(highlight + 1, items.length - 1));
+    } else if (ev.key === "ArrowUp") {
+      ev.preventDefault();
+      if (items.length) setHighlight(Math.max(highlight - 1, 0));
+    } else if (ev.key === "Enter") {
+      ev.preventDefault();
+      const el = items[highlight] ?? items[0];
+      if (el) navTo(el.dataset.short ?? "");
+    } else if (ev.key === "Escape") {
+      hide();
     }
   });
 

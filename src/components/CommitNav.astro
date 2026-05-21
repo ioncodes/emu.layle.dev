@@ -1,4 +1,5 @@
 ---
+import Icon from "./Icon.astro";
 import type { Submission } from "@/lib/schema";
 
 interface Props {
@@ -19,26 +20,26 @@ const newer = allCommits[idx - 1];
     aria-label="Older commit"
     aria-disabled={!older}
     class:list={[
-      "rounded border border-neutral-300 px-2 py-1 font-mono text-xs dark:border-neutral-700",
+      "inline-flex items-center rounded border border-neutral-300 px-2 py-1 dark:border-neutral-700",
       older
         ? "hover:bg-neutral-100 dark:hover:bg-neutral-800"
         : "cursor-not-allowed opacity-40",
     ]}
   >
-    ←
+    <Icon name="arrow-left" size={14} />
   </a>
   <a
     href={newer ? `/${emu}/${newer.commit_short}` : undefined}
     aria-label="Newer commit"
     aria-disabled={!newer}
     class:list={[
-      "rounded border border-neutral-300 px-2 py-1 font-mono text-xs dark:border-neutral-700",
+      "inline-flex items-center rounded border border-neutral-300 px-2 py-1 dark:border-neutral-700",
       newer
         ? "hover:bg-neutral-100 dark:hover:bg-neutral-800"
         : "cursor-not-allowed opacity-40",
     ]}
   >
-    →
+    <Icon name="arrow-right" size={14} />
   </a>
   <div class="relative">
     <input

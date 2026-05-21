@@ -1,0 +1,74 @@
+---
+import Icon from "./Icon.astro";
+import type { Submission } from "@/lib/schema";
+
+interface Props {
+  emu: string;
+  current: Submission;
+  allCommits: Submission[];
+}
+
+const { emu, current, allCommits } = Astro.props;
+const otherCommits = allCommits.filter((c) => c.commit_short !== current.commit_short);
+---
+
+<div class="relative">
+  <button
+    id="compare-combo-trigger"
+    type="button"
+    aria-haspopup="listbox"
+    aria-controls="compare-combo-list"
+    aria-expanded="false"
+    class="inline-flex items-center gap-1.5 rounded border border-neutral-300 bg-white px-2 py-1 font-mono text-xs hover:bg-neutral-100 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800"
+  >
+    Compare with...
+    <Icon name="chevron-down" size={12} class="opacity-60" />
+  </button>
+  <input
+    id="compare-combo-input"
+    type="search"
+    role="combobox"
+    aria-controls="compare-combo-list"
+    aria-expanded="false"
+    aria-autocomplete="list"
+    autocomplete="off"
+    placeholder="Pick a commit..."
+    class="absolute top-0 left-0 hidden w-64 rounded border border-neutral-300 bg-white px-2 py-1 font-mono text-xs outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+  />
+  <ul
+    id="compare-combo-list"
+    role="listbox"
+    class="absolute top-full left-0 z-40 mt-1 hidden max-h-72 w-96 max-w-[80vw] overflow-y-auto rounded border border-neutral-300 bg-white text-xs shadow-lg dark:border-neutral-700 dark:bg-neutral-900"
+  >
+  </ul>
+  <noscript>
+    <select
+      onchange={`if(this.value) location.href = '/${emu}/compare/${current.commit_short}/' + this.value`}
+      class="ml-2 rounded border border-neutral-300 bg-white px-2 py-1 font-mono text-xs dark:border-neutral-700 dark:bg-neutral-900"
+    >
+      <option value="">Compare with...</option>
+      {
+        otherCommits.map((c) => (
+          <option value={c.commit_short}>
+            {c.commit_short} {c.commit_message.slice(0, 60)}
+          </option>
+        ))
+      }
+    </select>
+  </noscript>
+</div>
+
+<script
+  is:inline
+  type="application/json"
+  id="compare-data"
+  set:html={JSON.stringify({
+    emu,
+    currentShort: current.commit_short,
+    commits: otherCommits.map((c) => ({
+      short: c.commit_short,
+      msg: c.commit_message,
+      ts: c.commit_timestamp,
+    })),
+  })}
+/>

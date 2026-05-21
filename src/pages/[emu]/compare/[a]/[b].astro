@@ -1,0 +1,416 @@
+---
+import { formatTimestamp, getCommits, getDiff, getEmulators } from "@/lib/meta";
+import type { GameDiff, Diff } from "@/lib/meta";
+import type { Screenshot } from "@/lib/schema";
+import { siteConfig } from "../../../../../site.config";
+import EmulatorTabs from "@/components/EmulatorTabs.astro";
+import FrameViewer from "@/components/FrameViewer.astro";
+import Icon from "@/components/Icon.astro";
+import "../../../../styles/global.css";
+
+export function getStaticPaths() {
+  const paths: { params: { emu: string; a: string; b: string } }[] = [];
+  for (const emu of getEmulators()) {
+    const commits = getCommits(emu.slug);
+    for (const a of commits) {
+      for (const b of commits) {
+        if (a.commit_short === b.commit_short) continue;
+        paths.push({ params: { emu: emu.slug, a: a.commit_short, b: b.commit_short } });
+      }
+    }
+  }
+  return paths;
+}
+
+const { emu, a, b } = Astro.params;
+const allEmulators = getEmulators();
+const emulator = allEmulators.find((e) => e.slug === emu);
+const diff = getDiff(emu!, a!, b!);
+if (!emulator || !diff) {
+  throw new Error(`no diff ${emu}/${a}..${b}`);
+}
+
+const aUrl = emulator.commit_url_template.replace("{sha}", diff.a.commit);
+const bUrl = emulator.commit_url_template.replace("{sha}", diff.b.commit);
+
+const screenshotsBase = siteConfig.screenshotsBaseUrl;
+function frameSrc(s: Screenshot): string {
+  return `${screenshotsBase}/${s.r2_key}`;
+}
+
+const sections: {
+  id: string;
+  title: string;
+  description: string;
+  badgeClass: string;
+  entries: GameDiff[];
+}[] = [
+  {
+    id: "game-added",
+    title: "Games added",
+    description: `Present in ${diff.b.commit_short} but not ${diff.a.commit_short}.`,
+    badgeClass: "bg-green-100 text-green-800 dark:bg-green-900/40 dark:text-green-300",
+    entries: diff.groups.gameAdded,
+  },
+  {
+    id: "game-removed",
+    title: "Games removed",
+    description: `Present in ${diff.a.commit_short} but not ${diff.b.commit_short}.`,
+    badgeClass: "bg-red-100 text-red-800 dark:bg-red-900/40 dark:text-red-300",
+    entries: diff.groups.gameRemoved,
+  },
+  {
+    id: "gained",
+    title: "Gained screenshots",
+    description: `Had 0 frames in ${diff.a.commit_short}, has frames in ${diff.b.commit_short}.`,
+    badgeClass: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300",
+    entries: diff.groups.gainedScreenshots,
+  },
+  {
+    id: "lost",
+    title: "Lost screenshots",
+    description: `Had frames in ${diff.a.commit_short}, has 0 frames in ${diff.b.commit_short}.`,
+    badgeClass: "bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300",
+    entries: diff.groups.lostScreenshots,
+  },
+  {
+    id: "changed",
+    title: "Frames changed",
+    description: `Same game, but at least one frame differs (sha256, count, or index).`,
+    badgeClass: "bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300",
+    entries: diff.groups.framesChanged,
+  },
+];
+
+const totalChanges =
+  diff.totals.gameAdded +
+  diff.totals.gameRemoved +
+  diff.totals.gainedScreenshots +
+  diff.totals.lostScreenshots +
+  diff.totals.framesChanged;
+
+const swapHref = `/${emu}/compare/${diff.b.commit_short}/${diff.a.commit_short}`;
+---
+
+<!doctype html>
+<html lang="en" class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{emulator.name} / {diff.a.commit_short} to {diff.b.commit_short}</title>
+  </head>
+  <body class="min-h-screen font-sans antialiased">
+    <div class="border-b border-neutral-200 dark:border-neutral-800">
+      <div class="mx-auto max-w-6xl px-6 py-4">
+        <EmulatorTabs emulators={allEmulators} currentSlug={emu!} />
+      </div>
+    </div>
+
+    <main class="mx-auto max-w-6xl px-6 py-8">
+      <header class="mb-8 border-b border-neutral-200 pb-6 dark:border-neutral-800">
+        <div class="flex flex-wrap items-center gap-2 text-sm">
+          <a
+            href={`/${emu}/${diff.a.commit_short}`}
+            class="font-mono text-neutral-600 hover:underline dark:text-neutral-400"
+          >
+            {diff.a.commit_short}
+          </a>
+          <a
+            href={aUrl}
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300"
+            aria-label="View commit A on remote"
+          >
+            <Icon name="arrow-up-right" size={14} />
+          </a>
+          <Icon name="arrow-right" size={14} class="text-neutral-400" />
+          <a
+            href={`/${emu}/${diff.b.commit_short}`}
+            class="font-mono text-neutral-600 hover:underline dark:text-neutral-400"
+          >
+            {diff.b.commit_short}
+          </a>
+          <a
+            href={bUrl}
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex items-center text-neutral-500 hover:text-neutral-700 dark:hover:text-neutral-300"
+            aria-label="View commit B on remote"
+          >
+            <Icon name="arrow-up-right" size={14} />
+          </a>
+          <a
+            href={swapHref}
+            class="ml-2 inline-flex items-center gap-1.5 rounded border border-neutral-300 px-2 py-1 font-mono text-xs hover:bg-neutral-100 dark:border-neutral-700 dark:hover:bg-neutral-800"
+            title="Swap direction"
+          >
+            <Icon name="arrow-left-right" size={12} />
+            Swap
+          </a>
+          <input
+            id="game-filter"
+            type="search"
+            placeholder="Filter games..."
+            aria-label="Filter games by title or id"
+            class="ml-auto w-64 max-w-full rounded border border-neutral-300 bg-white px-3 py-1 text-sm outline-none focus:border-neutral-500 dark:border-neutral-700 dark:bg-neutral-900"
+          />
+        </div>
+
+        <dl class="mt-4 grid grid-cols-[auto_auto_1fr] gap-x-4 gap-y-1 text-xs text-neutral-600 dark:text-neutral-400">
+          <dt class="font-mono">{diff.a.commit_short}</dt>
+          <dd class="font-mono text-neutral-500">{formatTimestamp(diff.a.commit_timestamp)}</dd>
+          <dd class="truncate">{diff.a.commit_message}</dd>
+          <dt class="font-mono">{diff.b.commit_short}</dt>
+          <dd class="font-mono text-neutral-500">{formatTimestamp(diff.b.commit_timestamp)}</dd>
+          <dd class="truncate">{diff.b.commit_message}</dd>
+        </dl>
+
+        <div class="mt-4 flex flex-wrap gap-2 text-xs">
+          {
+            sections.map((s) => (
+              <a
+                href={s.entries.length > 0 ? `#section-${s.id}` : undefined}
+                aria-disabled={s.entries.length === 0}
+                class:list={[
+                  "rounded px-2 py-1 font-medium",
+                  s.badgeClass,
+                  s.entries.length === 0 ? "opacity-40 cursor-default" : "hover:underline",
+                ]}
+              >
+                {s.entries.length} {s.title.toLowerCase()}
+              </a>
+            ))
+          }
+        </div>
+      </header>
+
+      {
+        totalChanges === 0 ? (
+          <p class="text-sm italic text-neutral-500">
+            No differences detected between {diff.a.commit_short} and {diff.b.commit_short}.
+          </p>
+        ) : (
+          sections.map((section) =>
+            section.entries.length === 0 ? null : (
+              <section id={`section-${section.id}`} class="mb-12">
+                <header class="mb-4 flex items-baseline gap-3">
+                  <h2 class="text-lg font-semibold">{section.title}</h2>
+                  <span class:list={["rounded px-2 py-0.5 text-xs font-medium", section.badgeClass]}>
+                    {section.entries.length}
+                  </span>
+                  <p class="text-xs text-neutral-500">{section.description}</p>
+                </header>
+                <ul class="space-y-6">
+                  {section.entries.map((entry) => (
+                    <li
+                      class="diff-row rounded border border-neutral-200 p-4 dark:border-neutral-800"
+                      data-game-id={entry.game.game_id}
+                      data-title={entry.game.game_title}
+                    >
+                      <h3 class="flex items-baseline gap-3 text-sm">
+                        <span class="font-medium">{entry.game.game_title}</span>
+                        <span class="font-mono text-xs text-neutral-500">{entry.game.game_id}</span>
+                      </h3>
+                      {entry.kind === "game-added" && (
+                        <div class="mt-3">
+                          {entry.bFrames.length === 0 ? (
+                            <p class="text-xs italic text-neutral-500">
+                              No screenshots in {diff.b.commit_short}.
+                            </p>
+                          ) : (
+                            <div class="frames-row flex gap-2 overflow-x-auto pb-1">
+                              {entry.bFrames.map((f) => (
+                                <img
+                                  src={frameSrc(f)}
+                                  width={f.width}
+                                  height={f.height}
+                                  loading="lazy"
+                                  class="h-32 w-auto shrink-0 cursor-pointer rounded border-2 border-green-400 dark:border-green-700"
+                                  alt={`${entry.game.game_title} frame ${f.frame_index}`}
+                                />
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      {entry.kind === "game-removed" && (
+                        <div class="mt-3">
+                          {entry.aFrames.length === 0 ? (
+                            <p class="text-xs italic text-neutral-500">
+                              No screenshots in {diff.a.commit_short}.
+                            </p>
+                          ) : (
+                            <div class="frames-row flex gap-2 overflow-x-auto pb-1">
+                              {entry.aFrames.map((f) => (
+                                <img
+                                  src={frameSrc(f)}
+                                  width={f.width}
+                                  height={f.height}
+                                  loading="lazy"
+                                  class="h-32 w-auto shrink-0 cursor-pointer rounded border-2 border-red-400 dark:border-red-700"
+                                  alt={`${entry.game.game_title} frame ${f.frame_index}`}
+                                />
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                      {entry.kind === "gained-screenshots" && (
+                        <div class="mt-3">
+                          <p class="mb-2 text-xs text-neutral-500">
+                            {entry.bFrames.length} new frame{entry.bFrames.length === 1 ? "" : "s"} in {diff.b.commit_short}.
+                          </p>
+                          <div class="frames-row flex gap-2 overflow-x-auto pb-1">
+                            {entry.bFrames.map((f) => (
+                              <img
+                                src={frameSrc(f)}
+                                width={f.width}
+                                height={f.height}
+                                loading="lazy"
+                                class="h-32 w-auto shrink-0 cursor-pointer rounded border-2 border-emerald-400 dark:border-emerald-700"
+                                alt={`${entry.game.game_title} frame ${f.frame_index}`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {entry.kind === "lost-screenshots" && (
+                        <div class="mt-3">
+                          <p class="mb-2 text-xs text-neutral-500">
+                            {entry.aFrames.length} frame{entry.aFrames.length === 1 ? "" : "s"} disappeared in {diff.b.commit_short}.
+                          </p>
+                          <div class="frames-row flex gap-2 overflow-x-auto pb-1">
+                            {entry.aFrames.map((f) => (
+                              <img
+                                src={frameSrc(f)}
+                                width={f.width}
+                                height={f.height}
+                                loading="lazy"
+                                class="h-32 w-auto shrink-0 cursor-pointer rounded border-2 border-amber-400 dark:border-amber-700"
+                                alt={`${entry.game.game_title} frame ${f.frame_index}`}
+                              />
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {entry.kind === "frames-changed" && (
+                        <div class="mt-3 space-y-2">
+                          <p class="text-xs text-neutral-500">
+                            {entry.changedCount > 0 && (
+                              <span class="mr-3">
+                                <span class="inline-block h-2 w-2 align-middle rounded-full bg-blue-500" /> {entry.changedCount} changed
+                              </span>
+                            )}
+                            {entry.addedCount > 0 && (
+                              <span class="mr-3">
+                                <span class="inline-block h-2 w-2 align-middle rounded-full bg-emerald-500" /> {entry.addedCount} added
+                              </span>
+                            )}
+                            {entry.removedCount > 0 && (
+                              <span class="mr-3">
+                                <span class="inline-block h-2 w-2 align-middle rounded-full bg-amber-500" /> {entry.removedCount} removed
+                              </span>
+                            )}
+                          </p>
+                          <div class="frames-row flex gap-3 overflow-x-auto pb-1">
+                            {entry.perFrame.map((fd) => {
+                              if (fd.kind === "same") {
+                                return (
+                                  <figure class="shrink-0">
+                                    <img
+                                      src={frameSrc(fd.b)}
+                                      width={fd.b.width}
+                                      height={fd.b.height}
+                                      loading="lazy"
+                                      class="h-32 w-auto rounded border border-neutral-200 opacity-40 dark:border-neutral-800"
+                                      alt={`${entry.game.game_title} frame ${fd.b.frame_index} (unchanged)`}
+                                    />
+                                    <figcaption class="mt-1 font-mono text-[10px] text-neutral-500">
+                                      #{fd.b.frame_index} same
+                                    </figcaption>
+                                  </figure>
+                                );
+                              }
+                              if (fd.kind === "added") {
+                                return (
+                                  <figure class="shrink-0">
+                                    <img
+                                      src={frameSrc(fd.frame)}
+                                      width={fd.frame.width}
+                                      height={fd.frame.height}
+                                      loading="lazy"
+                                      class="h-32 w-auto rounded border-2 border-emerald-400 dark:border-emerald-700"
+                                      alt={`${entry.game.game_title} frame ${fd.frame.frame_index} (added)`}
+                                    />
+                                    <figcaption class="mt-1 font-mono text-[10px] text-emerald-600 dark:text-emerald-400">
+                                      #{fd.frame.frame_index} added
+                                    </figcaption>
+                                  </figure>
+                                );
+                              }
+                              if (fd.kind === "removed") {
+                                return (
+                                  <figure class="shrink-0">
+                                    <img
+                                      src={frameSrc(fd.frame)}
+                                      width={fd.frame.width}
+                                      height={fd.frame.height}
+                                      loading="lazy"
+                                      class="h-32 w-auto rounded border-2 border-amber-400 dark:border-amber-700"
+                                      alt={`${entry.game.game_title} frame ${fd.frame.frame_index} (removed)`}
+                                    />
+                                    <figcaption class="mt-1 font-mono text-[10px] text-amber-700 dark:text-amber-400">
+                                      #{fd.frame.frame_index} removed
+                                    </figcaption>
+                                  </figure>
+                                );
+                              }
+                              // changed
+                              return (
+                                <figure class="shrink-0">
+                                  <div class="flex items-center gap-1">
+                                    <img
+                                      src={frameSrc(fd.a)}
+                                      width={fd.a.width}
+                                      height={fd.a.height}
+                                      loading="lazy"
+                                      class="h-32 w-auto rounded border-2 border-blue-400 dark:border-blue-700"
+                                      alt={`${entry.game.game_title} frame ${fd.a.frame_index} in ${diff.a.commit_short}`}
+                                    />
+                                    <Icon name="arrow-right" size={14} class="text-neutral-400" />
+                                    <img
+                                      src={frameSrc(fd.b)}
+                                      width={fd.b.width}
+                                      height={fd.b.height}
+                                      loading="lazy"
+                                      class="h-32 w-auto rounded border-2 border-blue-400 dark:border-blue-700"
+                                      alt={`${entry.game.game_title} frame ${fd.b.frame_index} in ${diff.b.commit_short}`}
+                                    />
+                                  </div>
+                                  <figcaption class="mt-1 font-mono text-[10px] text-blue-700 dark:text-blue-400">
+                                    #{fd.b.frame_index} changed
+                                  </figcaption>
+                                </figure>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ),
+          )
+        )
+      }
+    </main>
+
+    <FrameViewer />
+
+    <script>
+      import "../../../../scripts/compare-view";
+    </script>
+  </body>
+</html>

@@ -1,9 +1,10 @@
 ---
-import { getCommits, getEmulators, getGameRows, getSubmission } from "@/lib/meta";
+import { formatTimestamp, getCommits, getEmulators, getGameRows, getSubmission } from "@/lib/meta";
 import { siteConfig } from "../../../site.config";
 import GameRow from "@/components/GameRow.astro";
 import FrameViewer from "@/components/FrameViewer.astro";
 import CommitNav from "@/components/CommitNav.astro";
+import CompareNav from "@/components/CompareNav.astro";
 import EmulatorTabs from "@/components/EmulatorTabs.astro";
 import "../../styles/global.css";
 
@@ -69,8 +70,11 @@ const framesData = rows
           >
             {submission.commit_short}
           </a>
-          <span class="text-xs text-neutral-500">{submission.commit_timestamp}</span>
+          <span class="font-mono text-xs text-neutral-500">{formatTimestamp(submission.commit_timestamp)}</span>
           <CommitNav emu={emu!} current={submission} allCommits={allCommits} />
+          {allCommits.length > 1 && (
+            <CompareNav emu={emu!} current={submission} allCommits={allCommits} />
+          )}
           <input
             id="game-filter"
             type="search"
