@@ -1,1 +1,10 @@
 @import "tailwindcss";
+
+html {
+  color-scheme: light dark;
+}
+
+.frames-row,
+.frames-container {
+  scrollbar-width: thin;
+}

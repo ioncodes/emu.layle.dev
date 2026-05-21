@@ -1,7 +1,6 @@
 ---
 import { formatTimestamp, getCommits, getDiff, getEmulators } from "@/lib/meta";
-import type { GameDiff, Diff } from "@/lib/meta";
-import type { Screenshot } from "@/lib/schema";
+import type { GameDiff } from "@/lib/meta";
 import { siteConfig } from "../../../../../site.config";
 import EmulatorTabs from "@/components/EmulatorTabs.astro";
 import FrameViewer from "@/components/FrameViewer.astro";
@@ -34,8 +33,41 @@ const aUrl = emulator.commit_url_template.replace("{sha}", diff.a.commit);
 const bUrl = emulator.commit_url_template.replace("{sha}", diff.b.commit);
 
 const screenshotsBase = siteConfig.screenshotsBaseUrl;
-function frameSrc(s: Screenshot): string {
-  return `${screenshotsBase}/${s.r2_key}`;
+
+type StripKind = "ga" | "gr" | "gs" | "ls" | "fc";
+
+type SingleFrame = [number, string, number, number];
+
+type PairedFrame =
+  | ["s" | "a" | "r", number, string, number, number]
+  | ["c", number, string, number, number, string, number, number];
+
+type Strip =
+  | { k: "ga" | "gs"; f: SingleFrame[] }
+  | { k: "gr" | "ls"; f: SingleFrame[] }
+  | { k: "fc"; f: PairedFrame[] };
+
+const strips: Strip[] = [];
+function addStripFor(entry: GameDiff): number {
+  const id = strips.length;
+  if (entry.kind === "game-added") {
+    strips.push({ k: "ga", f: entry.bFrames.map((s) => [s.frame_index, s.r2_key, s.width, s.height]) });
+  } else if (entry.kind === "game-removed") {
+    strips.push({ k: "gr", f: entry.aFrames.map((s) => [s.frame_index, s.r2_key, s.width, s.height]) });
+  } else if (entry.kind === "gained-screenshots") {
+    strips.push({ k: "gs", f: entry.bFrames.map((s) => [s.frame_index, s.r2_key, s.width, s.height]) });
+  } else if (entry.kind === "lost-screenshots") {
+    strips.push({ k: "ls", f: entry.aFrames.map((s) => [s.frame_index, s.r2_key, s.width, s.height]) });
+  } else {
+    const f: PairedFrame[] = entry.perFrame.map((fd) => {
+      if (fd.kind === "same") return ["s", fd.b.frame_index, fd.b.r2_key, fd.b.width, fd.b.height];
+      if (fd.kind === "added") return ["a", fd.frame.frame_index, fd.frame.r2_key, fd.frame.width, fd.frame.height];
+      if (fd.kind === "removed") return ["r", fd.frame.frame_index, fd.frame.r2_key, fd.frame.width, fd.frame.height];
+      return ["c", fd.b.frame_index, fd.a.r2_key, fd.a.width, fd.a.height, fd.b.r2_key, fd.b.width, fd.b.height];
+    });
+    strips.push({ k: "fc", f });
+  }
+  return id;
 }
 
 const sections: {
@@ -202,101 +234,31 @@ const swapHref = `/${emu}/compare/${diff.b.commit_short}/${diff.a.commit_short}`
                   <p class="text-xs text-neutral-500">{section.description}</p>
                 </header>
                 <ul class="space-y-6">
-                  {section.entries.map((entry) => (
-                    <li
-                      class="diff-row rounded border border-neutral-200 p-4 dark:border-neutral-800"
-                      data-game-id={entry.game.game_id}
-                      data-title={entry.game.game_title}
-                    >
-                      <h3 class="flex items-baseline gap-3 text-sm">
-                        <span class="font-medium">{entry.game.game_title}</span>
-                        <span class="font-mono text-xs text-neutral-500">{entry.game.game_id}</span>
-                      </h3>
-                      {entry.kind === "game-added" && (
-                        <div class="mt-3">
-                          {entry.bFrames.length === 0 ? (
-                            <p class="text-xs italic text-neutral-500">
-                              No screenshots in {diff.b.commit_short}.
-                            </p>
-                          ) : (
-                            <div class="frames-row flex gap-2 overflow-x-auto pb-1">
-                              {entry.bFrames.map((f) => (
-                                <img
-                                  src={frameSrc(f)}
-                                  width={f.width}
-                                  height={f.height}
-                                  loading="lazy"
-                                  class="h-32 w-auto shrink-0 cursor-pointer rounded border-2 border-green-400 dark:border-green-700"
-                                  alt={`${entry.game.game_title} frame ${f.frame_index}`}
-                                />
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                      {entry.kind === "game-removed" && (
-                        <div class="mt-3">
-                          {entry.aFrames.length === 0 ? (
-                            <p class="text-xs italic text-neutral-500">
-                              No screenshots in {diff.a.commit_short}.
-                            </p>
-                          ) : (
-                            <div class="frames-row flex gap-2 overflow-x-auto pb-1">
-                              {entry.aFrames.map((f) => (
-                                <img
-                                  src={frameSrc(f)}
-                                  width={f.width}
-                                  height={f.height}
-                                  loading="lazy"
-                                  class="h-32 w-auto shrink-0 cursor-pointer rounded border-2 border-red-400 dark:border-red-700"
-                                  alt={`${entry.game.game_title} frame ${f.frame_index}`}
-                                />
-                              ))}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                      {entry.kind === "gained-screenshots" && (
-                        <div class="mt-3">
-                          <p class="mb-2 text-xs text-neutral-500">
-                            {entry.bFrames.length} new frame{entry.bFrames.length === 1 ? "" : "s"} in {diff.b.commit_short}.
-                          </p>
-                          <div class="frames-row flex gap-2 overflow-x-auto pb-1">
-                            {entry.bFrames.map((f) => (
-                              <img
-                                src={frameSrc(f)}
-                                width={f.width}
-                                height={f.height}
-                                loading="lazy"
-                                class="h-32 w-auto shrink-0 cursor-pointer rounded border-2 border-emerald-400 dark:border-emerald-700"
-                                alt={`${entry.game.game_title} frame ${f.frame_index}`}
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      {entry.kind === "lost-screenshots" && (
-                        <div class="mt-3">
-                          <p class="mb-2 text-xs text-neutral-500">
-                            {entry.aFrames.length} frame{entry.aFrames.length === 1 ? "" : "s"} disappeared in {diff.b.commit_short}.
-                          </p>
-                          <div class="frames-row flex gap-2 overflow-x-auto pb-1">
-                            {entry.aFrames.map((f) => (
-                              <img
-                                src={frameSrc(f)}
-                                width={f.width}
-                                height={f.height}
-                                loading="lazy"
-                                class="h-32 w-auto shrink-0 cursor-pointer rounded border-2 border-amber-400 dark:border-amber-700"
-                                alt={`${entry.game.game_title} frame ${f.frame_index}`}
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      {entry.kind === "frames-changed" && (
-                        <div class="mt-3 space-y-2">
-                          <p class="text-xs text-neutral-500">
+                  {section.entries.map((entry) => {
+                    const stripId = addStripFor(entry);
+                    let caption = "";
+                    if (entry.kind === "game-added") {
+                      caption = `${entry.bFrames.length} frame${entry.bFrames.length === 1 ? "" : "s"} in ${diff.b.commit_short}`;
+                    } else if (entry.kind === "game-removed") {
+                      caption = `${entry.aFrames.length} frame${entry.aFrames.length === 1 ? "" : "s"} in ${diff.a.commit_short}`;
+                    } else if (entry.kind === "gained-screenshots") {
+                      caption = `${entry.bFrames.length} new frame${entry.bFrames.length === 1 ? "" : "s"} in ${diff.b.commit_short}`;
+                    } else if (entry.kind === "lost-screenshots") {
+                      caption = `${entry.aFrames.length} frame${entry.aFrames.length === 1 ? "" : "s"} disappeared in ${diff.b.commit_short}`;
+                    }
+                    return (
+                      <li
+                        class="diff-row rounded border border-neutral-200 p-4 dark:border-neutral-800"
+                        data-game-id={entry.game.game_id}
+                        data-title={entry.game.game_title}
+                        data-strip-id={stripId}
+                      >
+                        <h3 class="flex items-baseline gap-3 text-sm">
+                          <span class="font-medium">{entry.game.game_title}</span>
+                          <span class="font-mono text-xs text-neutral-500">{entry.game.game_id}</span>
+                        </h3>
+                        {entry.kind === "frames-changed" ? (
+                          <p class="mt-2 text-xs text-neutral-500">
                             {entry.changedCount > 0 && (
                               <span class="mr-3">
                                 <span class="inline-block h-2 w-2 align-middle rounded-full bg-blue-500" /> {entry.changedCount} changed
@@ -313,92 +275,13 @@ const swapHref = `/${emu}/compare/${diff.b.commit_short}/${diff.a.commit_short}`
                               </span>
                             )}
                           </p>
-                          <div class="frames-row flex gap-3 overflow-x-auto pb-1">
-                            {entry.perFrame.map((fd) => {
-                              if (fd.kind === "same") {
-                                return (
-                                  <figure class="shrink-0">
-                                    <img
-                                      src={frameSrc(fd.b)}
-                                      width={fd.b.width}
-                                      height={fd.b.height}
-                                      loading="lazy"
-                                      class="h-32 w-auto rounded border border-neutral-200 opacity-40 dark:border-neutral-800"
-                                      alt={`${entry.game.game_title} frame ${fd.b.frame_index} (unchanged)`}
-                                    />
-                                    <figcaption class="mt-1 font-mono text-[10px] text-neutral-500">
-                                      #{fd.b.frame_index} same
-                                    </figcaption>
-                                  </figure>
-                                );
-                              }
-                              if (fd.kind === "added") {
-                                return (
-                                  <figure class="shrink-0">
-                                    <img
-                                      src={frameSrc(fd.frame)}
-                                      width={fd.frame.width}
-                                      height={fd.frame.height}
-                                      loading="lazy"
-                                      class="h-32 w-auto rounded border-2 border-emerald-400 dark:border-emerald-700"
-                                      alt={`${entry.game.game_title} frame ${fd.frame.frame_index} (added)`}
-                                    />
-                                    <figcaption class="mt-1 font-mono text-[10px] text-emerald-600 dark:text-emerald-400">
-                                      #{fd.frame.frame_index} added
-                                    </figcaption>
-                                  </figure>
-                                );
-                              }
-                              if (fd.kind === "removed") {
-                                return (
-                                  <figure class="shrink-0">
-                                    <img
-                                      src={frameSrc(fd.frame)}
-                                      width={fd.frame.width}
-                                      height={fd.frame.height}
-                                      loading="lazy"
-                                      class="h-32 w-auto rounded border-2 border-amber-400 dark:border-amber-700"
-                                      alt={`${entry.game.game_title} frame ${fd.frame.frame_index} (removed)`}
-                                    />
-                                    <figcaption class="mt-1 font-mono text-[10px] text-amber-700 dark:text-amber-400">
-                                      #{fd.frame.frame_index} removed
-                                    </figcaption>
-                                  </figure>
-                                );
-                              }
-                              // changed
-                              return (
-                                <figure class="shrink-0">
-                                  <div class="flex items-center gap-1">
-                                    <img
-                                      src={frameSrc(fd.a)}
-                                      width={fd.a.width}
-                                      height={fd.a.height}
-                                      loading="lazy"
-                                      class="h-32 w-auto rounded border-2 border-blue-400 dark:border-blue-700"
-                                      alt={`${entry.game.game_title} frame ${fd.a.frame_index} in ${diff.a.commit_short}`}
-                                    />
-                                    <Icon name="arrow-right" size={14} class="text-neutral-400" />
-                                    <img
-                                      src={frameSrc(fd.b)}
-                                      width={fd.b.width}
-                                      height={fd.b.height}
-                                      loading="lazy"
-                                      class="h-32 w-auto rounded border-2 border-blue-400 dark:border-blue-700"
-                                      alt={`${entry.game.game_title} frame ${fd.b.frame_index} in ${diff.b.commit_short}`}
-                                    />
-                                  </div>
-                                  <figcaption class="mt-1 font-mono text-[10px] text-blue-700 dark:text-blue-400">
-                                    #{fd.b.frame_index} changed
-                                  </figcaption>
-                                </figure>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      )}
-                    </li>
-                  ))}
+                        ) : (
+                          <p class="mt-2 text-xs text-neutral-500">{caption}</p>
+                        )}
+                        <div class="frames-row mt-3 flex gap-3 overflow-x-auto pb-1" style="min-height:148px" />
+                      </li>
+                    );
+                  })}
                 </ul>
               </section>
             ),
@@ -409,6 +292,12 @@ const swapHref = `/${emu}/compare/${diff.b.commit_short}/${diff.a.commit_short}`
 
     <FrameViewer />
 
+    <script
+      is:inline
+      type="application/json"
+      id="diff-strips"
+      set:html={JSON.stringify({ base: screenshotsBase, aShort: diff.a.commit_short, bShort: diff.b.commit_short, strips })}
+    />
     <script>
       import "../../../../scripts/compare-view";
     </script>
