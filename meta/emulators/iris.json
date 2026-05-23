@@ -1,0 +1,11 @@
+{
+  "slug": "iris",
+  "name": "Iris",
+  "console": "PlayStation 2",
+  "description": "Sony PlayStation 2 emulator for Windows, Linux and macOS.",
+  "repo_url": "https://github.com/allkern/iris",
+  "commit_url_template": "https://github.com/allkern/iris/commit/{sha}",
+  "accent_color": "#003791",
+  "icon": "simple-icons:playstation2",
+  "author": "allkern"
+}

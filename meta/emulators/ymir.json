@@ -1,0 +1,11 @@
+{
+  "slug": "ymir",
+  "name": "Ymir",
+  "console": "Sega Saturn",
+  "description": "A work-in-progress Sega Saturn emulator.",
+  "repo_url": "https://github.com/StrikerX3/Ymir",
+  "commit_url_template": "https://github.com/StrikerX3/Ymir/commit/{sha}",
+  "accent_color": "#17569b",
+  "icon": "simple-icons:sega",
+  "author": "StrikerX3"
+}
