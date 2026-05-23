@@ -22,6 +22,8 @@ import os
 import re
 import subprocess
 import sys
+import threading
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, replace
 from datetime import datetime, timezone
 from pathlib import Path
@@ -240,6 +242,35 @@ def upload_one(client, cfg: R2Config, key: str, source: Path) -> None:  # type: 
         )
 
 
+def list_existing_keys(client, cfg: R2Config, prefix: str) -> set[str]:  # type: ignore[no-untyped-def]
+    """List every object key already present under prefix (one paginated pass)."""
+    keys: set[str] = set()
+    paginator = client.get_paginator("list_objects_v2")
+    for page in paginator.paginate(Bucket=cfg.bucket, Prefix=prefix):
+        for obj in page.get("Contents", []):
+            keys.add(obj["Key"])
+    return keys
+
+
+def process_plan(
+    plan: ScreenshotPlan, *, emulator: str, short: str, client, cfg: R2Config,
+    existing: set[str], dry_run: bool, skip_existing: bool,
+) -> tuple[Screenshot, bool]:  # type: ignore[no-untyped-def]
+    """Read dimensions/sha256 and upload unless skipped. Returns (shot, uploaded)."""
+    w, h = read_dimensions(plan.source_path)
+    sha = sha256_file(plan.source_path)
+    key = r2_key_for(emulator, short, plan.game_id, plan.frame_index)
+    uploaded = False
+    if not dry_run and not (skip_existing and key in existing):
+        upload_one(client, cfg, key, plan.source_path)
+        uploaded = True
+    shot = Screenshot(
+        game_id=plan.game_id, frame_index=plan.frame_index, r2_key=key,
+        width=w, height=h, sha256=sha,
+    )
+    return shot, uploaded
+
+
 def build_submission(
     *, emulator: str, commit: GitCommit,
     games: Iterable[dict[str, str]], screenshots: Iterable[Screenshot],
@@ -289,6 +320,7 @@ def run_submission(
     title_map_path: Path | None, submitted_by: str | None, branch: str | None,
     dry_run: bool, allow_dirty: bool, no_push: bool,
     emu_repo: Path, env: dict[str, str] | None = None, now: datetime | None = None,
+    workers: int = 16, skip_existing: bool = True,
 ) -> dict[str, Any]:
     r2_cfg = load_r2_config(env)
     archive_repo = archive_repo.resolve()
@@ -314,10 +346,8 @@ def run_submission(
     now_dt = now or datetime.now(timezone.utc)
     submitted_at = now_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
 
-    screenshots: list[Screenshot] = []
     games_meta: list[dict[str, str]] = []
-    client = None if dry_run else make_r2_client(r2_cfg)
-
+    all_plans: list[ScreenshotPlan] = []
     for game in games_scanned:
         if whitelist and game.game_id not in title_map:
             click.echo(f"skip: {game.game_id} not in --title-map", err=True)
@@ -332,21 +362,46 @@ def run_submission(
         if not game.frames:
             click.echo(f"info: {game.game_id} has no screenshots", err=True)
             continue
-
-        for plan in game.frames:
-            w, h = read_dimensions(plan.source_path)
-            key = r2_key_for(emulator, commit.short, plan.game_id, plan.frame_index)
-            if dry_run:
-                click.echo(f"[dry-run] upload {plan.source_path} -> r2://{r2_cfg.bucket}/{key}")
-            else:
-                upload_one(client, r2_cfg, key, plan.source_path)
-            screenshots.append(Screenshot(
-                game_id=plan.game_id, frame_index=plan.frame_index, r2_key=key,
-                width=w, height=h, sha256=sha256_file(plan.source_path),
-            ))
+        all_plans.extend(game.frames)
 
     if not games_meta:
         raise click.ClickException("nothing to submit, every game was filtered out")
+
+    client = None if dry_run else make_r2_client(r2_cfg)
+
+    existing: set[str] = set()
+    if skip_existing and not dry_run:
+        prefix = f"{emulator}/{commit.short}/"
+        click.echo(f"listing already-uploaded objects under {prefix} ...", err=True)
+        existing = list_existing_keys(client, r2_cfg, prefix)
+        click.echo(f"found {len(existing)} already-uploaded object(s)", err=True)
+
+    screenshots: list[Screenshot] = []
+    total = len(all_plans)
+    counts = {"done": 0, "uploaded": 0, "skipped": 0}
+    lock = threading.Lock()
+
+    def work(plan: ScreenshotPlan) -> tuple[Screenshot, bool]:
+        return process_plan(
+            plan, emulator=emulator, short=commit.short, client=client, cfg=r2_cfg,
+            existing=existing, dry_run=dry_run, skip_existing=skip_existing,
+        )
+
+    click.echo(f"processing {total} screenshot(s) with {workers} worker(s)", err=True)
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        futures = [ex.submit(work, p) for p in all_plans]
+        for fut in as_completed(futures):
+            shot, uploaded = fut.result()
+            with lock:
+                screenshots.append(shot)
+                counts["done"] += 1
+                counts["uploaded" if uploaded else "skipped"] += 1
+                if counts["done"] % 200 == 0 or counts["done"] == total:
+                    click.echo(
+                        f"  {counts['done']}/{total} processed "
+                        f"({counts['uploaded']} uploaded, {counts['skipped']} skipped)",
+                        err=True,
+                    )
 
     submission = build_submission(
         emulator=emulator, commit=commit, games=games_meta, screenshots=screenshots,
@@ -382,7 +437,10 @@ def run_submission(
                 _git("pull", "--rebase", cwd=archive_repo)
                 _git("push", cwd=archive_repo)
 
-    click.echo(f"done: {len(screenshots)} screenshot(s) uploaded, submission at {json_path}")
+    click.echo(
+        f"done: {counts['uploaded']} uploaded, {counts['skipped']} already present "
+        f"({len(screenshots)} total), submission at {json_path}"
+    )
     return submission
 
 
@@ -404,11 +462,16 @@ def run_submission(
 @click.option("--dry-run", is_flag=True, help="Print what would happen. No uploads, no writes.")
 @click.option("--allow-dirty", is_flag=True, help="Allow submitting from a dirty working tree.")
 @click.option("--no-push", is_flag=True, help="Commit the JSON but do not push.")
+@click.option("--workers", type=int, default=16, show_default=True,
+              help="Number of parallel upload threads.")
+@click.option("--force", "force", is_flag=True,
+              help="Re-upload every screenshot even if its key already exists in R2.")
 def cli(
     emulator: str, emu_repo: Path | None, input_dir: Path | None,
     archive_repo: Path | None, env_file: Path | None, title_map_path: Path | None,
     submitted_by: str | None, branch: str | None,
     dry_run: bool, allow_dirty: bool, no_push: bool,
+    workers: int, force: bool,
 ) -> None:
     emu_repo = (emu_repo or Path.cwd()).resolve()
     input_dir = (input_dir or emu_repo / "screenshots").resolve()
@@ -421,6 +484,7 @@ def cli(
         emulator=emulator, input_dir=input_dir, archive_repo=archive_repo,
         title_map_path=title_map_path, submitted_by=submitted_by, branch=branch,
         dry_run=dry_run, allow_dirty=allow_dirty, no_push=no_push, emu_repo=emu_repo,
+        workers=workers, skip_existing=not force,
     )
 
 

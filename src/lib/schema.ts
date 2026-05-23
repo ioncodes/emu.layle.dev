@@ -9,6 +9,7 @@ export const EmulatorSchema = z.object({
   commit_url_template: z.string(),
   accent_color: z.string(),
   icon: z.string().optional(),
+  author: z.string().optional(),
 });
 export type Emulator = z.infer<typeof EmulatorSchema>;
 
