@@ -48,7 +48,7 @@ One file per submission. A submission pins one emulator commit to a set of known
     {
       "game_id": "GALE01",
       "frame_index": 0,
-      "r2_key": "gecko/a3f9b2c/GALE01/0.png",
+      "r2_key": "v2/9f86d081...png",
       "width": 640,
       "height": 480,
       "sha256": "9f86d081..."
@@ -60,7 +60,11 @@ One file per submission. A submission pins one emulator commit to a set of known
 - `games`: every known game at this commit. Sorted by `game_id`.
 - `game_id`: opaque string from the emulator (GameCube disc ID, GBA header code, ...). Must match `[A-Za-z0-9_-]+`.
 - `frame_index`: 0-based integer, unique within `(game_id, commit)`. Gaps allowed.
-- `r2_key`: relative to the bucket. The site prefixes `https://screenshots.layle.dev/`.
+- `r2_key`: relative to the bucket; the site prefixes `https://screenshots.layle.dev/`.
+  Keys are content-addressed: `v2/<sha256>.png`. Byte-identical PNGs (the same
+  frame across commits/games) therefore share a single R2 object. Legacy
+  `<emulator>/<short>/<game_id>/<frame>.png` objects still exist in the bucket for
+  older data but are no longer referenced.
 - `screenshots`: sorted by `(game_id, frame_index)`. `game_title` is only in `games`.
 
 ## `games/<emulator>/<game_id>.json`

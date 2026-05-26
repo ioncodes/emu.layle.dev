@@ -230,8 +230,9 @@ def make_r2_client(cfg: R2Config):  # type: ignore[no-untyped-def]
     )
 
 
-def r2_key_for(emulator: str, short: str, game_id: str, frame_index: int) -> str:
-    return f"{emulator}/{short}/{game_id}/{frame_index}.png"
+def v2_key_for(sha256: str) -> str:
+    """Content-addressed key. Byte-identical PNGs collapse to one R2 object."""
+    return f"v2/{sha256}.png"
 
 
 def upload_one(client, cfg: R2Config, key: str, source: Path) -> None:  # type: ignore[no-untyped-def]
@@ -253,17 +254,28 @@ def list_existing_keys(client, cfg: R2Config, prefix: str) -> set[str]:  # type:
 
 
 def process_plan(
-    plan: ScreenshotPlan, *, emulator: str, short: str, client, cfg: R2Config,
-    existing: set[str], dry_run: bool, skip_existing: bool,
+    plan: ScreenshotPlan, *, client, cfg: R2Config,
+    existing: set[str], seen: set[str], lock: threading.Lock,
+    dry_run: bool, skip_existing: bool,
 ) -> tuple[Screenshot, bool]:  # type: ignore[no-untyped-def]
-    """Read dimensions/sha256 and upload unless skipped. Returns (shot, uploaded)."""
+    """Read dimensions/sha256 and upload unless skipped. Returns (shot, uploaded).
+
+    Keys are content-addressed (v2/<sha256>.png), so byte-identical PNGs share one
+    object. `existing` skips objects already in R2; `seen` skips duplicates within
+    this run so a repeated frame is uploaded once.
+    """
     w, h = read_dimensions(plan.source_path)
     sha = sha256_file(plan.source_path)
-    key = r2_key_for(emulator, short, plan.game_id, plan.frame_index)
+    key = v2_key_for(sha)
     uploaded = False
-    if not dry_run and not (skip_existing and key in existing):
-        upload_one(client, cfg, key, plan.source_path)
-        uploaded = True
+    if not dry_run:
+        with lock:
+            already = (skip_existing and key in existing) or key in seen
+            if not already:
+                seen.add(key)
+        if not already:
+            upload_one(client, cfg, key, plan.source_path)
+            uploaded = True
     shot = Screenshot(
         game_id=plan.game_id, frame_index=plan.frame_index, r2_key=key,
         width=w, height=h, sha256=sha,
@@ -371,20 +383,21 @@ def run_submission(
 
     existing: set[str] = set()
     if skip_existing and not dry_run:
-        prefix = f"{emulator}/{commit.short}/"
-        click.echo(f"listing already-uploaded objects under {prefix} ...", err=True)
-        existing = list_existing_keys(client, r2_cfg, prefix)
+        click.echo("listing already-uploaded objects under v2/ ...", err=True)
+        existing = list_existing_keys(client, r2_cfg, "v2/")
         click.echo(f"found {len(existing)} already-uploaded object(s)", err=True)
 
     screenshots: list[Screenshot] = []
     total = len(all_plans)
     counts = {"done": 0, "uploaded": 0, "skipped": 0}
+    seen: set[str] = set()
     lock = threading.Lock()
 
     def work(plan: ScreenshotPlan) -> tuple[Screenshot, bool]:
         return process_plan(
-            plan, emulator=emulator, short=commit.short, client=client, cfg=r2_cfg,
-            existing=existing, dry_run=dry_run, skip_existing=skip_existing,
+            plan, client=client, cfg=r2_cfg,
+            existing=existing, seen=seen, lock=lock,
+            dry_run=dry_run, skip_existing=skip_existing,
         )
 
     click.echo(f"processing {total} screenshot(s) with {workers} worker(s)", err=True)
