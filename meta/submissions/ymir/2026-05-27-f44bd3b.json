@@ -6,7 +6,7 @@
   "branch": "HEAD",
   "commit_message": "chore(VDP2): Expose vertical and horizontal phases and use blanking/sync as frame execution stop point",
   "commit_timestamp": "2026-05-27T12:38:05-03:00",
-  "submitted_at": "2026-05-28T14:21:31Z",
+  "submitted_at": "2026-05-28T14:41:23Z",
   "submitted_by": "screenshot-bot",
   "games": [
     {
@@ -94,18 +94,18 @@
     {
       "game_id": "GS-9087",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "GS-9087",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "GS-9087",
@@ -126,34 +126,162 @@
     {
       "game_id": "GS-9087",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "GS-9087",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 7,
+      "r2_key": "v2/6eb13a2398a883ae0b64ad9bfba6af9bd7c2655aefcda1d18ec6cf97093b50c2.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "6eb13a2398a883ae0b64ad9bfba6af9bd7c2655aefcda1d18ec6cf97093b50c2"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 8,
+      "r2_key": "v2/1da16bc35823517c5b572d1c8e4ad60e41f1b810522e5eb7a1bd77d11de92dd5.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "1da16bc35823517c5b572d1c8e4ad60e41f1b810522e5eb7a1bd77d11de92dd5"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 9,
+      "r2_key": "v2/82e789d4cc41cd8a3306657a5c3105d10ded3bb5a535c522f052ce4568b5923a.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "82e789d4cc41cd8a3306657a5c3105d10ded3bb5a535c522f052ce4568b5923a"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 10,
+      "r2_key": "v2/e87d9a309bfde353d2d25d23285a895945eed3ff16b2babaf761c6d049b9c7d8.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "e87d9a309bfde353d2d25d23285a895945eed3ff16b2babaf761c6d049b9c7d8"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 11,
+      "r2_key": "v2/7a4cec989cd7f6cab49074ddff1d1eefe7e40a933d38efbe2bfa07eb55aa9829.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "7a4cec989cd7f6cab49074ddff1d1eefe7e40a933d38efbe2bfa07eb55aa9829"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 12,
+      "r2_key": "v2/695d072cae37a79be89bdee154d809944f9ebfb43f0c3cb477a4c5060a927a0d.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "695d072cae37a79be89bdee154d809944f9ebfb43f0c3cb477a4c5060a927a0d"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 13,
+      "r2_key": "v2/e4277339e3c90f1768f7aaa40860d114d22d5ba6969e69117efe9aa49f8da6d9.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "e4277339e3c90f1768f7aaa40860d114d22d5ba6969e69117efe9aa49f8da6d9"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 14,
+      "r2_key": "v2/294c1bca9dce7ede1e607654875ebe735fc9171cac62c12b876bfb8387d03823.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "294c1bca9dce7ede1e607654875ebe735fc9171cac62c12b876bfb8387d03823"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 15,
+      "r2_key": "v2/3d4cb0a54cab7b18e6f363cd1f6432fe0ceb7ce944bec4727ad7c292194e57cb.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "3d4cb0a54cab7b18e6f363cd1f6432fe0ceb7ce944bec4727ad7c292194e57cb"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 16,
+      "r2_key": "v2/6093e8c8e6fb56610b234151c7f8a00ab22915b620457f3a5ff025ec0a573d93.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "6093e8c8e6fb56610b234151c7f8a00ab22915b620457f3a5ff025ec0a573d93"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 17,
+      "r2_key": "v2/06c3d49590989cbbd02a1adcc0d90dfa0b26ef2dcdd3c52b88f9d7f8159b5103.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "06c3d49590989cbbd02a1adcc0d90dfa0b26ef2dcdd3c52b88f9d7f8159b5103"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 18,
+      "r2_key": "v2/36e18e504d510687468a4ef5e5154f752a40209af2aa5a1cdc3580f9307ff527.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "36e18e504d510687468a4ef5e5154f752a40209af2aa5a1cdc3580f9307ff527"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 19,
+      "r2_key": "v2/5dc1624700a6c4a3ff6c723609c29af96e31c46bb3a72ac160c8eb9f4574c29c.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "5dc1624700a6c4a3ff6c723609c29af96e31c46bb3a72ac160c8eb9f4574c29c"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 20,
+      "r2_key": "v2/0a020546ef582a38ff5b859cfebfa622a4531884e68f21565851acbad4f6695e.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "0a020546ef582a38ff5b859cfebfa622a4531884e68f21565851acbad4f6695e"
+    },
+    {
+      "game_id": "GS-9087",
+      "frame_index": 21,
+      "r2_key": "v2/2f91d0c2eb732c388509ab348281e8d0379df82a531e690fe7c8b74f1eecb805.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "2f91d0c2eb732c388509ab348281e8d0379df82a531e690fe7c8b74f1eecb805"
     },
     {
       "game_id": "GS-9087-2",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "GS-9087-2",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "GS-9087-2",
@@ -174,18 +302,146 @@
     {
       "game_id": "GS-9087-2",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "GS-9087-2",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 7,
+      "r2_key": "v2/dd64fe4c53d4dceb1820745b0eee768b328117ef05c28ae7967a9194ce17fb97.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "dd64fe4c53d4dceb1820745b0eee768b328117ef05c28ae7967a9194ce17fb97"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 8,
+      "r2_key": "v2/1da16bc35823517c5b572d1c8e4ad60e41f1b810522e5eb7a1bd77d11de92dd5.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "1da16bc35823517c5b572d1c8e4ad60e41f1b810522e5eb7a1bd77d11de92dd5"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 9,
+      "r2_key": "v2/82e789d4cc41cd8a3306657a5c3105d10ded3bb5a535c522f052ce4568b5923a.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "82e789d4cc41cd8a3306657a5c3105d10ded3bb5a535c522f052ce4568b5923a"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 10,
+      "r2_key": "v2/e87d9a309bfde353d2d25d23285a895945eed3ff16b2babaf761c6d049b9c7d8.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "e87d9a309bfde353d2d25d23285a895945eed3ff16b2babaf761c6d049b9c7d8"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 11,
+      "r2_key": "v2/7a4cec989cd7f6cab49074ddff1d1eefe7e40a933d38efbe2bfa07eb55aa9829.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "7a4cec989cd7f6cab49074ddff1d1eefe7e40a933d38efbe2bfa07eb55aa9829"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 12,
+      "r2_key": "v2/695d072cae37a79be89bdee154d809944f9ebfb43f0c3cb477a4c5060a927a0d.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "695d072cae37a79be89bdee154d809944f9ebfb43f0c3cb477a4c5060a927a0d"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 13,
+      "r2_key": "v2/e4277339e3c90f1768f7aaa40860d114d22d5ba6969e69117efe9aa49f8da6d9.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "e4277339e3c90f1768f7aaa40860d114d22d5ba6969e69117efe9aa49f8da6d9"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 14,
+      "r2_key": "v2/294c1bca9dce7ede1e607654875ebe735fc9171cac62c12b876bfb8387d03823.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "294c1bca9dce7ede1e607654875ebe735fc9171cac62c12b876bfb8387d03823"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 15,
+      "r2_key": "v2/3d4cb0a54cab7b18e6f363cd1f6432fe0ceb7ce944bec4727ad7c292194e57cb.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "3d4cb0a54cab7b18e6f363cd1f6432fe0ceb7ce944bec4727ad7c292194e57cb"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 16,
+      "r2_key": "v2/6093e8c8e6fb56610b234151c7f8a00ab22915b620457f3a5ff025ec0a573d93.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "6093e8c8e6fb56610b234151c7f8a00ab22915b620457f3a5ff025ec0a573d93"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 17,
+      "r2_key": "v2/06c3d49590989cbbd02a1adcc0d90dfa0b26ef2dcdd3c52b88f9d7f8159b5103.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "06c3d49590989cbbd02a1adcc0d90dfa0b26ef2dcdd3c52b88f9d7f8159b5103"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 18,
+      "r2_key": "v2/36e18e504d510687468a4ef5e5154f752a40209af2aa5a1cdc3580f9307ff527.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "36e18e504d510687468a4ef5e5154f752a40209af2aa5a1cdc3580f9307ff527"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 19,
+      "r2_key": "v2/5dc1624700a6c4a3ff6c723609c29af96e31c46bb3a72ac160c8eb9f4574c29c.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "5dc1624700a6c4a3ff6c723609c29af96e31c46bb3a72ac160c8eb9f4574c29c"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 20,
+      "r2_key": "v2/0a020546ef582a38ff5b859cfebfa622a4531884e68f21565851acbad4f6695e.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "0a020546ef582a38ff5b859cfebfa622a4531884e68f21565851acbad4f6695e"
+    },
+    {
+      "game_id": "GS-9087-2",
+      "frame_index": 21,
+      "r2_key": "v2/2f91d0c2eb732c388509ab348281e8d0379df82a531e690fe7c8b74f1eecb805.png",
+      "width": 352,
+      "height": 224,
+      "sha256": "2f91d0c2eb732c388509ab348281e8d0379df82a531e690fe7c8b74f1eecb805"
     },
     {
       "game_id": "T-11304H",
@@ -1326,18 +1582,18 @@
     {
       "game_id": "T-15013G",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-15013G",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-15013G",
@@ -1358,18 +1614,346 @@
     {
       "game_id": "T-15013G",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-15013G",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 7,
+      "r2_key": "v2/c013a4c26675c846d7d8c96cfa80b24ecef16f845a378c63887309dbf3857d74.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "c013a4c26675c846d7d8c96cfa80b24ecef16f845a378c63887309dbf3857d74"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 8,
+      "r2_key": "v2/dd374efa1def30bd3d6dc84a080109a0ec872f72f897b25b09fc36e519a4a828.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "dd374efa1def30bd3d6dc84a080109a0ec872f72f897b25b09fc36e519a4a828"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 9,
+      "r2_key": "v2/2fda4ad90e546d0bf9a80347d41a68d953e7912b3671eaa308cd7dad930330bc.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "2fda4ad90e546d0bf9a80347d41a68d953e7912b3671eaa308cd7dad930330bc"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 10,
+      "r2_key": "v2/e81678d85ba80d474b5b5b9f4a4929fb6b7349efe143b5f9ff690760586b7dcb.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "e81678d85ba80d474b5b5b9f4a4929fb6b7349efe143b5f9ff690760586b7dcb"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 11,
+      "r2_key": "v2/998d0a3c221340c34ffcbbf6fde8c4a29680ecf6c77b1b11eeadcea316ef54f8.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "998d0a3c221340c34ffcbbf6fde8c4a29680ecf6c77b1b11eeadcea316ef54f8"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 12,
+      "r2_key": "v2/cf254814f3568e5993eb02b1d9169b74bab20a9bf273211d9a1ade01add3bb95.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "cf254814f3568e5993eb02b1d9169b74bab20a9bf273211d9a1ade01add3bb95"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 13,
+      "r2_key": "v2/7c2b4f856bd9c31695a11074a3985c4938336ce8c789a5264fafaaec3a46f6a6.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7c2b4f856bd9c31695a11074a3985c4938336ce8c789a5264fafaaec3a46f6a6"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 14,
+      "r2_key": "v2/a1b8e8cab4ac7ea870ef620cb471de35fb44992b8ec12a4b73652f74f2f5a684.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "a1b8e8cab4ac7ea870ef620cb471de35fb44992b8ec12a4b73652f74f2f5a684"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 15,
+      "r2_key": "v2/24e8a46b26a3cf4af01c1b211427a7954840c449c24000dfe92d686b6b95c928.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "24e8a46b26a3cf4af01c1b211427a7954840c449c24000dfe92d686b6b95c928"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 16,
+      "r2_key": "v2/f545e6640a72985805e5327de974566139da1c589e329c20489eea5594bfdaa9.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "f545e6640a72985805e5327de974566139da1c589e329c20489eea5594bfdaa9"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 17,
+      "r2_key": "v2/f9bf75029c22e5c90cda9875ad1b5f9ddb2d641e14fe9685403d9f4b44b2625f.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "f9bf75029c22e5c90cda9875ad1b5f9ddb2d641e14fe9685403d9f4b44b2625f"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 18,
+      "r2_key": "v2/edaa2c9df405972657bdfd3a3af351ff7fecef06d268d7c2ad1067f15263d563.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "edaa2c9df405972657bdfd3a3af351ff7fecef06d268d7c2ad1067f15263d563"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 19,
+      "r2_key": "v2/e7b0ea6bb5698e6b84d21aaeb0b4a00d3b1a57671a0d937ed4a25a20d32a92ef.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "e7b0ea6bb5698e6b84d21aaeb0b4a00d3b1a57671a0d937ed4a25a20d32a92ef"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 20,
+      "r2_key": "v2/a5c87f9e4636fea8b94c9973fdd0b8dc7755cbb753a7b02d2ca61ebfbb63f674.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "a5c87f9e4636fea8b94c9973fdd0b8dc7755cbb753a7b02d2ca61ebfbb63f674"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 21,
+      "r2_key": "v2/84aa09b1df9dfa1c2fb3acd2c1c04be9e6bebe40fb358eaed219e73ccd74a3c2.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "84aa09b1df9dfa1c2fb3acd2c1c04be9e6bebe40fb358eaed219e73ccd74a3c2"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 22,
+      "r2_key": "v2/5dadaee25209c8da3ce95146c27e5258b69e0bac5288b03239be643548f9220c.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "5dadaee25209c8da3ce95146c27e5258b69e0bac5288b03239be643548f9220c"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 23,
+      "r2_key": "v2/2778dda6871029f0495547cb3c10a6651ba535967589ad4060f4e48d9e6236e5.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "2778dda6871029f0495547cb3c10a6651ba535967589ad4060f4e48d9e6236e5"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 24,
+      "r2_key": "v2/73a27f8d892c422ad81d748d50822340f39618d7a8b0fb277f3b8b73705debb9.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "73a27f8d892c422ad81d748d50822340f39618d7a8b0fb277f3b8b73705debb9"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 25,
+      "r2_key": "v2/ce04230f206dd110d66dab2d1d8848fac2b7292bc4d7bdfebbb808a369f6aae1.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "ce04230f206dd110d66dab2d1d8848fac2b7292bc4d7bdfebbb808a369f6aae1"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 26,
+      "r2_key": "v2/710f22861e84dac09e38babaa6ee329a984403686d5c1834ac337cc4559fda6d.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "710f22861e84dac09e38babaa6ee329a984403686d5c1834ac337cc4559fda6d"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 27,
+      "r2_key": "v2/39ce9144ba009c98d0329c626d388af9271803d2ffda908176b9224c0894da0f.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "39ce9144ba009c98d0329c626d388af9271803d2ffda908176b9224c0894da0f"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 28,
+      "r2_key": "v2/b1a388baef89197b6357f142b6fe1037b6da0e9a91099e88584fbc31e9a9c2b2.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "b1a388baef89197b6357f142b6fe1037b6da0e9a91099e88584fbc31e9a9c2b2"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 29,
+      "r2_key": "v2/79c00bda7e26242d77a764749fa7b38ca08ca9b4a6f4ec2a3766c1177198ef27.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "79c00bda7e26242d77a764749fa7b38ca08ca9b4a6f4ec2a3766c1177198ef27"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 30,
+      "r2_key": "v2/b2304b280e78bb33fd76792223a5f23c117f2e17f9b4022a0541940b8099cdeb.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "b2304b280e78bb33fd76792223a5f23c117f2e17f9b4022a0541940b8099cdeb"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 31,
+      "r2_key": "v2/6e88e715da66327d75600d02094f0fa2fbc9b3826bc8df1377ded40afaa16f1d.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "6e88e715da66327d75600d02094f0fa2fbc9b3826bc8df1377ded40afaa16f1d"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 32,
+      "r2_key": "v2/003a340b01c3dc05f82360c2a59b03580481eead9263763e186947f9419cc34a.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "003a340b01c3dc05f82360c2a59b03580481eead9263763e186947f9419cc34a"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 33,
+      "r2_key": "v2/c0dd332ca341cd45010b2e4de113f13a11f41183b5815e2d4b83d73afe7493da.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "c0dd332ca341cd45010b2e4de113f13a11f41183b5815e2d4b83d73afe7493da"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 34,
+      "r2_key": "v2/da22f664706679e9fa38ea839a166f95d3212ae1d250d4b0db411d58fdcfd79c.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "da22f664706679e9fa38ea839a166f95d3212ae1d250d4b0db411d58fdcfd79c"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 35,
+      "r2_key": "v2/ecdc24d5cdb67bdc6802f214c7e676ddbd7f0f9319d563e858676b54800a6c1c.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "ecdc24d5cdb67bdc6802f214c7e676ddbd7f0f9319d563e858676b54800a6c1c"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 36,
+      "r2_key": "v2/8f8a73de31fd4bfcbdf6cfa38d7749526ad0d188d54ca5303ae992e2f3901caa.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "8f8a73de31fd4bfcbdf6cfa38d7749526ad0d188d54ca5303ae992e2f3901caa"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 37,
+      "r2_key": "v2/28c4e8a9d7f1024bb90e45ce6ee878905d770518bc97c4bf1bc562540ee0fbdc.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "28c4e8a9d7f1024bb90e45ce6ee878905d770518bc97c4bf1bc562540ee0fbdc"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 38,
+      "r2_key": "v2/f826dedc289fedb7334955569bd6c15b2dcd470de3ee79fae926e87b55a68702.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "f826dedc289fedb7334955569bd6c15b2dcd470de3ee79fae926e87b55a68702"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 39,
+      "r2_key": "v2/ef76c1daa02aa629b3051bbf8244f24f11d596b7ff94b3537eeb886e0ed1ef09.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "ef76c1daa02aa629b3051bbf8244f24f11d596b7ff94b3537eeb886e0ed1ef09"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 40,
+      "r2_key": "v2/ab1198a465c31d85e4b07a5dae3d274c68cffdffd7c981664ab253385a3dd246.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "ab1198a465c31d85e4b07a5dae3d274c68cffdffd7c981664ab253385a3dd246"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 41,
+      "r2_key": "v2/4660af4482421c4711bbb2897af9133b0a9bbaa628a8cf1cbcc054b1911cadf8.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "4660af4482421c4711bbb2897af9133b0a9bbaa628a8cf1cbcc054b1911cadf8"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 42,
+      "r2_key": "v2/830baf6b52d66fb1429a7ad08d621a3900f1e428ace6259a97b70b39db45b9b7.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "830baf6b52d66fb1429a7ad08d621a3900f1e428ace6259a97b70b39db45b9b7"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 43,
+      "r2_key": "v2/cd88b72cc6d1b4c3c8a8ec458e724befcca465d6c9ca8f2c06688ae1dd1d2b48.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "cd88b72cc6d1b4c3c8a8ec458e724befcca465d6c9ca8f2c06688ae1dd1d2b48"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 44,
+      "r2_key": "v2/a584aa569f5d98070f8463e559bfc704ba9126e7807aecf9d2a4e4402833177f.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "a584aa569f5d98070f8463e559bfc704ba9126e7807aecf9d2a4e4402833177f"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 45,
+      "r2_key": "v2/a332f4e7bcbc7309c5a8f2f9ca77e88263f2ce7324a1124a3827478a73aae3b9.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "a332f4e7bcbc7309c5a8f2f9ca77e88263f2ce7324a1124a3827478a73aae3b9"
+    },
+    {
+      "game_id": "T-15013G",
+      "frame_index": 46,
+      "r2_key": "v2/ab1198a465c31d85e4b07a5dae3d274c68cffdffd7c981664ab253385a3dd246.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "ab1198a465c31d85e4b07a5dae3d274c68cffdffd7c981664ab253385a3dd246"
     },
     {
       "game_id": "T-15906H",
@@ -1726,18 +2310,18 @@
     {
       "game_id": "T-17601G",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-17601G",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-17601G",
@@ -1758,34 +2342,66 @@
     {
       "game_id": "T-17601G",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-17601G",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-17601G",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-17601G",
+      "frame_index": 7,
+      "r2_key": "v2/8ac18d3de1a86fb75a8c41399340c9a1eca6ab51ba583c60b0600285f89ad968.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "8ac18d3de1a86fb75a8c41399340c9a1eca6ab51ba583c60b0600285f89ad968"
+    },
+    {
+      "game_id": "T-17601G",
+      "frame_index": 8,
+      "r2_key": "v2/fcbb8b71901ecca9c58e8c2845d510d83eb6659a2c943ced665128582b691095.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "fcbb8b71901ecca9c58e8c2845d510d83eb6659a2c943ced665128582b691095"
+    },
+    {
+      "game_id": "T-17601G",
+      "frame_index": 9,
+      "r2_key": "v2/bf335a15cf9aa10aeada0eb06335f5caafcd0cb7958e33ae9f4675ed29382e19.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "bf335a15cf9aa10aeada0eb06335f5caafcd0cb7958e33ae9f4675ed29382e19"
     },
     {
       "game_id": "T-18003G",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-18003G",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-18003G",
@@ -1806,34 +2422,338 @@
     {
       "game_id": "T-18003G",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-18003G",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 7,
+      "r2_key": "v2/c38faf167100d6e04a4350b9411077aa68c12d6682a7ad7ba441218a43aed099.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "c38faf167100d6e04a4350b9411077aa68c12d6682a7ad7ba441218a43aed099"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 8,
+      "r2_key": "v2/7dc405f25f31b9a5b1eb90d74f0c0a965c1a048ac30af64ab29afebd021f7b89.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7dc405f25f31b9a5b1eb90d74f0c0a965c1a048ac30af64ab29afebd021f7b89"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 9,
+      "r2_key": "v2/1818686842eeb761894d3e1bc385847558bfc944056eab30f66ac1acc5e75b71.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "1818686842eeb761894d3e1bc385847558bfc944056eab30f66ac1acc5e75b71"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 10,
+      "r2_key": "v2/4fc46775da15e79c3afd12bedbf7c40ae1f72114e36eca9eac208de227c5e68c.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "4fc46775da15e79c3afd12bedbf7c40ae1f72114e36eca9eac208de227c5e68c"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 11,
+      "r2_key": "v2/6205ee102e10fe48c73df2c4f9cf664484400b483f5ed61fbb69218c85177dd0.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "6205ee102e10fe48c73df2c4f9cf664484400b483f5ed61fbb69218c85177dd0"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 12,
+      "r2_key": "v2/d8e0e2f132033926786387a8b44e7f321c480ac73355627e430d6f405538721b.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8e0e2f132033926786387a8b44e7f321c480ac73355627e430d6f405538721b"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 13,
+      "r2_key": "v2/7c1aac89bda1042a01e3191d6af9a694e0219566d4f10c68fc3407cd6bf5e5ae.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7c1aac89bda1042a01e3191d6af9a694e0219566d4f10c68fc3407cd6bf5e5ae"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 14,
+      "r2_key": "v2/e3a353718e360153cc93de3e52af1bedf3e02ce70ea042ccc692458fc3a60be3.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "e3a353718e360153cc93de3e52af1bedf3e02ce70ea042ccc692458fc3a60be3"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 15,
+      "r2_key": "v2/aff7fa74943c018ddfe445cdeb3554fc3274982b715164deaf473e4926584e8e.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "aff7fa74943c018ddfe445cdeb3554fc3274982b715164deaf473e4926584e8e"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 16,
+      "r2_key": "v2/21248bd4987dca29dd63e61857f9c50720f9ddf11a5f3f35bd541c4c6d88af4f.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "21248bd4987dca29dd63e61857f9c50720f9ddf11a5f3f35bd541c4c6d88af4f"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 17,
+      "r2_key": "v2/439386e14b84a800fa63cd1eec6bc59065c870b11a75aee912e8d9bd8aad68fb.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "439386e14b84a800fa63cd1eec6bc59065c870b11a75aee912e8d9bd8aad68fb"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 18,
+      "r2_key": "v2/2bc32a197b01bed20e4c469c67cc4de8f26d4204216d7106092f98c64d81cd83.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "2bc32a197b01bed20e4c469c67cc4de8f26d4204216d7106092f98c64d81cd83"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 19,
+      "r2_key": "v2/f2c5f10a8d533bb4937faa1694677ec3aaf45a8c699dd75cc27da327434f9bda.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "f2c5f10a8d533bb4937faa1694677ec3aaf45a8c699dd75cc27da327434f9bda"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 20,
+      "r2_key": "v2/3b5d784e962a14f3d8b2638b90c56333b73f5f8eb137d706ed92459923248351.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "3b5d784e962a14f3d8b2638b90c56333b73f5f8eb137d706ed92459923248351"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 21,
+      "r2_key": "v2/e4421b4294d925b059148376a20b3282136b077903a55b73cee3adf1263737b0.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "e4421b4294d925b059148376a20b3282136b077903a55b73cee3adf1263737b0"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 22,
+      "r2_key": "v2/66f13ec9d9451843ad3fd447c4db387f49ffa0320be91ce4a610cf88bf6abbcb.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "66f13ec9d9451843ad3fd447c4db387f49ffa0320be91ce4a610cf88bf6abbcb"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 23,
+      "r2_key": "v2/2bc32a197b01bed20e4c469c67cc4de8f26d4204216d7106092f98c64d81cd83.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "2bc32a197b01bed20e4c469c67cc4de8f26d4204216d7106092f98c64d81cd83"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 24,
+      "r2_key": "v2/f2c5f10a8d533bb4937faa1694677ec3aaf45a8c699dd75cc27da327434f9bda.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "f2c5f10a8d533bb4937faa1694677ec3aaf45a8c699dd75cc27da327434f9bda"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 25,
+      "r2_key": "v2/a4a62000e7e80d0cd2394216d221533429ff386bdaa6be6ee766b383b25dc2c2.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "a4a62000e7e80d0cd2394216d221533429ff386bdaa6be6ee766b383b25dc2c2"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 26,
+      "r2_key": "v2/3587f5209126fe33c9284061cb586bf3969cc6757c4499aa4e88eab8df76c9de.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "3587f5209126fe33c9284061cb586bf3969cc6757c4499aa4e88eab8df76c9de"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 27,
+      "r2_key": "v2/757ef91fd884df2c42819fba7376491221565e003915583308dc71554677fec3.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "757ef91fd884df2c42819fba7376491221565e003915583308dc71554677fec3"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 28,
+      "r2_key": "v2/6cfb31cf92fa5cf14d8d71b11d41b9b51505f7f078c53b691fcdc17aaee4d517.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "6cfb31cf92fa5cf14d8d71b11d41b9b51505f7f078c53b691fcdc17aaee4d517"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 29,
+      "r2_key": "v2/40073d483282e3b25caa0117acf8f47d5104ebf7c3ac36102a515993aa84a977.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "40073d483282e3b25caa0117acf8f47d5104ebf7c3ac36102a515993aa84a977"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 30,
+      "r2_key": "v2/1f914965f06711f0d88a5234ea7baab10e747979198180fb476f95f5406ed19f.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "1f914965f06711f0d88a5234ea7baab10e747979198180fb476f95f5406ed19f"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 31,
+      "r2_key": "v2/9a834da3db5426c026c919b8f71d2f74f4936d97425e32b9bbb5ab8fd01bc879.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "9a834da3db5426c026c919b8f71d2f74f4936d97425e32b9bbb5ab8fd01bc879"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 32,
+      "r2_key": "v2/d943a133e3b0cb0c391b11a970c30ec2c1442aefa50500533fd0475b8a9a9227.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "d943a133e3b0cb0c391b11a970c30ec2c1442aefa50500533fd0475b8a9a9227"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 33,
+      "r2_key": "v2/37ec9808b6357b9f63f15d3a789e89851d997d3f9ad22bc79a6ec6e92c86dfd7.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "37ec9808b6357b9f63f15d3a789e89851d997d3f9ad22bc79a6ec6e92c86dfd7"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 34,
+      "r2_key": "v2/b52ceff386d4158585690c1592c9b56b355d0aa6e54efb455fd278605e8492b7.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "b52ceff386d4158585690c1592c9b56b355d0aa6e54efb455fd278605e8492b7"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 35,
+      "r2_key": "v2/a4960093b34aba7617ed73789138a7a2a8f9f700d98dd986213d8757f78152f2.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "a4960093b34aba7617ed73789138a7a2a8f9f700d98dd986213d8757f78152f2"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 36,
+      "r2_key": "v2/a4b9fc26b91c30952a099cae8e2d99babbe597f7720da3c77b8ff2c8361adc5f.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "a4b9fc26b91c30952a099cae8e2d99babbe597f7720da3c77b8ff2c8361adc5f"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 37,
+      "r2_key": "v2/ce261cc0eda951b3372197283aeaaf8c527e56e87cf1c41503cc5a3370572062.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "ce261cc0eda951b3372197283aeaaf8c527e56e87cf1c41503cc5a3370572062"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 38,
+      "r2_key": "v2/dfdc595aee54ebb7ba0b6d1f8f8379aae369ad75a00b74674247df51cf31bf37.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "dfdc595aee54ebb7ba0b6d1f8f8379aae369ad75a00b74674247df51cf31bf37"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 39,
+      "r2_key": "v2/acbc3816a3228855164934514a668ba960dcf593c517b89ab316f9f168a8dcee.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "acbc3816a3228855164934514a668ba960dcf593c517b89ab316f9f168a8dcee"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 40,
+      "r2_key": "v2/a4b8882a90a9260abf6adbc69c955a5e11ce5192d0bc29e2c5aa5b8c32c20acd.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "a4b8882a90a9260abf6adbc69c955a5e11ce5192d0bc29e2c5aa5b8c32c20acd"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 41,
+      "r2_key": "v2/e0ff515660795c504e808b49c6d872eadbfe1c2ec7612722c28cc21e8e6eebe7.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "e0ff515660795c504e808b49c6d872eadbfe1c2ec7612722c28cc21e8e6eebe7"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 42,
+      "r2_key": "v2/94171def351de49e3f1c2e45ee8cf827515acc7797a678e87808b51da4e64039.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "94171def351de49e3f1c2e45ee8cf827515acc7797a678e87808b51da4e64039"
+    },
+    {
+      "game_id": "T-18003G",
+      "frame_index": 43,
+      "r2_key": "v2/e8f504d6c05aadb8be3fd29a31e6308dbdc2b41b28655f851b951387484d20bc.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "e8f504d6c05aadb8be3fd29a31e6308dbdc2b41b28655f851b951387484d20bc"
     },
     {
       "game_id": "T-18511G",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-18511G",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-18511G",
@@ -1854,34 +2774,266 @@
     {
       "game_id": "T-18511G",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-18511G",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 7,
+      "r2_key": "v2/f6950b323c4acd717fa9801fc2813860077a899222dd83bf86d5f1455fbde8c3.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "f6950b323c4acd717fa9801fc2813860077a899222dd83bf86d5f1455fbde8c3"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 8,
+      "r2_key": "v2/bf630128c012116b3f642406046cd925e11ee85d3d5bf47f015fe58dbd0fc507.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "bf630128c012116b3f642406046cd925e11ee85d3d5bf47f015fe58dbd0fc507"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 9,
+      "r2_key": "v2/5839218482113fe7a048ecdceaf02872fbc8328136dfd4f5449099aec63536ee.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "5839218482113fe7a048ecdceaf02872fbc8328136dfd4f5449099aec63536ee"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 10,
+      "r2_key": "v2/c62fb0f67245161f222230e01cb0fa8d5bed05f87d407da9be8fc55cff5f14ea.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "c62fb0f67245161f222230e01cb0fa8d5bed05f87d407da9be8fc55cff5f14ea"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 11,
+      "r2_key": "v2/bf630128c012116b3f642406046cd925e11ee85d3d5bf47f015fe58dbd0fc507.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "bf630128c012116b3f642406046cd925e11ee85d3d5bf47f015fe58dbd0fc507"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 12,
+      "r2_key": "v2/cc644733681c2f33b8f185fb5c09b80af113c9400a7d3363849f0655d022a934.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "cc644733681c2f33b8f185fb5c09b80af113c9400a7d3363849f0655d022a934"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 13,
+      "r2_key": "v2/bf630128c012116b3f642406046cd925e11ee85d3d5bf47f015fe58dbd0fc507.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "bf630128c012116b3f642406046cd925e11ee85d3d5bf47f015fe58dbd0fc507"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 14,
+      "r2_key": "v2/6beb636a1c714c1195767161bbdb0722ad476d331a27b35f66bf774e70d38061.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "6beb636a1c714c1195767161bbdb0722ad476d331a27b35f66bf774e70d38061"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 15,
+      "r2_key": "v2/0043b8e6c5fc589e0bfc9b23c454752972df2692570ef24c12cf14eaaecf262c.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "0043b8e6c5fc589e0bfc9b23c454752972df2692570ef24c12cf14eaaecf262c"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 16,
+      "r2_key": "v2/329c1ff4625511fe9f7c845bc6f11d7076be291e2e9802090dc5f68006681a2b.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "329c1ff4625511fe9f7c845bc6f11d7076be291e2e9802090dc5f68006681a2b"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 17,
+      "r2_key": "v2/7e0cddb8395022e4cdb197209d333452cf440d23ac44cec29143196e327bad5f.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "7e0cddb8395022e4cdb197209d333452cf440d23ac44cec29143196e327bad5f"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 18,
+      "r2_key": "v2/81bfda9583b3cd2f34de831089742cc87377314326a32f79dfac597044a7e159.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "81bfda9583b3cd2f34de831089742cc87377314326a32f79dfac597044a7e159"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 19,
+      "r2_key": "v2/7db18efc9811d446e1941212c915c8e46b46fcec5e08a4f9dcd9176d18560cab.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "7db18efc9811d446e1941212c915c8e46b46fcec5e08a4f9dcd9176d18560cab"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 20,
+      "r2_key": "v2/856909de4db6ed1d7015ca54ae70e0e553851b8a95990783e7297a548eb265c1.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "856909de4db6ed1d7015ca54ae70e0e553851b8a95990783e7297a548eb265c1"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 21,
+      "r2_key": "v2/e4ca0bf611d97c34fd49f5f5063a742fc567043c379afaba9f1245291bc48149.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "e4ca0bf611d97c34fd49f5f5063a742fc567043c379afaba9f1245291bc48149"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 22,
+      "r2_key": "v2/e6455df427d7bf4587cac8d0c42a9758a499c0d73c492464628b7ceebf018dd4.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "e6455df427d7bf4587cac8d0c42a9758a499c0d73c492464628b7ceebf018dd4"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 23,
+      "r2_key": "v2/ae7dc2eb3c09c2bef1f133465a42785aad8b33cab9f87308220c9433622d1e3c.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "ae7dc2eb3c09c2bef1f133465a42785aad8b33cab9f87308220c9433622d1e3c"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 24,
+      "r2_key": "v2/36c7912b31f32e187dd3612cd3624a6180229066fd42cd59268501c85232e31e.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "36c7912b31f32e187dd3612cd3624a6180229066fd42cd59268501c85232e31e"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 25,
+      "r2_key": "v2/c520ba7d46da9cb00ed1e0f1a26ba75d35f7e706a43ec76299983342deda088b.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "c520ba7d46da9cb00ed1e0f1a26ba75d35f7e706a43ec76299983342deda088b"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 26,
+      "r2_key": "v2/029d640a598382bc48de7ccd2e327837fb2cfb797abda4ba1827cca5f1ff4f45.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "029d640a598382bc48de7ccd2e327837fb2cfb797abda4ba1827cca5f1ff4f45"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 27,
+      "r2_key": "v2/1f59f5706a4fe507726c8585a4a3ca34bdb82c50a1cc20eef722467a52ee747e.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "1f59f5706a4fe507726c8585a4a3ca34bdb82c50a1cc20eef722467a52ee747e"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 28,
+      "r2_key": "v2/e4642bcf4f6e32432c38326cec8bad1f9360ef2513803bf2e9c0b25665271b68.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "e4642bcf4f6e32432c38326cec8bad1f9360ef2513803bf2e9c0b25665271b68"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 29,
+      "r2_key": "v2/95ef510e0faede8185347409f40a008da57c0ea37822458a30aab19da94c6cb6.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "95ef510e0faede8185347409f40a008da57c0ea37822458a30aab19da94c6cb6"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 30,
+      "r2_key": "v2/f73e873338c9b8c417ba4023e4cb3862405d335e3e349be29dc33e466c532637.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "f73e873338c9b8c417ba4023e4cb3862405d335e3e349be29dc33e466c532637"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 31,
+      "r2_key": "v2/84457f0d6855cd7bf3b77ecbd3c205c96619cf146e01cf8dc0de03128a0fcc65.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "84457f0d6855cd7bf3b77ecbd3c205c96619cf146e01cf8dc0de03128a0fcc65"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 32,
+      "r2_key": "v2/6af3cb415f29b2fe4e9a43a08421835cf04468ccf499b3cd161f5f30486ad4a8.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "6af3cb415f29b2fe4e9a43a08421835cf04468ccf499b3cd161f5f30486ad4a8"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 33,
+      "r2_key": "v2/425d87a30c418478d631870b524a9d2883825b890ca218a553bb7390bd43584b.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "425d87a30c418478d631870b524a9d2883825b890ca218a553bb7390bd43584b"
+    },
+    {
+      "game_id": "T-18511G",
+      "frame_index": 34,
+      "r2_key": "v2/cbe09c6a1a7dbac985d9d934c1cdc930cb6e42f40a06b6c7520624597d28841e.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "cbe09c6a1a7dbac985d9d934c1cdc930cb6e42f40a06b6c7520624597d28841e"
     },
     {
       "game_id": "T-18706G",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-18706G",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-18706G",
@@ -1902,34 +3054,314 @@
     {
       "game_id": "T-18706G",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-18706G",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 7,
+      "r2_key": "v2/796eccfc34b9519dfc2e1c932f716c2e009cdbea2fb266fe4a3e046b997d50b6.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "796eccfc34b9519dfc2e1c932f716c2e009cdbea2fb266fe4a3e046b997d50b6"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 8,
+      "r2_key": "v2/82e2d739a92c3ea1f96585f7c12408a1f4def9f9cc95979740124b5417fdb2d5.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "82e2d739a92c3ea1f96585f7c12408a1f4def9f9cc95979740124b5417fdb2d5"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 9,
+      "r2_key": "v2/2222e86b2be76180e02b3e4bf602e67ad25b50bc805bae2338efd85d5d3db7ca.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "2222e86b2be76180e02b3e4bf602e67ad25b50bc805bae2338efd85d5d3db7ca"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 10,
+      "r2_key": "v2/965fa01416e5959b1abdf7441ccc622e0475aa2deb314addc912fd569dd0aea0.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "965fa01416e5959b1abdf7441ccc622e0475aa2deb314addc912fd569dd0aea0"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 11,
+      "r2_key": "v2/50fc897052423305ae025aefacbe3d9e47f2147de39d71fb0c190c764be2fbcc.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "50fc897052423305ae025aefacbe3d9e47f2147de39d71fb0c190c764be2fbcc"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 12,
+      "r2_key": "v2/6fe4397c48d23dcefcb966cbd953be5f87715fe5c9aa7f60ba3b2fc3d43a5284.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "6fe4397c48d23dcefcb966cbd953be5f87715fe5c9aa7f60ba3b2fc3d43a5284"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 13,
+      "r2_key": "v2/43f2cbf5914b5a6d66f00a12d48c6a63238f0cc5635a3d1e7d0408ff7163e5e8.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "43f2cbf5914b5a6d66f00a12d48c6a63238f0cc5635a3d1e7d0408ff7163e5e8"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 14,
+      "r2_key": "v2/82e2d739a92c3ea1f96585f7c12408a1f4def9f9cc95979740124b5417fdb2d5.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "82e2d739a92c3ea1f96585f7c12408a1f4def9f9cc95979740124b5417fdb2d5"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 15,
+      "r2_key": "v2/eeacec0ca73940f7009512d7258d22aa20a479e267855fe5c76430e099ba8843.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "eeacec0ca73940f7009512d7258d22aa20a479e267855fe5c76430e099ba8843"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 16,
+      "r2_key": "v2/3b4e81819b78270c5a83403fec4ba28fd31dd888521a36a550fb7ef642589417.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "3b4e81819b78270c5a83403fec4ba28fd31dd888521a36a550fb7ef642589417"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 17,
+      "r2_key": "v2/c2ab5e472ab85d2a495a475f087b6b66e7afe57041500d6a6981544e4c6cb416.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "c2ab5e472ab85d2a495a475f087b6b66e7afe57041500d6a6981544e4c6cb416"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 18,
+      "r2_key": "v2/a76ef8e88e375966ee2d45fc9bbb71640e250460c56411f5d9d2cd0e53257ed7.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "a76ef8e88e375966ee2d45fc9bbb71640e250460c56411f5d9d2cd0e53257ed7"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 19,
+      "r2_key": "v2/9b512fa618ea36adb257504bb3a341e9953b03b008f52ce50f259e0bb53794b3.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "9b512fa618ea36adb257504bb3a341e9953b03b008f52ce50f259e0bb53794b3"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 20,
+      "r2_key": "v2/be281dd798c664e9235c4d7e7f5604266a7bbaed943e9b975380ebc843462c47.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "be281dd798c664e9235c4d7e7f5604266a7bbaed943e9b975380ebc843462c47"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 21,
+      "r2_key": "v2/d32479d38cafa549b6c425274533f4ab903807da078246455487adc04aaa8da3.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "d32479d38cafa549b6c425274533f4ab903807da078246455487adc04aaa8da3"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 22,
+      "r2_key": "v2/d68dc50af29215bb7d6bd95dbac8dc438f32ec18ea8465a8fcd76aa8d0155195.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "d68dc50af29215bb7d6bd95dbac8dc438f32ec18ea8465a8fcd76aa8d0155195"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 23,
+      "r2_key": "v2/3389f5821908933d47fd3e721eb1f887f61b8b79f45ee502de7071303f5fa8ba.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "3389f5821908933d47fd3e721eb1f887f61b8b79f45ee502de7071303f5fa8ba"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 24,
+      "r2_key": "v2/6f2ec115eb36197ed4967a51c0c98d8eec585544d0b28facbbc5a4bb4d9edebd.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "6f2ec115eb36197ed4967a51c0c98d8eec585544d0b28facbbc5a4bb4d9edebd"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 25,
+      "r2_key": "v2/18507dc4ab0b919d9d638dff4915db5fa4f47881a8820c2ef1e1d1cf56f9bafc.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "18507dc4ab0b919d9d638dff4915db5fa4f47881a8820c2ef1e1d1cf56f9bafc"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 26,
+      "r2_key": "v2/953866cb992ad3cb14325ae98112058adf9b7dc504ca5581ee7e78f36d18d546.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "953866cb992ad3cb14325ae98112058adf9b7dc504ca5581ee7e78f36d18d546"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 27,
+      "r2_key": "v2/6b1557402bb115ce136ce87e4f452938fa012a0ce8c420a4d1f535b9dc1bdf75.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "6b1557402bb115ce136ce87e4f452938fa012a0ce8c420a4d1f535b9dc1bdf75"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 28,
+      "r2_key": "v2/3388f91d8e83bc19a6e6ed1007b8974f5eb158473384b07589688c8f538f626b.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "3388f91d8e83bc19a6e6ed1007b8974f5eb158473384b07589688c8f538f626b"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 29,
+      "r2_key": "v2/5011eaee8f2a8bfc2e0af377888255fa59ce7993a6b0a93bf0c7cffb2047986c.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "5011eaee8f2a8bfc2e0af377888255fa59ce7993a6b0a93bf0c7cffb2047986c"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 30,
+      "r2_key": "v2/c3c8f912676dc1058ec0a6e9542b6e5c6c40e73ce0fbfb3890c3014415f5fa3e.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "c3c8f912676dc1058ec0a6e9542b6e5c6c40e73ce0fbfb3890c3014415f5fa3e"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 31,
+      "r2_key": "v2/d95e68ea1264b3344d9e7736859cf1213609de85df807d8badfce56e1753f912.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "d95e68ea1264b3344d9e7736859cf1213609de85df807d8badfce56e1753f912"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 32,
+      "r2_key": "v2/5cf1a72b2564148cb020a52cb8098478877228f29b24f55d35ec06938fa8babf.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "5cf1a72b2564148cb020a52cb8098478877228f29b24f55d35ec06938fa8babf"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 33,
+      "r2_key": "v2/3ae3517e3f50028536354d17ec1f7bd4934bd4743ac8fea0ae831b89a3262575.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "3ae3517e3f50028536354d17ec1f7bd4934bd4743ac8fea0ae831b89a3262575"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 34,
+      "r2_key": "v2/ccaf3b1604f1aae2b613bf35e6b5151130b0c1146d4adf0e0be1e123b26b392e.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "ccaf3b1604f1aae2b613bf35e6b5151130b0c1146d4adf0e0be1e123b26b392e"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 35,
+      "r2_key": "v2/a605c51fc71be501a564452571a6b3b391e7c134c818cce54226dc6eeb7fe85e.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "a605c51fc71be501a564452571a6b3b391e7c134c818cce54226dc6eeb7fe85e"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 36,
+      "r2_key": "v2/eac27fe43ce249d6701961a1aba4aeb57c7e1bba37fc24722e3f9990ac7425f8.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "eac27fe43ce249d6701961a1aba4aeb57c7e1bba37fc24722e3f9990ac7425f8"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 37,
+      "r2_key": "v2/68eb13edb5cf7264e1e1ddba85aea65be0a1dd28965bbaf48af347aa1c317414.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "68eb13edb5cf7264e1e1ddba85aea65be0a1dd28965bbaf48af347aa1c317414"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 38,
+      "r2_key": "v2/7faef94dbe7715a659df6adfcae2375909f591cc86a43e75e946745bf7b04523.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "7faef94dbe7715a659df6adfcae2375909f591cc86a43e75e946745bf7b04523"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 39,
+      "r2_key": "v2/bbba3026f7b20ef7ad316ae88dc293c6a614ece5016a52e4771a57895bf27d5b.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "bbba3026f7b20ef7ad316ae88dc293c6a614ece5016a52e4771a57895bf27d5b"
+    },
+    {
+      "game_id": "T-18706G",
+      "frame_index": 40,
+      "r2_key": "v2/cc87dff459f292026f62062de4a08f14e4636ffe373edcddb5a2b2cfc532d5e0.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "cc87dff459f292026f62062de4a08f14e4636ffe373edcddb5a2b2cfc532d5e0"
     },
     {
       "game_id": "T-18710G",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-18710G",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-18710G",
@@ -1950,34 +3382,90 @@
     {
       "game_id": "T-18710G",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-18710G",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-18710G",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-18710G",
+      "frame_index": 7,
+      "r2_key": "v2/2a20af602ac7216971d5c2729c9b6ccb84beefeddde1c9b8fb86052b307d8435.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "2a20af602ac7216971d5c2729c9b6ccb84beefeddde1c9b8fb86052b307d8435"
+    },
+    {
+      "game_id": "T-18710G",
+      "frame_index": 8,
+      "r2_key": "v2/14bf8526caf2955a1da94797c8551537e80cf8fccf794a12f9f69afd4ed8dd22.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "14bf8526caf2955a1da94797c8551537e80cf8fccf794a12f9f69afd4ed8dd22"
+    },
+    {
+      "game_id": "T-18710G",
+      "frame_index": 9,
+      "r2_key": "v2/d638d6e571fb274fc4b9db788975c1cb9801e970fdee39d544eca539b42e8206.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "d638d6e571fb274fc4b9db788975c1cb9801e970fdee39d544eca539b42e8206"
+    },
+    {
+      "game_id": "T-18710G",
+      "frame_index": 10,
+      "r2_key": "v2/6d7aa21d74c738b2b93ef750e47a2be2b54a6e13e3490af3d09ea7a73b36e032.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "6d7aa21d74c738b2b93ef750e47a2be2b54a6e13e3490af3d09ea7a73b36e032"
+    },
+    {
+      "game_id": "T-18710G",
+      "frame_index": 11,
+      "r2_key": "v2/5f434e759aab86407922766328ad2817e4ae379f39423a7e6f8f4b7a6f226b00.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "5f434e759aab86407922766328ad2817e4ae379f39423a7e6f8f4b7a6f226b00"
+    },
+    {
+      "game_id": "T-18710G",
+      "frame_index": 12,
+      "r2_key": "v2/b4b734ccb18611821da44384ff51675b9db75a4a7c726797e85d33770506f6bf.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "b4b734ccb18611821da44384ff51675b9db75a4a7c726797e85d33770506f6bf"
     },
     {
       "game_id": "T-19721G",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-19721G",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-19721G",
@@ -1998,34 +3486,290 @@
     {
       "game_id": "T-19721G",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-19721G",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 7,
+      "r2_key": "v2/2df6ddebf7d10c3608a18653d6cc123dc291da990eb68462dc9e8e549f1f3838.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "2df6ddebf7d10c3608a18653d6cc123dc291da990eb68462dc9e8e549f1f3838"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 8,
+      "r2_key": "v2/c2927afd50b55646a788952bb1a5321a84ef36d38a361a377cafbeb53b529205.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "c2927afd50b55646a788952bb1a5321a84ef36d38a361a377cafbeb53b529205"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 9,
+      "r2_key": "v2/81ecddf61e1dd55e05e50c8974b8c9d660860dfc6404bd156c358a3005224ced.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "81ecddf61e1dd55e05e50c8974b8c9d660860dfc6404bd156c358a3005224ced"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 10,
+      "r2_key": "v2/6516cbb1af729e13129f7587d9fd74a6bb1367166de52a3bff0078445de23baa.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "6516cbb1af729e13129f7587d9fd74a6bb1367166de52a3bff0078445de23baa"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 11,
+      "r2_key": "v2/c9ca5b7bcc828d1c05329407df7a45778666de18b2f2188a239583d0ce846b7b.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "c9ca5b7bcc828d1c05329407df7a45778666de18b2f2188a239583d0ce846b7b"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 12,
+      "r2_key": "v2/f06b6deb2ef8dc1697184fdcde0c20ee44c4e4a97a742c5835166dfd75aa10a7.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "f06b6deb2ef8dc1697184fdcde0c20ee44c4e4a97a742c5835166dfd75aa10a7"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 13,
+      "r2_key": "v2/6141e55b87c4cd73ea9bd15a619b30591c628ec4b42411349e61329164f39676.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "6141e55b87c4cd73ea9bd15a619b30591c628ec4b42411349e61329164f39676"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 14,
+      "r2_key": "v2/d0b01f3ad1463ad09bac648aec7c7c6dcc9652c4b9de2b2abdcbbbf871bfcd11.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "d0b01f3ad1463ad09bac648aec7c7c6dcc9652c4b9de2b2abdcbbbf871bfcd11"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 15,
+      "r2_key": "v2/92e0d1c05b53112fd9f9e21a5d63e37b969c6d1276c75c3117ec1099bd0d6fd4.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "92e0d1c05b53112fd9f9e21a5d63e37b969c6d1276c75c3117ec1099bd0d6fd4"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 16,
+      "r2_key": "v2/0ac1dd0aab2d3351d0e224731c5a85cec28809fcfef307767969ba74c01a6e37.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "0ac1dd0aab2d3351d0e224731c5a85cec28809fcfef307767969ba74c01a6e37"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 17,
+      "r2_key": "v2/d457f5b8761850910bb4cf280f4ea52bec65f55f2a7be4dc1957cdbba29b1508.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "d457f5b8761850910bb4cf280f4ea52bec65f55f2a7be4dc1957cdbba29b1508"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 18,
+      "r2_key": "v2/2a371547ef155d7937d6fdef66f7f04edf88f0228bac74651c17c433ca7fb71c.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "2a371547ef155d7937d6fdef66f7f04edf88f0228bac74651c17c433ca7fb71c"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 19,
+      "r2_key": "v2/972e40b27f5ca6069e1356b33fe3ef67328dbbe8236c6f23cc88a66b9c504165.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "972e40b27f5ca6069e1356b33fe3ef67328dbbe8236c6f23cc88a66b9c504165"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 20,
+      "r2_key": "v2/bf43bd7eba7627da8ab75249b21a9feca6867b5f902533fe37f19eac9a23b5f4.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "bf43bd7eba7627da8ab75249b21a9feca6867b5f902533fe37f19eac9a23b5f4"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 21,
+      "r2_key": "v2/00ba09ca8418d33d706f4feb551ec8276c5156706dcc284efc9cc89be3763696.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "00ba09ca8418d33d706f4feb551ec8276c5156706dcc284efc9cc89be3763696"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 22,
+      "r2_key": "v2/68cf5286d6a1adc3cfde0fd639d45cfcdf5470603a0a6f0b6309901460dafd0b.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "68cf5286d6a1adc3cfde0fd639d45cfcdf5470603a0a6f0b6309901460dafd0b"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 23,
+      "r2_key": "v2/7801b311117213a0e6b5fc4177cd603c47cf8248011dc56a6f58a0bcf7d30072.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "7801b311117213a0e6b5fc4177cd603c47cf8248011dc56a6f58a0bcf7d30072"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 24,
+      "r2_key": "v2/2e91c73d00e884f2e383d9351adb267b0e499eb59f5a8df4b3b2c39ff03ca89e.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "2e91c73d00e884f2e383d9351adb267b0e499eb59f5a8df4b3b2c39ff03ca89e"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 25,
+      "r2_key": "v2/75a1e6aeb7b7f476e831f6d8ca9efb10ffa8a03417649791d1025779406e0774.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "75a1e6aeb7b7f476e831f6d8ca9efb10ffa8a03417649791d1025779406e0774"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 26,
+      "r2_key": "v2/0dba08710a616448643b85e28ac57078d643e72ea60d5bb885985fa7b6d5bb07.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "0dba08710a616448643b85e28ac57078d643e72ea60d5bb885985fa7b6d5bb07"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 27,
+      "r2_key": "v2/1ffd76792400a072ff0250614a14e4bfcb51cfd931a99fccdfc9e4f5678fb91a.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "1ffd76792400a072ff0250614a14e4bfcb51cfd931a99fccdfc9e4f5678fb91a"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 28,
+      "r2_key": "v2/fa3e815c512e2e9f86913c53f8b8ddaa8e527db9f2cbb31a086ab1df91af3e9f.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "fa3e815c512e2e9f86913c53f8b8ddaa8e527db9f2cbb31a086ab1df91af3e9f"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 29,
+      "r2_key": "v2/1e6595d2635919ebfac92e149a726701af6687625aa6f79e67d668efd28d7a87.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "1e6595d2635919ebfac92e149a726701af6687625aa6f79e67d668efd28d7a87"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 30,
+      "r2_key": "v2/01479f931e5c807d80be175ef3b11f9e896098d32999f1eb62e74f2c3e1d6967.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "01479f931e5c807d80be175ef3b11f9e896098d32999f1eb62e74f2c3e1d6967"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 31,
+      "r2_key": "v2/4a53d99a19cc6797328dae2fec78485ce97dd6d5520a675b929214cc1a51cde7.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "4a53d99a19cc6797328dae2fec78485ce97dd6d5520a675b929214cc1a51cde7"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 32,
+      "r2_key": "v2/ed5368c9ef63ea0d65fd2383b0f3f0f698e61c78eb6e2783f4fa9b985a667774.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "ed5368c9ef63ea0d65fd2383b0f3f0f698e61c78eb6e2783f4fa9b985a667774"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 33,
+      "r2_key": "v2/a3313c1896ca776a46a19468b6e1567402a3bb009a8c777ec1ea49ff124afbd0.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "a3313c1896ca776a46a19468b6e1567402a3bb009a8c777ec1ea49ff124afbd0"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 34,
+      "r2_key": "v2/800f26536fb0087b2a52d631d8568e8d5cba70fd9ea11cc5a4469533ae172626.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "800f26536fb0087b2a52d631d8568e8d5cba70fd9ea11cc5a4469533ae172626"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 35,
+      "r2_key": "v2/c8f69d7c6300b17ef30760513c89f4de37ba367f2d72c76dd29001b081ea464e.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "c8f69d7c6300b17ef30760513c89f4de37ba367f2d72c76dd29001b081ea464e"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 36,
+      "r2_key": "v2/8490ee0889d53f7d7f8fbc4cb19a568a0f9ade20d4019714bc2f1e8ea550a3b5.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "8490ee0889d53f7d7f8fbc4cb19a568a0f9ade20d4019714bc2f1e8ea550a3b5"
+    },
+    {
+      "game_id": "T-19721G",
+      "frame_index": 37,
+      "r2_key": "v2/630cf2f7d510a2a0e48a6e5e523e9c1eb8eb7015f86e160ed3bff013ce38198d.png",
+      "width": 352,
+      "height": 240,
+      "sha256": "630cf2f7d510a2a0e48a6e5e523e9c1eb8eb7015f86e160ed3bff013ce38198d"
     },
     {
       "game_id": "T-21301G",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-21301G",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-21301G",
@@ -2046,34 +3790,298 @@
     {
       "game_id": "T-21301G",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-21301G",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 7,
+      "r2_key": "v2/bcb73726b58225ea92cfeab6e7e1c58ca7c058524c282c2fe1bb1a7375f637ad.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "bcb73726b58225ea92cfeab6e7e1c58ca7c058524c282c2fe1bb1a7375f637ad"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 8,
+      "r2_key": "v2/9fa13e91b81d5c6eaa3d638b5f36ad29a89f1378310ccbce77caeb4b5c65e6ec.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "9fa13e91b81d5c6eaa3d638b5f36ad29a89f1378310ccbce77caeb4b5c65e6ec"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 9,
+      "r2_key": "v2/fcaa40620dfac6a2ff1ef094b8834f5cedcbff7222f48067b9e466cbae20c43e.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "fcaa40620dfac6a2ff1ef094b8834f5cedcbff7222f48067b9e466cbae20c43e"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 10,
+      "r2_key": "v2/3b42a9eba1c5d99c8c82f50e31507322ae10abf1e155ffd8223013e0abc8a9c8.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "3b42a9eba1c5d99c8c82f50e31507322ae10abf1e155ffd8223013e0abc8a9c8"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 11,
+      "r2_key": "v2/2149a3a1808bf4ffeb92add463b578ef32d16e0c3992d684f048cb19f9d6c4aa.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "2149a3a1808bf4ffeb92add463b578ef32d16e0c3992d684f048cb19f9d6c4aa"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 12,
+      "r2_key": "v2/95f611d660e96bac253cd2ca81eb0f01504ef1f06d7e45579e219dfbdfd2c0d8.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "95f611d660e96bac253cd2ca81eb0f01504ef1f06d7e45579e219dfbdfd2c0d8"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 13,
+      "r2_key": "v2/178b4acceb915d13e3fa53b98a9713957c043866ac736daab93f9185d94861bb.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "178b4acceb915d13e3fa53b98a9713957c043866ac736daab93f9185d94861bb"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 14,
+      "r2_key": "v2/13c5ec39de4433c3f46c9a716ddaee4d920a6c4c64b070ee51b1f0ddaf6b24a2.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "13c5ec39de4433c3f46c9a716ddaee4d920a6c4c64b070ee51b1f0ddaf6b24a2"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 15,
+      "r2_key": "v2/545f08320b8f20103a1b12a9556bc56eec7ebcab533b655b53f80e9d8d82829b.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "545f08320b8f20103a1b12a9556bc56eec7ebcab533b655b53f80e9d8d82829b"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 16,
+      "r2_key": "v2/778e889ba16e89d181546861a11bcc6578b0e6514017df0a63b12ce4a81ab6ed.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "778e889ba16e89d181546861a11bcc6578b0e6514017df0a63b12ce4a81ab6ed"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 17,
+      "r2_key": "v2/d97933f18efeccff2e96ea9968f72984f21db3b060d3ba12de6bee540b880c0f.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d97933f18efeccff2e96ea9968f72984f21db3b060d3ba12de6bee540b880c0f"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 18,
+      "r2_key": "v2/3ae70cf7c5456b39932fc391bd3a0e71a533c281209a1ffc7ff1f64f3abc26cb.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "3ae70cf7c5456b39932fc391bd3a0e71a533c281209a1ffc7ff1f64f3abc26cb"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 19,
+      "r2_key": "v2/ef909f13a2d2e3c077a7dc62683cc274cac2fb8c5392b6dad37f2fd8eda73513.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "ef909f13a2d2e3c077a7dc62683cc274cac2fb8c5392b6dad37f2fd8eda73513"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 20,
+      "r2_key": "v2/0c7eb59b5637b789aaf15e20539419b2d4af47ec605da484b06bee99bbc0eb90.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "0c7eb59b5637b789aaf15e20539419b2d4af47ec605da484b06bee99bbc0eb90"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 21,
+      "r2_key": "v2/a7834f24fe51fa30bb6d46755b3d4b5cb15b319f4262ed584859be46a576c81f.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "a7834f24fe51fa30bb6d46755b3d4b5cb15b319f4262ed584859be46a576c81f"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 22,
+      "r2_key": "v2/ce955107fbb03c5c31e68083a500f29beff272ca26a6383b6a13d7197aae83e3.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "ce955107fbb03c5c31e68083a500f29beff272ca26a6383b6a13d7197aae83e3"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 23,
+      "r2_key": "v2/074704f5f8a3723b2a20c5d05e55b51bd58d552d877cd30eec03914690513001.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "074704f5f8a3723b2a20c5d05e55b51bd58d552d877cd30eec03914690513001"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 24,
+      "r2_key": "v2/b0e8b6395a5a8c15dce3e2e48488deb3eb23c2463e9fb0a30470c1e76a6ea33f.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "b0e8b6395a5a8c15dce3e2e48488deb3eb23c2463e9fb0a30470c1e76a6ea33f"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 25,
+      "r2_key": "v2/87be0d7508476b8ea434d88cd4244518339013b2219e70a47706c19d84b64b21.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "87be0d7508476b8ea434d88cd4244518339013b2219e70a47706c19d84b64b21"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 26,
+      "r2_key": "v2/bbbbb995681c5b2039866fd3eb7e265999a3ce763f362d5e9b1adb5c4882bdbd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "bbbbb995681c5b2039866fd3eb7e265999a3ce763f362d5e9b1adb5c4882bdbd"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 27,
+      "r2_key": "v2/debdf9ecd11cb61ad10914ecd3869afc360cd49d87f9f232982c5d80ab53256c.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "debdf9ecd11cb61ad10914ecd3869afc360cd49d87f9f232982c5d80ab53256c"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 28,
+      "r2_key": "v2/ed639f5da64a28dbf110b141731892d4f5a4a9196daba1c21d169bea18e8bd86.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "ed639f5da64a28dbf110b141731892d4f5a4a9196daba1c21d169bea18e8bd86"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 29,
+      "r2_key": "v2/56810266078da4760e8860145da6aab7fd472a09747c642f81fbf6fb54524694.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "56810266078da4760e8860145da6aab7fd472a09747c642f81fbf6fb54524694"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 30,
+      "r2_key": "v2/cd5d7cc6fe9b45d8bcc17ae58dc7cc1e5db609ea242c6da1bfca8bc7bec9e341.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "cd5d7cc6fe9b45d8bcc17ae58dc7cc1e5db609ea242c6da1bfca8bc7bec9e341"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 31,
+      "r2_key": "v2/3416d4854444a3f8d8c18d6ecb40bd17e4e9fdfc23396df041003f9dd4c0f948.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "3416d4854444a3f8d8c18d6ecb40bd17e4e9fdfc23396df041003f9dd4c0f948"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 32,
+      "r2_key": "v2/286103a20b7e847e4e5a633c0d6ffa744563519ba9c9e9ad3cc2e4e7195c82ce.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "286103a20b7e847e4e5a633c0d6ffa744563519ba9c9e9ad3cc2e4e7195c82ce"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 33,
+      "r2_key": "v2/a9d17f203208fb31ca98f53cf9f603dbedb23b349107ec33bb36c9e074f559da.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "a9d17f203208fb31ca98f53cf9f603dbedb23b349107ec33bb36c9e074f559da"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 34,
+      "r2_key": "v2/551c52c84baed5134ab446975fb21edbe0a62bfad3f76c59c9e02bdc91deeeca.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "551c52c84baed5134ab446975fb21edbe0a62bfad3f76c59c9e02bdc91deeeca"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 35,
+      "r2_key": "v2/ce93b4d6327674e67532566e6b1f3f13931a81d8230133185932e8820dd3aa8e.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "ce93b4d6327674e67532566e6b1f3f13931a81d8230133185932e8820dd3aa8e"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 36,
+      "r2_key": "v2/42133729cf10a66a57ae7fe6f574849a39c78566eb58b76b634f8de6771e6d77.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "42133729cf10a66a57ae7fe6f574849a39c78566eb58b76b634f8de6771e6d77"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 37,
+      "r2_key": "v2/e37a900cab7301cb6874dedfb3fedcc51c1347a3da73d408cc7fdabbb94c05d9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "e37a900cab7301cb6874dedfb3fedcc51c1347a3da73d408cc7fdabbb94c05d9"
+    },
+    {
+      "game_id": "T-21301G",
+      "frame_index": 38,
+      "r2_key": "v2/1ce2b0ed508fbbfeaef781cd7e5298dd70c98ed1d942418ef757df4a6e66732d.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "1ce2b0ed508fbbfeaef781cd7e5298dd70c98ed1d942418ef757df4a6e66732d"
     },
     {
       "game_id": "T-21301G-2",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-21301G-2",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-21301G-2",
@@ -2094,34 +4102,434 @@
     {
       "game_id": "T-21301G-2",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-21301G-2",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 7,
+      "r2_key": "v2/42f0e8361003cb391f3f9b89d090f33d19b277c4cdcf91082231e0b3d9c28d28.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "42f0e8361003cb391f3f9b89d090f33d19b277c4cdcf91082231e0b3d9c28d28"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 8,
+      "r2_key": "v2/b682113dfe880653461928fbdd7dcbf72976b43d2923234d1c46943b4cbfc138.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "b682113dfe880653461928fbdd7dcbf72976b43d2923234d1c46943b4cbfc138"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 9,
+      "r2_key": "v2/482ca24ad39a4cc4a81175e18be25cadac32f88972907ff28d90aa49e1e0de12.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "482ca24ad39a4cc4a81175e18be25cadac32f88972907ff28d90aa49e1e0de12"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 10,
+      "r2_key": "v2/cd70b47aae6026553ed8242c2f6e018ecc5629180e051faaed8fd380d812773b.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "cd70b47aae6026553ed8242c2f6e018ecc5629180e051faaed8fd380d812773b"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 11,
+      "r2_key": "v2/2d53fdc7db64b26c4fb3b267f00e5a3dafef213252df3fb8d8d236d19537261d.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "2d53fdc7db64b26c4fb3b267f00e5a3dafef213252df3fb8d8d236d19537261d"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 12,
+      "r2_key": "v2/2d9cc5ca84ce32a111c148bba1ed2edf1b0749158b904a1767826102c95a4e88.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "2d9cc5ca84ce32a111c148bba1ed2edf1b0749158b904a1767826102c95a4e88"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 13,
+      "r2_key": "v2/202f11134f1c946537534b90dfd5ef030a5b456b3818c6120b755ab199aef430.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "202f11134f1c946537534b90dfd5ef030a5b456b3818c6120b755ab199aef430"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 14,
+      "r2_key": "v2/d447ed6ec9ca78e3f4af4624a02f21ec0055492e2a903f76107c5b9e3d7838d1.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d447ed6ec9ca78e3f4af4624a02f21ec0055492e2a903f76107c5b9e3d7838d1"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 15,
+      "r2_key": "v2/b715410d4f49449e8e584f90efecb0223a3890a5f803fcff2efcc5e124bd42dd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "b715410d4f49449e8e584f90efecb0223a3890a5f803fcff2efcc5e124bd42dd"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 16,
+      "r2_key": "v2/6222b78146416bef7068d6b2132241fbe34dbb58e6ff1f7f1e0169a02df82843.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "6222b78146416bef7068d6b2132241fbe34dbb58e6ff1f7f1e0169a02df82843"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 17,
+      "r2_key": "v2/4bbb7e93dcc8ce587f9c81bf05a643437c85d26298bc5f9fe9fba18512cee947.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "4bbb7e93dcc8ce587f9c81bf05a643437c85d26298bc5f9fe9fba18512cee947"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 18,
+      "r2_key": "v2/95e3e0758337956521831a975c4f7a50b57fe0128b9388abc368d7e2d1a0d564.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "95e3e0758337956521831a975c4f7a50b57fe0128b9388abc368d7e2d1a0d564"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 19,
+      "r2_key": "v2/b7b17f47661d9c276f884970f20573f537aaef35f9fb2022b7ae2654e44b1558.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "b7b17f47661d9c276f884970f20573f537aaef35f9fb2022b7ae2654e44b1558"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 20,
+      "r2_key": "v2/41c7c826ff432ba10e8e58a531736deccf5cedb4bd164df9c67dc58327e323b7.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "41c7c826ff432ba10e8e58a531736deccf5cedb4bd164df9c67dc58327e323b7"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 21,
+      "r2_key": "v2/27f455d15ea217289385cef2495ef615f6ba077de3756a33a5d87c7895114397.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "27f455d15ea217289385cef2495ef615f6ba077de3756a33a5d87c7895114397"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 22,
+      "r2_key": "v2/fde7469751e3957732d7772b4fcc836f3c14e9cb2be47ca292f53456bfc41e80.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "fde7469751e3957732d7772b4fcc836f3c14e9cb2be47ca292f53456bfc41e80"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 23,
+      "r2_key": "v2/15812e506625bd7808ada121811b992372ce1d4dba5b1ace28f27dc2d109773d.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "15812e506625bd7808ada121811b992372ce1d4dba5b1ace28f27dc2d109773d"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 24,
+      "r2_key": "v2/c741fe5cba5871555e2a25171cf57b7f0eef0f3efb9269eb9c664d7b03646c03.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "c741fe5cba5871555e2a25171cf57b7f0eef0f3efb9269eb9c664d7b03646c03"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 25,
+      "r2_key": "v2/c1e5f7c1200b55e9babc482009d3ce15de79e23d5c82830c281daa4805df8847.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "c1e5f7c1200b55e9babc482009d3ce15de79e23d5c82830c281daa4805df8847"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 26,
+      "r2_key": "v2/c9cbc36556b898a466504d8f8f3e644b541c4f708cca998dfa2db9d09e590316.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "c9cbc36556b898a466504d8f8f3e644b541c4f708cca998dfa2db9d09e590316"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 27,
+      "r2_key": "v2/15b37e63201f488da08dadf759b0b479aac6be8e0a9276aaab3c20e776f89a2c.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "15b37e63201f488da08dadf759b0b479aac6be8e0a9276aaab3c20e776f89a2c"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 28,
+      "r2_key": "v2/960b0c66a49f83302866d2bfef6190b8f76e039a5195d6f95ed090a91e5fc5b7.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "960b0c66a49f83302866d2bfef6190b8f76e039a5195d6f95ed090a91e5fc5b7"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 29,
+      "r2_key": "v2/bb8b4ccdbd51f73269417572c46d8754d2c4ccd3463425025b7ff01e07a69610.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "bb8b4ccdbd51f73269417572c46d8754d2c4ccd3463425025b7ff01e07a69610"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 30,
+      "r2_key": "v2/02c9d741224925721b008c9529eae4c89e5e80501bb4820394fa87c5487c853f.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "02c9d741224925721b008c9529eae4c89e5e80501bb4820394fa87c5487c853f"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 31,
+      "r2_key": "v2/32c72a89705610bd55c234ba2c0e948a185838faca147e2c2ab588ce95a0c1b4.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "32c72a89705610bd55c234ba2c0e948a185838faca147e2c2ab588ce95a0c1b4"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 32,
+      "r2_key": "v2/aa409e6fa56f3720de5656c97f87f06a5f32bf7ca8f49acf77541d9e7c72ada1.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "aa409e6fa56f3720de5656c97f87f06a5f32bf7ca8f49acf77541d9e7c72ada1"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 33,
+      "r2_key": "v2/4e860d4750b82d861efad86313695a9f3c52de5b8e95a4cdac5769bb7758e029.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "4e860d4750b82d861efad86313695a9f3c52de5b8e95a4cdac5769bb7758e029"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 34,
+      "r2_key": "v2/91cb0933726459aeadd348b1f863a5576bf7a4d35ee38ebc006f833742c77754.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "91cb0933726459aeadd348b1f863a5576bf7a4d35ee38ebc006f833742c77754"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 35,
+      "r2_key": "v2/fba5ab0de70b9392d044be0a454dd8f9dd34fb1a36333a919c74f9ab4bc09ea7.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "fba5ab0de70b9392d044be0a454dd8f9dd34fb1a36333a919c74f9ab4bc09ea7"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 36,
+      "r2_key": "v2/065d6eb364a2cd0299b8cd38729b517cf30a819a9f0bd4af0f8eb14fce6b2fe9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "065d6eb364a2cd0299b8cd38729b517cf30a819a9f0bd4af0f8eb14fce6b2fe9"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 37,
+      "r2_key": "v2/5a43c730ad5d46c192977bd405e4fe0b2a5f72e6836361ef33d53748d4d40bd1.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "5a43c730ad5d46c192977bd405e4fe0b2a5f72e6836361ef33d53748d4d40bd1"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 38,
+      "r2_key": "v2/389de4f35a5016be2accdb4b3424a487ce2362ac0941740accdd1f73ff9ee034.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "389de4f35a5016be2accdb4b3424a487ce2362ac0941740accdd1f73ff9ee034"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 39,
+      "r2_key": "v2/809f14684b83b090721a824d6b3712905ebcffe2e1734a468986036f53df1737.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "809f14684b83b090721a824d6b3712905ebcffe2e1734a468986036f53df1737"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 40,
+      "r2_key": "v2/f3accc0635cf0caabdb267350fb52cbc33bfb4b5d300e8cf1cb150fb4d31190d.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "f3accc0635cf0caabdb267350fb52cbc33bfb4b5d300e8cf1cb150fb4d31190d"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 41,
+      "r2_key": "v2/102f37270443dc4780fb718f41df7bb569beeb872df01a9a3d12fad124395eaa.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "102f37270443dc4780fb718f41df7bb569beeb872df01a9a3d12fad124395eaa"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 42,
+      "r2_key": "v2/4434a7337e053f2a98f1ce4e3e017ec699d47805cc4b494404a9562f9a464f01.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "4434a7337e053f2a98f1ce4e3e017ec699d47805cc4b494404a9562f9a464f01"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 43,
+      "r2_key": "v2/bfc2751ef11ff46e983d819dc9dd2a6d082678115b856d659a25cd10d2272c69.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "bfc2751ef11ff46e983d819dc9dd2a6d082678115b856d659a25cd10d2272c69"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 44,
+      "r2_key": "v2/ca96ee96bac85c571553ed72884d8dd338e8f9ab6e8bbc1172b97bbbf18285cb.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "ca96ee96bac85c571553ed72884d8dd338e8f9ab6e8bbc1172b97bbbf18285cb"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 45,
+      "r2_key": "v2/44e8a6052b0fdad2db6df14dd38bc871f4a4bbadae3d14159ec0bbcb934513d7.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "44e8a6052b0fdad2db6df14dd38bc871f4a4bbadae3d14159ec0bbcb934513d7"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 46,
+      "r2_key": "v2/90305f3bc40b01e684715aa461d37f31fb1e935a1933d525378735aefdaf581f.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "90305f3bc40b01e684715aa461d37f31fb1e935a1933d525378735aefdaf581f"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 47,
+      "r2_key": "v2/9ff121cb60fb114a942b5bd70e086da7cb90d8310abc8ad1ed5f4115b5a0172a.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "9ff121cb60fb114a942b5bd70e086da7cb90d8310abc8ad1ed5f4115b5a0172a"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 48,
+      "r2_key": "v2/8b9aaf93f512cc24607c7646782324d95338fee4cb2a07267764112fbb8af1ae.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "8b9aaf93f512cc24607c7646782324d95338fee4cb2a07267764112fbb8af1ae"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 49,
+      "r2_key": "v2/ec861893186d0faf24ce7c8ecb2f3f46a50a2a3bc7d569ab1e6fa4417071a2a4.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "ec861893186d0faf24ce7c8ecb2f3f46a50a2a3bc7d569ab1e6fa4417071a2a4"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 50,
+      "r2_key": "v2/99d3f269d7f643c841bdd076e29373c5aee57a18071d7d6c86343ae0583ba090.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "99d3f269d7f643c841bdd076e29373c5aee57a18071d7d6c86343ae0583ba090"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 51,
+      "r2_key": "v2/e5b3d9018ab59f109c0e24d99e0709591f077c2787861f3eb5d3f181fde95532.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "e5b3d9018ab59f109c0e24d99e0709591f077c2787861f3eb5d3f181fde95532"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 52,
+      "r2_key": "v2/1b991832c29081f62b314d5c0a6cd949d983d094864aee5c54da051405e61f20.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "1b991832c29081f62b314d5c0a6cd949d983d094864aee5c54da051405e61f20"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 53,
+      "r2_key": "v2/6e19d708d1dea84ba77a49ddc2eb9136eb7da259ba11ba05bf96281590e83497.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "6e19d708d1dea84ba77a49ddc2eb9136eb7da259ba11ba05bf96281590e83497"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 54,
+      "r2_key": "v2/dbeec4f06c97e23e8b8af01c809887acb075f0b377231cfc4ffbb683304c3001.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "dbeec4f06c97e23e8b8af01c809887acb075f0b377231cfc4ffbb683304c3001"
+    },
+    {
+      "game_id": "T-21301G-2",
+      "frame_index": 55,
+      "r2_key": "v2/88c40864224cf42246a6319b71467c642c64e2a2901a4326c78f31d624bcf06c.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "88c40864224cf42246a6319b71467c642c64e2a2901a4326c78f31d624bcf06c"
     },
     {
       "game_id": "T-21301G-3",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-21301G-3",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-21301G-3",
@@ -2142,34 +4550,98 @@
     {
       "game_id": "T-21301G-3",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-21301G-3",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-21301G-3",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-21301G-3",
+      "frame_index": 7,
+      "r2_key": "v2/2f2d93fb0ecdb6a97d8d31f9363fe98a6faa3736d26e3290157ea9451ae27d0f.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "2f2d93fb0ecdb6a97d8d31f9363fe98a6faa3736d26e3290157ea9451ae27d0f"
+    },
+    {
+      "game_id": "T-21301G-3",
+      "frame_index": 8,
+      "r2_key": "v2/a5dab930423b264488577bba2fcabba33c8f263330f37034dfc26a8dcbc19e2b.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "a5dab930423b264488577bba2fcabba33c8f263330f37034dfc26a8dcbc19e2b"
+    },
+    {
+      "game_id": "T-21301G-3",
+      "frame_index": 9,
+      "r2_key": "v2/5193b80da59a712ce783bd2156a7c7b621a1c5e475c4e86494d0f688f5a76c6e.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "5193b80da59a712ce783bd2156a7c7b621a1c5e475c4e86494d0f688f5a76c6e"
+    },
+    {
+      "game_id": "T-21301G-3",
+      "frame_index": 10,
+      "r2_key": "v2/263f6c0a1c5550acd16e506e1c040f29e847c9840fdd01f24cf46b1b52a40f25.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "263f6c0a1c5550acd16e506e1c040f29e847c9840fdd01f24cf46b1b52a40f25"
+    },
+    {
+      "game_id": "T-21301G-3",
+      "frame_index": 11,
+      "r2_key": "v2/2823cf52748277c0aecf1a2271787c1c27f6bf185750975409ef479b481bccaa.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "2823cf52748277c0aecf1a2271787c1c27f6bf185750975409ef479b481bccaa"
+    },
+    {
+      "game_id": "T-21301G-3",
+      "frame_index": 12,
+      "r2_key": "v2/43c3596371744c342c19a0062c7c31358d66de563b40911a0d5003740f1c7812.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "43c3596371744c342c19a0062c7c31358d66de563b40911a0d5003740f1c7812"
+    },
+    {
+      "game_id": "T-21301G-3",
+      "frame_index": 13,
+      "r2_key": "v2/76f4ecfb80102525646be47535b907db7335a0e05d089fe71d7967b4b227f057.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "76f4ecfb80102525646be47535b907db7335a0e05d089fe71d7967b4b227f057"
     },
     {
       "game_id": "T-25201G",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-25201G",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-25201G",
@@ -2190,34 +4662,370 @@
     {
       "game_id": "T-25201G",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-25201G",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 7,
+      "r2_key": "v2/9cebea4447fa36133494f1575015f642b63b290f0f2f9058908658a01c2447b4.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "9cebea4447fa36133494f1575015f642b63b290f0f2f9058908658a01c2447b4"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 8,
+      "r2_key": "v2/1f717bb65aa7bb725e2a10af14cc53b2f8ced84d9f398239f44f43e9b7696755.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "1f717bb65aa7bb725e2a10af14cc53b2f8ced84d9f398239f44f43e9b7696755"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 9,
+      "r2_key": "v2/f91e380b092d3f4d0d5e95d7b7b46188cc8ca4989121530bcf296be05e6fb795.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "f91e380b092d3f4d0d5e95d7b7b46188cc8ca4989121530bcf296be05e6fb795"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 10,
+      "r2_key": "v2/bc138756c114f2b8a6a1701639ded9d96652a7bc85ca757fb353017b8f143d2c.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "bc138756c114f2b8a6a1701639ded9d96652a7bc85ca757fb353017b8f143d2c"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 11,
+      "r2_key": "v2/7362166cc108448433f19f0d0771146393cd0977160a685364ba14afd78128b8.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "7362166cc108448433f19f0d0771146393cd0977160a685364ba14afd78128b8"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 12,
+      "r2_key": "v2/e7ca9d161f925649e1f342ca31dd1a1ecc185ba852ba46c6b989cf58aa7cee0d.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "e7ca9d161f925649e1f342ca31dd1a1ecc185ba852ba46c6b989cf58aa7cee0d"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 13,
+      "r2_key": "v2/949fd7875f2c30b6470b0431458bf7ebbbfff6986a6f915f424da829a12c8e0d.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "949fd7875f2c30b6470b0431458bf7ebbbfff6986a6f915f424da829a12c8e0d"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 14,
+      "r2_key": "v2/9339c9892453ffcc72c9c5e1d826a11b70333e7224d892e29ae81ebb5de83d28.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "9339c9892453ffcc72c9c5e1d826a11b70333e7224d892e29ae81ebb5de83d28"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 15,
+      "r2_key": "v2/55dbe378512e1a068290f793d03d139b26c5d0973fc8a760061de6b9a78619e0.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "55dbe378512e1a068290f793d03d139b26c5d0973fc8a760061de6b9a78619e0"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 16,
+      "r2_key": "v2/b04b66a5dbc1d5e261c1984fd7a26b20473aab0b8430f143448dbd83fde8ded5.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "b04b66a5dbc1d5e261c1984fd7a26b20473aab0b8430f143448dbd83fde8ded5"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 17,
+      "r2_key": "v2/359bf483c1774b88a18b90c78d2d062236362b3a3e778b974b085a331d6445e2.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "359bf483c1774b88a18b90c78d2d062236362b3a3e778b974b085a331d6445e2"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 18,
+      "r2_key": "v2/51424b0832bbafc08635e8c57cf037488d24505d72d25ffbcc8fea006df19f5c.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "51424b0832bbafc08635e8c57cf037488d24505d72d25ffbcc8fea006df19f5c"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 19,
+      "r2_key": "v2/6f3c0a11390fd1cd19e6c8d64958decc63e77abd9ed2a74f4aeda51b6d3f8d70.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "6f3c0a11390fd1cd19e6c8d64958decc63e77abd9ed2a74f4aeda51b6d3f8d70"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 20,
+      "r2_key": "v2/cea076375b67bc5955d543c495e06c120dc80287cc21786fabf8ba51999f93c2.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "cea076375b67bc5955d543c495e06c120dc80287cc21786fabf8ba51999f93c2"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 21,
+      "r2_key": "v2/2d51d9dd3d682a6a6bf281b929290b3359ed733d115adaa6de50834d39611368.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "2d51d9dd3d682a6a6bf281b929290b3359ed733d115adaa6de50834d39611368"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 22,
+      "r2_key": "v2/a1bcf58e06028381d55f9292c41b8dc36a655fe26c445964ad07df380d57bbac.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "a1bcf58e06028381d55f9292c41b8dc36a655fe26c445964ad07df380d57bbac"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 23,
+      "r2_key": "v2/e3baccb34eebbfaa90409d2f15ab6323df137479f4ac99dbbd04940ccd05ab54.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "e3baccb34eebbfaa90409d2f15ab6323df137479f4ac99dbbd04940ccd05ab54"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 24,
+      "r2_key": "v2/fc941eb550f648c2a145455c3d4eec343a6a48ca6c5b3e170b77016854d45126.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "fc941eb550f648c2a145455c3d4eec343a6a48ca6c5b3e170b77016854d45126"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 25,
+      "r2_key": "v2/1a36b79d7ed5ad39496f0fa58c07321248025c02d16f86c734a8f98292ee2bc2.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "1a36b79d7ed5ad39496f0fa58c07321248025c02d16f86c734a8f98292ee2bc2"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 26,
+      "r2_key": "v2/a8cd502c87df7d928f9cdd869ef1cd36af8f94017c45c55435bf96026e07c1ff.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "a8cd502c87df7d928f9cdd869ef1cd36af8f94017c45c55435bf96026e07c1ff"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 27,
+      "r2_key": "v2/d965090d11405854983e9875f640a18ff5eec97ef766c1714fd8e0cc16cde571.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "d965090d11405854983e9875f640a18ff5eec97ef766c1714fd8e0cc16cde571"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 28,
+      "r2_key": "v2/3004d7db4435a0b92395064e9584097a246338ac89809b99e4c57225ec4a82e3.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "3004d7db4435a0b92395064e9584097a246338ac89809b99e4c57225ec4a82e3"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 29,
+      "r2_key": "v2/184b2f71d1009a1aae07edad6c685d357793edff2f36727afc70803740f01d97.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "184b2f71d1009a1aae07edad6c685d357793edff2f36727afc70803740f01d97"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 30,
+      "r2_key": "v2/c14d43233e828cb2cde13456585b7531e877c85ff80536b5294f35db7b815a6b.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "c14d43233e828cb2cde13456585b7531e877c85ff80536b5294f35db7b815a6b"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 31,
+      "r2_key": "v2/be966e2956ce30c65b09cc575e715946cea596271b5d14eae17c413e93b7cbbc.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "be966e2956ce30c65b09cc575e715946cea596271b5d14eae17c413e93b7cbbc"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 32,
+      "r2_key": "v2/c50b581e26795d729f9ee0d4a27ce3ef381288e1cf5206a522c227b2b4c77dee.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "c50b581e26795d729f9ee0d4a27ce3ef381288e1cf5206a522c227b2b4c77dee"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 33,
+      "r2_key": "v2/f3219e285e3a8c64aa524034cdb8f8b190cb8359255072b1caa6ee3dc0704967.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "f3219e285e3a8c64aa524034cdb8f8b190cb8359255072b1caa6ee3dc0704967"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 34,
+      "r2_key": "v2/0ecc65a13b8ffe2886401c63f01563fe0530b8879d5fdeee5ea900cdddda4d3f.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "0ecc65a13b8ffe2886401c63f01563fe0530b8879d5fdeee5ea900cdddda4d3f"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 35,
+      "r2_key": "v2/575143adcf62b88fb972245996be19538435ea6740eea4e9befe78dcc3b41116.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "575143adcf62b88fb972245996be19538435ea6740eea4e9befe78dcc3b41116"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 36,
+      "r2_key": "v2/e19e2d44fbb1d362f7af49d694b60e1ccacbf28f244add375920a6788dd44b6e.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "e19e2d44fbb1d362f7af49d694b60e1ccacbf28f244add375920a6788dd44b6e"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 37,
+      "r2_key": "v2/8d128fc89cb09421dd74e31dd5be7ee100aa59c91f6fbbae0856d7d6261f8c97.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "8d128fc89cb09421dd74e31dd5be7ee100aa59c91f6fbbae0856d7d6261f8c97"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 38,
+      "r2_key": "v2/b4f4ce7e373400ca9d3804cbf87c8dfac4a9163e981f20b61acc697e0e5a5eb8.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "b4f4ce7e373400ca9d3804cbf87c8dfac4a9163e981f20b61acc697e0e5a5eb8"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 39,
+      "r2_key": "v2/1e6139b79458b90684ec6077893ebd2dc4fda02926f0927a2399bdb4c6ef4253.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "1e6139b79458b90684ec6077893ebd2dc4fda02926f0927a2399bdb4c6ef4253"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 40,
+      "r2_key": "v2/2bc06c06087c06e3ec289e3e43908ee4cd794865a303fac8435ca611041bd8fd.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "2bc06c06087c06e3ec289e3e43908ee4cd794865a303fac8435ca611041bd8fd"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 41,
+      "r2_key": "v2/767a6a8b75227e4dd8176a900feb212d085902108109e6375ec3fbaabe8862dc.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "767a6a8b75227e4dd8176a900feb212d085902108109e6375ec3fbaabe8862dc"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 42,
+      "r2_key": "v2/bcb8ce9ce150e10fab670153bd40013cc8298ef6cd0c198c80c24641f14707a3.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "bcb8ce9ce150e10fab670153bd40013cc8298ef6cd0c198c80c24641f14707a3"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 43,
+      "r2_key": "v2/e3b29c8fe4fb6fe08b4bf899136b235f64902800d65c4f70a25482f1b1aa4aa3.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "e3b29c8fe4fb6fe08b4bf899136b235f64902800d65c4f70a25482f1b1aa4aa3"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 44,
+      "r2_key": "v2/fdfa769d2a4edc4185b8928d4df0a4d9df726850c1e8aced4b048e6128e1659c.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "fdfa769d2a4edc4185b8928d4df0a4d9df726850c1e8aced4b048e6128e1659c"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 45,
+      "r2_key": "v2/a128def33f67d98472995ea9c99f39d2d6865012266f4b77e7f3aa0ae8f53923.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "a128def33f67d98472995ea9c99f39d2d6865012266f4b77e7f3aa0ae8f53923"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 46,
+      "r2_key": "v2/c54a60e4dc03e0d5930a5d6454dff14991bbd790598f236efad8df3bb6e597b9.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "c54a60e4dc03e0d5930a5d6454dff14991bbd790598f236efad8df3bb6e597b9"
+    },
+    {
+      "game_id": "T-25201G",
+      "frame_index": 47,
+      "r2_key": "v2/35fb908bf3799480d0599a4e5420cdaa232650b66d40bf7e30b6c9e22e1c016a.png",
+      "width": 640,
+      "height": 240,
+      "sha256": "35fb908bf3799480d0599a4e5420cdaa232650b66d40bf7e30b6c9e22e1c016a"
     },
     {
       "game_id": "T-32501G",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-32501G",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-32501G",
@@ -2238,34 +5046,394 @@
     {
       "game_id": "T-32501G",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-32501G",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 7,
+      "r2_key": "v2/77f117db07f2e08f9d28eaa93269028e15761c9a486c7820a41586ec44bea531.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "77f117db07f2e08f9d28eaa93269028e15761c9a486c7820a41586ec44bea531"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 8,
+      "r2_key": "v2/a583c21b984384a84df170058d426cbf29a7027bcce2d626dbc3eeb8fa012c2b.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "a583c21b984384a84df170058d426cbf29a7027bcce2d626dbc3eeb8fa012c2b"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 9,
+      "r2_key": "v2/4a12601890132e3e942aa7b647e9f0c6140a22253d6bf4948c39cd46e870f4b9.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "4a12601890132e3e942aa7b647e9f0c6140a22253d6bf4948c39cd46e870f4b9"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 10,
+      "r2_key": "v2/f10bd13afc246565f9adcd47f0b5f619f5b0bcab0ec56bb4307bf430f59f260e.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "f10bd13afc246565f9adcd47f0b5f619f5b0bcab0ec56bb4307bf430f59f260e"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 11,
+      "r2_key": "v2/d0f0606c01dbc5538afb113ccf2bd0a664593d62f1cce01a6793fb912464b0fc.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "d0f0606c01dbc5538afb113ccf2bd0a664593d62f1cce01a6793fb912464b0fc"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 12,
+      "r2_key": "v2/4f1b3fd587dbadc8c53d7853ed8372465c9ab1b4cc4802ff365728f955867846.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "4f1b3fd587dbadc8c53d7853ed8372465c9ab1b4cc4802ff365728f955867846"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 13,
+      "r2_key": "v2/64e2806e355f271196b49daacb0e36155ceaeffd136a9b568d001f6f4ed907a3.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "64e2806e355f271196b49daacb0e36155ceaeffd136a9b568d001f6f4ed907a3"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 14,
+      "r2_key": "v2/952fcdf8c40f300c6109029ba1ad7833bf23e3100e010ac4178a70403081f4be.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "952fcdf8c40f300c6109029ba1ad7833bf23e3100e010ac4178a70403081f4be"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 15,
+      "r2_key": "v2/4daecf8856869f63d7d68d850414c58b2c889a5af7d26ea254352f8ee2664a33.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "4daecf8856869f63d7d68d850414c58b2c889a5af7d26ea254352f8ee2664a33"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 16,
+      "r2_key": "v2/5d2acb705e1c26879d2a9ddff6ede8a7f3be56a2524a420a015c3dc90ad5e325.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "5d2acb705e1c26879d2a9ddff6ede8a7f3be56a2524a420a015c3dc90ad5e325"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 17,
+      "r2_key": "v2/b4a333647acb7960faff3a6638977eeacfc405b315de2164719d0e4092f8e082.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "b4a333647acb7960faff3a6638977eeacfc405b315de2164719d0e4092f8e082"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 18,
+      "r2_key": "v2/e0624784826c1646e7676fb54b76052522f1b7afea8f9f02e529c8d73cb6ddb5.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "e0624784826c1646e7676fb54b76052522f1b7afea8f9f02e529c8d73cb6ddb5"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 19,
+      "r2_key": "v2/463e8ca60888dfb7311887757e595d7cad139b80c6ef77cfb68b89dd52f1fb43.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "463e8ca60888dfb7311887757e595d7cad139b80c6ef77cfb68b89dd52f1fb43"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 20,
+      "r2_key": "v2/607f9fdd27bbe6c750580d1109467980262d78db95253f7a64ecc03f4e5fc7c0.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "607f9fdd27bbe6c750580d1109467980262d78db95253f7a64ecc03f4e5fc7c0"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 21,
+      "r2_key": "v2/de7cbbd5bc9ff42a0bbf0e1959047a8577fb548d073dd3001f62047a3352b014.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "de7cbbd5bc9ff42a0bbf0e1959047a8577fb548d073dd3001f62047a3352b014"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 22,
+      "r2_key": "v2/109a5cdde219d8bbc62c795ddc962a532253fbc551d444a5b97422c49e71e921.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "109a5cdde219d8bbc62c795ddc962a532253fbc551d444a5b97422c49e71e921"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 23,
+      "r2_key": "v2/dfc50e1ad99a2072420f89486b30e691a0d3a16cbcbddb8bfff56e4c4940d84b.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "dfc50e1ad99a2072420f89486b30e691a0d3a16cbcbddb8bfff56e4c4940d84b"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 24,
+      "r2_key": "v2/1e1437ad1b9381b24f8e8dd281846530bb7e5a1a2ccc1719975b242bc6a512f5.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "1e1437ad1b9381b24f8e8dd281846530bb7e5a1a2ccc1719975b242bc6a512f5"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 25,
+      "r2_key": "v2/c7a345dcc0925121f4584c303cce2a939c9478bc6b935b7c5945ed2abbce99df.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "c7a345dcc0925121f4584c303cce2a939c9478bc6b935b7c5945ed2abbce99df"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 26,
+      "r2_key": "v2/3d5c00d92fd566b32ffbd359f2bc1c92a4b578dea150532b339b01dbaac143aa.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "3d5c00d92fd566b32ffbd359f2bc1c92a4b578dea150532b339b01dbaac143aa"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 27,
+      "r2_key": "v2/c6ef18bc520cfe5b7f22519d40148eaed6874c593e007c8a90157008ad7a365a.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "c6ef18bc520cfe5b7f22519d40148eaed6874c593e007c8a90157008ad7a365a"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 28,
+      "r2_key": "v2/d06c7de281e468aa92dba0286054aa02f0d106243307b9c9a32d273aaa8ecc12.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "d06c7de281e468aa92dba0286054aa02f0d106243307b9c9a32d273aaa8ecc12"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 29,
+      "r2_key": "v2/64e2806e355f271196b49daacb0e36155ceaeffd136a9b568d001f6f4ed907a3.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "64e2806e355f271196b49daacb0e36155ceaeffd136a9b568d001f6f4ed907a3"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 30,
+      "r2_key": "v2/41c74b754703494f66f00b371199085b113466915ac2657926fbff2a131df5ee.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "41c74b754703494f66f00b371199085b113466915ac2657926fbff2a131df5ee"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 31,
+      "r2_key": "v2/1353d19d773424000d43e2cc0774421da23399cec3527635f1729dbdd7e24662.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "1353d19d773424000d43e2cc0774421da23399cec3527635f1729dbdd7e24662"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 32,
+      "r2_key": "v2/cd1d02f9f4a8fe3f0289f924bb57beef44fd4b73e5743de236b2a0824efabe78.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "cd1d02f9f4a8fe3f0289f924bb57beef44fd4b73e5743de236b2a0824efabe78"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 33,
+      "r2_key": "v2/fb169a3c576b0b4991ae39cfe3aef2f3c23f72c789ad09a764cb6f14ff1e77b0.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "fb169a3c576b0b4991ae39cfe3aef2f3c23f72c789ad09a764cb6f14ff1e77b0"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 34,
+      "r2_key": "v2/8394424ef97a1948d95f28de7c8bf34c42acb62b93e2d185606ca2f693228199.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "8394424ef97a1948d95f28de7c8bf34c42acb62b93e2d185606ca2f693228199"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 35,
+      "r2_key": "v2/8e1f8c815fea9cc95229d9ed8bca05e566bdc5506bb20f4e0591361ec9a3d62a.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "8e1f8c815fea9cc95229d9ed8bca05e566bdc5506bb20f4e0591361ec9a3d62a"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 36,
+      "r2_key": "v2/b5f2cf85e808794f7552d176662aa9e1839c2431148d69509d134bb0a232e0db.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "b5f2cf85e808794f7552d176662aa9e1839c2431148d69509d134bb0a232e0db"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 37,
+      "r2_key": "v2/7748996611ef1f097a8b80851242250a02ac5e079ebed762b8c9ad765f913dce.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "7748996611ef1f097a8b80851242250a02ac5e079ebed762b8c9ad765f913dce"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 38,
+      "r2_key": "v2/3f7ffcb12f37bfb6ae2ed31ef4928f63cd2ce352afe2b37b7ccbc46fedfec025.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "3f7ffcb12f37bfb6ae2ed31ef4928f63cd2ce352afe2b37b7ccbc46fedfec025"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 39,
+      "r2_key": "v2/b87f71094a6a760bab17f72e5d966d5b6d087befbc8a2f0eab84d3fc38709fde.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "b87f71094a6a760bab17f72e5d966d5b6d087befbc8a2f0eab84d3fc38709fde"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 40,
+      "r2_key": "v2/170fd8f6c8d8667a62110c25d4f20a37ad588b81aec5f5b24209421afaaa8264.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "170fd8f6c8d8667a62110c25d4f20a37ad588b81aec5f5b24209421afaaa8264"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 41,
+      "r2_key": "v2/ed02560e1e63c9e8f489b76c00af68be0764daec16bd969bd7dda7d19406ee3f.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "ed02560e1e63c9e8f489b76c00af68be0764daec16bd969bd7dda7d19406ee3f"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 42,
+      "r2_key": "v2/9cf4e18f0d44292de6d2ae38ea702e7d525f55a93299fd67c1746865c6d2bc2a.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "9cf4e18f0d44292de6d2ae38ea702e7d525f55a93299fd67c1746865c6d2bc2a"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 43,
+      "r2_key": "v2/b5412fcb45d652c2f02c97db4bca821f4a6395c9c38c347a6d6a55eef7fb6e6c.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "b5412fcb45d652c2f02c97db4bca821f4a6395c9c38c347a6d6a55eef7fb6e6c"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 44,
+      "r2_key": "v2/9654e121fbe208306c883a298fd8c2ca1b4138217bf2c7ec1648753ea5cdd093.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "9654e121fbe208306c883a298fd8c2ca1b4138217bf2c7ec1648753ea5cdd093"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 45,
+      "r2_key": "v2/286ef7c017a4fb722f6d30078cb52a7f69b51fabe801d8871d77351c1040b188.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "286ef7c017a4fb722f6d30078cb52a7f69b51fabe801d8871d77351c1040b188"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 46,
+      "r2_key": "v2/f414d472852f73e643a4e26cb5cdd11665b3a9047d89c568fa17e0e97c6e9c80.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "f414d472852f73e643a4e26cb5cdd11665b3a9047d89c568fa17e0e97c6e9c80"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 47,
+      "r2_key": "v2/741492ba1c85dfeb6727b0be3e6c01f4c89912160f4bf6f2b6d85713ff32ba3b.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "741492ba1c85dfeb6727b0be3e6c01f4c89912160f4bf6f2b6d85713ff32ba3b"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 48,
+      "r2_key": "v2/1d698746df73578627d98ec68622e9e1c77e6ecb1b4a67c706ce6e2e500f3d0f.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "1d698746df73578627d98ec68622e9e1c77e6ecb1b4a67c706ce6e2e500f3d0f"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 49,
+      "r2_key": "v2/ce4d6e0fa13a4255a073e6c5694a80038cb2bac4ddb23fdf7e27bd387259822d.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "ce4d6e0fa13a4255a073e6c5694a80038cb2bac4ddb23fdf7e27bd387259822d"
+    },
+    {
+      "game_id": "T-32501G",
+      "frame_index": 50,
+      "r2_key": "v2/9d62d7f573e7273e2ec2622e0641d7154d7b6c1a505b63fdb58d0070137a8270.png",
+      "width": 320,
+      "height": 240,
+      "sha256": "9d62d7f573e7273e2ec2622e0641d7154d7b6c1a505b63fdb58d0070137a8270"
     },
     {
       "game_id": "T-4305GV1",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-4305GV1",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-4305GV1",
@@ -2286,34 +5454,378 @@
     {
       "game_id": "T-4305GV1",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-4305GV1",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 7,
+      "r2_key": "v2/ee7a00c7d61ad946aca51e9d363a145466fecda81a705fa60d76c2e0d3d5689e.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "ee7a00c7d61ad946aca51e9d363a145466fecda81a705fa60d76c2e0d3d5689e"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 8,
+      "r2_key": "v2/87eb541bd72168220e609b2c56eaaed1a6392b6e9b5c59cb4f5cc93665f2b339.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "87eb541bd72168220e609b2c56eaaed1a6392b6e9b5c59cb4f5cc93665f2b339"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 9,
+      "r2_key": "v2/d98448c1dd5cbf5e4833d8bb5214e2bbb9787d176611af033d74b24467b12e62.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d98448c1dd5cbf5e4833d8bb5214e2bbb9787d176611af033d74b24467b12e62"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 10,
+      "r2_key": "v2/23130d143f83f14e4066879b2b02e2ef5e01095160c7ba2c4d8a30d41cc05910.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "23130d143f83f14e4066879b2b02e2ef5e01095160c7ba2c4d8a30d41cc05910"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 11,
+      "r2_key": "v2/7d858c6d3802af50696db0b8f900564bf09558240e3a82ccfdfe056cb90f7e05.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7d858c6d3802af50696db0b8f900564bf09558240e3a82ccfdfe056cb90f7e05"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 12,
+      "r2_key": "v2/9e5a3640bd45f2c29b58c7bf1b4a121f1366d64d06db1f060be5c1c21a7b940c.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "9e5a3640bd45f2c29b58c7bf1b4a121f1366d64d06db1f060be5c1c21a7b940c"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 13,
+      "r2_key": "v2/85df2b3c365318d01321033ed3f0f7f4ecb4ef38119e1fde7d2109dd3d3e8501.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "85df2b3c365318d01321033ed3f0f7f4ecb4ef38119e1fde7d2109dd3d3e8501"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 14,
+      "r2_key": "v2/b75bbe993c97402f423f25e02145c3cd779abef5adf66cef93519fc599d5e54f.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "b75bbe993c97402f423f25e02145c3cd779abef5adf66cef93519fc599d5e54f"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 15,
+      "r2_key": "v2/5bca885a92dfda54278c831c37fe4b2e04e868ab9062b2addfe0f5dd350c6b42.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "5bca885a92dfda54278c831c37fe4b2e04e868ab9062b2addfe0f5dd350c6b42"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 16,
+      "r2_key": "v2/747e37640567fa9745e1d2368c853fa86efb5ad9c85aff60ef39c22838cd7bd5.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "747e37640567fa9745e1d2368c853fa86efb5ad9c85aff60ef39c22838cd7bd5"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 17,
+      "r2_key": "v2/aeb6656b768b4f3129cd38ce00885c24b8fc4fa3676a87095030934df8d694e2.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "aeb6656b768b4f3129cd38ce00885c24b8fc4fa3676a87095030934df8d694e2"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 18,
+      "r2_key": "v2/0a9cde7cd5259546edcab40906717e150e41ca15f4d0b2640e834e751e730a8b.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "0a9cde7cd5259546edcab40906717e150e41ca15f4d0b2640e834e751e730a8b"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 19,
+      "r2_key": "v2/584df304860f53427d44d839782b8e694c57f69ed4e622496c44dd594f17c1db.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "584df304860f53427d44d839782b8e694c57f69ed4e622496c44dd594f17c1db"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 20,
+      "r2_key": "v2/4ea9ffe87c5acc7840bd94143ce97373029fd9b80f37f5271ffd869f5b1dd9ed.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "4ea9ffe87c5acc7840bd94143ce97373029fd9b80f37f5271ffd869f5b1dd9ed"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 21,
+      "r2_key": "v2/fb82d900615a5119ee97dfa6adc39ff4b63a211e295dedeaa99f31c61afb2912.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "fb82d900615a5119ee97dfa6adc39ff4b63a211e295dedeaa99f31c61afb2912"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 22,
+      "r2_key": "v2/2c721b7746cb52e71fc1b611282e85a3adfd6eb333cc32057365716b0d0b4e35.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "2c721b7746cb52e71fc1b611282e85a3adfd6eb333cc32057365716b0d0b4e35"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 23,
+      "r2_key": "v2/8788a49dba950df24c52aea7fbfb4829e65eb4b14dab1ec62a58c33e890f9946.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "8788a49dba950df24c52aea7fbfb4829e65eb4b14dab1ec62a58c33e890f9946"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 24,
+      "r2_key": "v2/37e16d88fbcbe066132611373b1aadc20357e73f7778c76f93badce9cca6812b.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "37e16d88fbcbe066132611373b1aadc20357e73f7778c76f93badce9cca6812b"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 25,
+      "r2_key": "v2/bcb14ef6a37d2f851f90271ed5624505de61dd729d23051c72946db1c717fc5b.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "bcb14ef6a37d2f851f90271ed5624505de61dd729d23051c72946db1c717fc5b"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 26,
+      "r2_key": "v2/82b3219589730b6966d1fad09ea43bef91b2e5bbc964d490489b593456d29058.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "82b3219589730b6966d1fad09ea43bef91b2e5bbc964d490489b593456d29058"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 27,
+      "r2_key": "v2/53a51621294feb11888492a7a08ab4bfaa8643c9cc071ed8176e4a91cbbcd037.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "53a51621294feb11888492a7a08ab4bfaa8643c9cc071ed8176e4a91cbbcd037"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 28,
+      "r2_key": "v2/1f5a58ae2d1172c5b89a4aa46f3ea54eb790e707dc99a4edb05458153ee3b1c3.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "1f5a58ae2d1172c5b89a4aa46f3ea54eb790e707dc99a4edb05458153ee3b1c3"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 29,
+      "r2_key": "v2/54decbb2300ae8a1bcc5f26d7a425c2996fe808806793139390ef5febd31f8ac.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "54decbb2300ae8a1bcc5f26d7a425c2996fe808806793139390ef5febd31f8ac"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 30,
+      "r2_key": "v2/e43665f874e538cb8b8d1e7dd3a9a9b0849c2415a7bbb5753242386bba4b2ab7.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "e43665f874e538cb8b8d1e7dd3a9a9b0849c2415a7bbb5753242386bba4b2ab7"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 31,
+      "r2_key": "v2/1ed16b9d9116205473f7b4e9ea3357b560dac5efbd50dfa67910bccad8e75ebb.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "1ed16b9d9116205473f7b4e9ea3357b560dac5efbd50dfa67910bccad8e75ebb"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 32,
+      "r2_key": "v2/1e7d60c0f6f2746770a5881673c84fe60af01341415750a46748235eb419c1a1.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "1e7d60c0f6f2746770a5881673c84fe60af01341415750a46748235eb419c1a1"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 33,
+      "r2_key": "v2/aec3002979c936635d9f9e6980f96c3ac5c3815bf8309b438213d8a118e94c41.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "aec3002979c936635d9f9e6980f96c3ac5c3815bf8309b438213d8a118e94c41"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 34,
+      "r2_key": "v2/2585ff467a46fd345eacec27105daaae8fd37183553637d7854e67dacec390c2.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "2585ff467a46fd345eacec27105daaae8fd37183553637d7854e67dacec390c2"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 35,
+      "r2_key": "v2/9146ef2658ffb24c101eda9851457cd7f2241bb73f8b0666b831581288a87790.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "9146ef2658ffb24c101eda9851457cd7f2241bb73f8b0666b831581288a87790"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 36,
+      "r2_key": "v2/dfdcb38a0d5e554ef285e0692e592e5b1cb58ed679b32eeed9146dbb94865deb.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "dfdcb38a0d5e554ef285e0692e592e5b1cb58ed679b32eeed9146dbb94865deb"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 37,
+      "r2_key": "v2/e737bfdb04c3a1039c97c43b41d1cec23199eeb0b4736adad34e495f59f9e1e4.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "e737bfdb04c3a1039c97c43b41d1cec23199eeb0b4736adad34e495f59f9e1e4"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 38,
+      "r2_key": "v2/8e912b7802636c5200c908f3011a81becabb7c18984ea5e4b9e303858286cc26.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "8e912b7802636c5200c908f3011a81becabb7c18984ea5e4b9e303858286cc26"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 39,
+      "r2_key": "v2/7710c5a8047cf76dbe604202300d5557689f69e7b75eba55801f14b3c2256b22.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7710c5a8047cf76dbe604202300d5557689f69e7b75eba55801f14b3c2256b22"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 40,
+      "r2_key": "v2/a4d857ef2c5ff031b61a7fe4814ef72e194497ccbd0fa0f420cbee259c634a26.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "a4d857ef2c5ff031b61a7fe4814ef72e194497ccbd0fa0f420cbee259c634a26"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 41,
+      "r2_key": "v2/592a5a0a06f14482d957e9c1da7a8d7e28ea72b19a7e89b5c99be961f2eb65cb.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "592a5a0a06f14482d957e9c1da7a8d7e28ea72b19a7e89b5c99be961f2eb65cb"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 42,
+      "r2_key": "v2/572eb0dc612a9fb6015f132aa63e1780c9020ff0fe943e4b6c400e84e19af25f.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "572eb0dc612a9fb6015f132aa63e1780c9020ff0fe943e4b6c400e84e19af25f"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 43,
+      "r2_key": "v2/c51f42b3c54477c3c92a5421acff1f463d09bfdd4ec9c34fe19a7ad19b42c489.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "c51f42b3c54477c3c92a5421acff1f463d09bfdd4ec9c34fe19a7ad19b42c489"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 44,
+      "r2_key": "v2/817595ead47b7aa11941bad905197b481a896e14fc1d9ef8e47666cf5e751a0a.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "817595ead47b7aa11941bad905197b481a896e14fc1d9ef8e47666cf5e751a0a"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 45,
+      "r2_key": "v2/3ca58ec87938df389f392435906bc011b9f3e027df8b0e2f88eb98450c641487.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "3ca58ec87938df389f392435906bc011b9f3e027df8b0e2f88eb98450c641487"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 46,
+      "r2_key": "v2/ffa2ca15402cb7ea148467353b55c41c0ebfa60d32aaf7637a77ef5e890ce6ba.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "ffa2ca15402cb7ea148467353b55c41c0ebfa60d32aaf7637a77ef5e890ce6ba"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 47,
+      "r2_key": "v2/4cfc935c5913177b1783259119be67ef24814a80e4b06942e2699b68724e17f8.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "4cfc935c5913177b1783259119be67ef24814a80e4b06942e2699b68724e17f8"
+    },
+    {
+      "game_id": "T-4305GV1",
+      "frame_index": 48,
+      "r2_key": "v2/3a8ef3a94a2b955457084f6b37529f15f74cd9a62271435795de38719dabc77b.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "3a8ef3a94a2b955457084f6b37529f15f74cd9a62271435795de38719dabc77b"
     },
     {
       "game_id": "T-6802G",
       "frame_index": 0,
-      "r2_key": "v2/eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6.png",
+      "r2_key": "v2/f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1.png",
       "width": 320,
       "height": 224,
-      "sha256": "eab62fdd70723fb25b65710bac5e3f1de4526f67300fba0d094a6c2d2b053fa6"
+      "sha256": "f61fdef1cf6a78be8ccb80e4157e810032458de65d12d42992e3fe2ef02e64a1"
     },
     {
       "game_id": "T-6802G",
       "frame_index": 1,
-      "r2_key": "v2/763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae.png",
+      "r2_key": "v2/c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540.png",
       "width": 320,
       "height": 224,
-      "sha256": "763083153397cc7370708c5620dde4bbf8baa70eae2d59125802de91bfcb2aae"
+      "sha256": "c65b2654f66613479367779de7fac0a5d1bf39dfebf07d791cd20140cbeeb540"
     },
     {
       "game_id": "T-6802G",
@@ -2334,18 +5846,354 @@
     {
       "game_id": "T-6802G",
       "frame_index": 4,
-      "r2_key": "v2/52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9.png",
+      "r2_key": "v2/850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c.png",
       "width": 320,
       "height": 224,
-      "sha256": "52908bf7081417394a927a051c84bfcd53bbbaee4ccab668bf7c5ca6e7d7d4a9"
+      "sha256": "850bf1e61ed10ae82409b453f5982458977e6ca6f3777d3250e643289192098c"
     },
     {
       "game_id": "T-6802G",
       "frame_index": 5,
-      "r2_key": "v2/0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46.png",
+      "r2_key": "v2/6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669.png",
       "width": 320,
       "height": 224,
-      "sha256": "0f3a68d38473842e354bf05de8aea8004f4770249454506cdfb1c679913e7f46"
+      "sha256": "6e658d98354ca7b82c79699f4067ad5a25831755ebf269aae3a225d8a7bd4669"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 6,
+      "r2_key": "v2/d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "d8f80ba3e5fe33d4fe7090e0df2e14131b1a5b2bb2b89745235cc47ddb5ab6c9"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 7,
+      "r2_key": "v2/8804047781834ee56e879f81a2883b075a3951a8974c5e99a2705efef932a2c5.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "8804047781834ee56e879f81a2883b075a3951a8974c5e99a2705efef932a2c5"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 8,
+      "r2_key": "v2/def6513be28f67212cb2b3765e9f2ade3e804253df2297b673c06b8cc6b7b320.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "def6513be28f67212cb2b3765e9f2ade3e804253df2297b673c06b8cc6b7b320"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 9,
+      "r2_key": "v2/817dbeb26397f85860ea5d043fc12a799c5b6b395ce9dfc1f4bb0b31072eaf77.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "817dbeb26397f85860ea5d043fc12a799c5b6b395ce9dfc1f4bb0b31072eaf77"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 10,
+      "r2_key": "v2/7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 11,
+      "r2_key": "v2/e125da95e1fe4890f01aea6a86128c497493550d37158eeb456dcaf75436ecb4.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "e125da95e1fe4890f01aea6a86128c497493550d37158eeb456dcaf75436ecb4"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 12,
+      "r2_key": "v2/7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 13,
+      "r2_key": "v2/e9229923a5f2e755d4b2b0b5eeefc68738036b14ef9a86b9434b3c6385101394.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "e9229923a5f2e755d4b2b0b5eeefc68738036b14ef9a86b9434b3c6385101394"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 14,
+      "r2_key": "v2/7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 15,
+      "r2_key": "v2/829bb63df4c39457688eedb71bd6bc1cdf6aa78b1fc942d67e085961183e8aec.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "829bb63df4c39457688eedb71bd6bc1cdf6aa78b1fc942d67e085961183e8aec"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 16,
+      "r2_key": "v2/7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 17,
+      "r2_key": "v2/706754c549ecb4c8534081b70497716c46b380ec7176af30e105bb41fc481926.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "706754c549ecb4c8534081b70497716c46b380ec7176af30e105bb41fc481926"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 18,
+      "r2_key": "v2/7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 19,
+      "r2_key": "v2/fadb550c91076486f42c81e5c7b06c9be953b82494d508b5a16c40fed5adfaa3.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "fadb550c91076486f42c81e5c7b06c9be953b82494d508b5a16c40fed5adfaa3"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 20,
+      "r2_key": "v2/7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 21,
+      "r2_key": "v2/322764d4d9597f61220252b90c8174dad8b82f6213675e0f026fb492bea72202.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "322764d4d9597f61220252b90c8174dad8b82f6213675e0f026fb492bea72202"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 22,
+      "r2_key": "v2/7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 23,
+      "r2_key": "v2/5dc4c8b782421ff3b2cc252ba595b5a62a4de334af14941dd1743e88d21fd74a.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "5dc4c8b782421ff3b2cc252ba595b5a62a4de334af14941dd1743e88d21fd74a"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 24,
+      "r2_key": "v2/7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 25,
+      "r2_key": "v2/9bb2600f7ee1c96dab63717e46dcb731683159210776db7bead8998a828e304d.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "9bb2600f7ee1c96dab63717e46dcb731683159210776db7bead8998a828e304d"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 26,
+      "r2_key": "v2/7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 27,
+      "r2_key": "v2/df05292017faf09cbdfedd08c608a1358496ab7b03f279f9f4587ca322f2fb49.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "df05292017faf09cbdfedd08c608a1358496ab7b03f279f9f4587ca322f2fb49"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 28,
+      "r2_key": "v2/7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 29,
+      "r2_key": "v2/654f990067df5962bd1eec16c246fbba6e71e94951880922ac0399d6bda00ef0.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "654f990067df5962bd1eec16c246fbba6e71e94951880922ac0399d6bda00ef0"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 30,
+      "r2_key": "v2/793c2bf19c8a04a4a083556cc0f54d17c4f415b55cf8045a05238b78df16ffbc.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "793c2bf19c8a04a4a083556cc0f54d17c4f415b55cf8045a05238b78df16ffbc"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 31,
+      "r2_key": "v2/c5c4492527f8fe0aeeed0700147205c9866aece58247c78a9b2106b744672bba.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "c5c4492527f8fe0aeeed0700147205c9866aece58247c78a9b2106b744672bba"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 32,
+      "r2_key": "v2/7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7ad6367d356718c95da19d9f4cfc3813faaf2fc766c6c713862403226281c6cd"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 33,
+      "r2_key": "v2/dea6f65ee0a9a22753f265ffb88cfdfe157a6311a6d461c307d4f575dce97258.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "dea6f65ee0a9a22753f265ffb88cfdfe157a6311a6d461c307d4f575dce97258"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 34,
+      "r2_key": "v2/fcb083675492c994b39f4f27c26bd4c3f426c824e74e25011ffa5697192f007d.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "fcb083675492c994b39f4f27c26bd4c3f426c824e74e25011ffa5697192f007d"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 35,
+      "r2_key": "v2/9a3da6c3152e9a2337bfbd9b15ee1f8a5b36b7d6c9f8b53f7200737d4c19a1b0.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "9a3da6c3152e9a2337bfbd9b15ee1f8a5b36b7d6c9f8b53f7200737d4c19a1b0"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 36,
+      "r2_key": "v2/2817ff7bb4450427448de53c1ff392680dd1b4d43b5081ddf4990e845befeecc.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "2817ff7bb4450427448de53c1ff392680dd1b4d43b5081ddf4990e845befeecc"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 37,
+      "r2_key": "v2/ea3eada46169c764a65f1f53719cfa00ec17884b35f93ba123226c6b0a438eaa.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "ea3eada46169c764a65f1f53719cfa00ec17884b35f93ba123226c6b0a438eaa"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 38,
+      "r2_key": "v2/ceb27067d16e36d86a19541d4bf56f7cf4327f78e8e78506b27bfbffa96bfc74.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "ceb27067d16e36d86a19541d4bf56f7cf4327f78e8e78506b27bfbffa96bfc74"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 39,
+      "r2_key": "v2/7f94852cbce5219cf2156a470ec778b3b2b131d17ed229abfc56b5f57335a1ae.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "7f94852cbce5219cf2156a470ec778b3b2b131d17ed229abfc56b5f57335a1ae"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 40,
+      "r2_key": "v2/c880d8c0ade9892b150b6c8fab2cdf6a223abe920c6ee576d9cc7334836f4a1c.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "c880d8c0ade9892b150b6c8fab2cdf6a223abe920c6ee576d9cc7334836f4a1c"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 41,
+      "r2_key": "v2/a8310a887f25205f4c5f7a5a8223e231c42e9666f90cb8844cadbeab8555929d.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "a8310a887f25205f4c5f7a5a8223e231c42e9666f90cb8844cadbeab8555929d"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 42,
+      "r2_key": "v2/5649462b405682fd10d191386efae8f0b5ad02ce6854a0c0b07b35ffb92ffd87.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "5649462b405682fd10d191386efae8f0b5ad02ce6854a0c0b07b35ffb92ffd87"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 43,
+      "r2_key": "v2/82611ad790358bc1ae4dae202532a419c406e311a5104e438004501ec2de7980.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "82611ad790358bc1ae4dae202532a419c406e311a5104e438004501ec2de7980"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 44,
+      "r2_key": "v2/e7fdd718d5cfcbc0dd622d8a5156450fdcc3601cb20de2b4ce66fb1207705213.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "e7fdd718d5cfcbc0dd622d8a5156450fdcc3601cb20de2b4ce66fb1207705213"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 45,
+      "r2_key": "v2/5621e2c66615b7a80c1842d8d4de7d825ce967482c7e14be641843e0663365e7.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "5621e2c66615b7a80c1842d8d4de7d825ce967482c7e14be641843e0663365e7"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 46,
+      "r2_key": "v2/10a3e728776a4f28db0bcd55a2ad7d42e7b50694b4f611356ec8d56a31df944e.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "10a3e728776a4f28db0bcd55a2ad7d42e7b50694b4f611356ec8d56a31df944e"
+    },
+    {
+      "game_id": "T-6802G",
+      "frame_index": 47,
+      "r2_key": "v2/2fe4f6cef4abf8bc5a030e828d8e2153ba6ce2ea9984a72964f08a1410f46ebc.png",
+      "width": 320,
+      "height": 224,
+      "sha256": "2fe4f6cef4abf8bc5a030e828d8e2153ba6ce2ea9984a72964f08a1410f46ebc"
     }
   ]
 }
