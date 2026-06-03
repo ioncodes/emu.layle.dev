@@ -7,11 +7,15 @@ function iconUrl(slug: string, color: string): string {
   return `https://api.iconify.design/${prefix}/${name}.svg?color=${encodeURIComponent(color)}`;
 }
 
-const emulators = getEmulators().map((e) => ({
-  ...e,
-  hasCommits: getCommits(e.slug).length > 0,
-  iconSrc: e.icon ? iconUrl(e.icon, e.accent_color) : null,
-}));
+const emulators = getEmulators().map((e) => {
+  const commits = getCommits(e.slug);
+
+  return {
+    ...e,
+    latestCommit: commits[0]?.commit_short ?? null,
+    iconSrc: e.icon ? iconUrl(e.icon, e.accent_color) : null,
+  };
+});
 
 const mine = emulators.filter((e) => !e.author);
 const friends = emulators.filter((e) => !!e.author);
@@ -37,11 +41,11 @@ const friends = emulators.filter((e) => !!e.author);
           mine.map((e) => (
             <li>
               <a
-                href={e.hasCommits ? `/${e.slug}` : undefined}
-                aria-disabled={!e.hasCommits}
+                href={e.latestCommit ? `/${e.slug}/${e.latestCommit}` : undefined}
+                aria-disabled={!e.latestCommit}
                 class:list={[
                   "block rounded border p-4",
-                  e.hasCommits
+                  e.latestCommit
                     ? "border-neutral-200 hover:bg-neutral-50 dark:border-neutral-800 dark:hover:bg-neutral-900"
                     : "border-dashed border-neutral-200 text-neutral-400 dark:border-neutral-800 dark:text-neutral-600 cursor-not-allowed",
                 ]}
@@ -65,7 +69,7 @@ const friends = emulators.filter((e) => !!e.author);
                   )}
                   <span class="font-medium">{e.name}</span>
                   <span class="text-xs text-neutral-500">{e.console}</span>
-                  {!e.hasCommits && (
+                  {!e.latestCommit && (
                     <span class="ml-auto text-xs text-neutral-400">no submissions yet</span>
                   )}
                 </div>
@@ -86,11 +90,11 @@ const friends = emulators.filter((e) => !!e.author);
               {friends.map((e) => (
                 <li>
                   <a
-                    href={e.hasCommits ? `/${e.slug}` : undefined}
-                    aria-disabled={!e.hasCommits}
+                    href={e.latestCommit ? `/${e.slug}/${e.latestCommit}` : undefined}
+                    aria-disabled={!e.latestCommit}
                     class:list={[
                       "block rounded border p-4",
-                      e.hasCommits
+                      e.latestCommit
                         ? "border-neutral-200 hover:bg-neutral-50 dark:border-neutral-800 dark:hover:bg-neutral-900"
                         : "border-dashed border-neutral-200 text-neutral-400 dark:border-neutral-800 dark:text-neutral-600 cursor-not-allowed",
                     ]}
@@ -115,7 +119,7 @@ const friends = emulators.filter((e) => !!e.author);
                       <span class="font-medium">{e.name}</span>
                       <span class="text-xs text-neutral-500">{e.console}</span>
                       <span class="text-xs text-neutral-500">by {e.author}</span>
-                      {!e.hasCommits && (
+                      {!e.latestCommit && (
                         <span class="ml-auto text-xs text-neutral-400">no submissions yet</span>
                       )}
                     </div>
