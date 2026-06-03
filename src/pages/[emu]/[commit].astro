@@ -1,5 +1,12 @@
 ---
-import { formatTimestamp, getCommits, getEmulators, getGameRows, getSubmission } from "@/lib/meta";
+import {
+  countGamesWithFrames,
+  formatTimestamp,
+  getCommits,
+  getEmulators,
+  getGameRows,
+  getSubmission,
+} from "@/lib/meta";
 import { siteConfig } from "../../../site.config";
 import GameRow from "@/components/GameRow.astro";
 import FrameViewer from "@/components/FrameViewer.astro";
@@ -31,14 +38,16 @@ const rows = getGameRows(emu!, commit!);
 const allCommits = getCommits(emu!);
 const commitUrl = emulator.commit_url_template.replace("{sha}", submission.commit);
 
+const firstGameFrame = emulator.first_game_frame ?? 0;
 const framesTotal = submission.screenshots.length;
 const gamesTotal = submission.games.length;
-const gamesWithFrames = new Set(submission.screenshots.map((s) => s.game_id)).size;
+const gamesWithFrames = countGamesWithFrames(submission, firstGameFrame);
+const withFramesLabel = firstGameFrame > 0 ? "in-game" : "with screenshots";
 
 const coverRow = rows.find((r) => r.frames.length > 0);
 const cover = coverRow?.frames.at(-1);
 const description = [
-  `${gamesTotal} games · ${gamesWithFrames} with screenshots · ${framesTotal} frames`,
+  `${gamesTotal} games · ${gamesWithFrames} ${withFramesLabel} · ${framesTotal} frames`,
   `${submission.commit_message} (${formatTimestamp(submission.commit_timestamp)})`,
 ].join("\n");
 const ogImage = cover
@@ -97,7 +106,7 @@ const ogImage = cover
           {submission.commit_message}
         </p>
         <p class="mt-2 text-xs text-neutral-500">
-          {gamesTotal} games, {gamesWithFrames} with screenshots, {framesTotal} frames
+          {gamesTotal} games, {gamesWithFrames} {withFramesLabel}, {framesTotal} frames
         </p>
       </header>
 

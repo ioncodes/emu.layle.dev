@@ -33,7 +33,9 @@ if (!emulator || !dataA || !dataB) {
   throw new Error(`no comparison ${emu}/${a}/${b}`);
 }
 
-const { groups, totals } = computeDiff(dataA, dataB);
+const { groups, totals } = computeDiff(dataA, dataB, {
+  firstGameFrame: emulator.first_game_frame,
+});
 
 const parts: string[] = [];
 if (totals.gameAdded > 0) parts.push(`${totals.gameAdded} games added`);
@@ -114,6 +116,7 @@ const ogImage = cover
         name: emulator.name,
         base: siteConfig.screenshotsBaseUrl,
         commitUrlTemplate: emulator.commit_url_template,
+        firstGameFrame: emulator.first_game_frame ?? 0,
       })}
     />
     <script>

@@ -61,7 +61,14 @@ function framesOf(data: CommitData, id: string): Frame[] {
     .sort((a, b) => a.i - b.i);
 }
 
-export function computeDiff(a: CommitData, b: CommitData): DiffResult {
+export interface DiffOptions {
+  // Frames below this index are BIOS/boot animation and don't count towards
+  // gained/lost screenshot detection. Defaults to 0 (consider all frames).
+  firstGameFrame?: number;
+}
+
+export function computeDiff(a: CommitData, b: CommitData, opts: DiffOptions = {}): DiffResult {
+  const firstGameFrame = opts.firstGameFrame ?? 0;
   const aGames = new Map(a.games);
   const bGames = new Map(b.games);
 
@@ -94,12 +101,17 @@ export function computeDiff(a: CommitData, b: CommitData): DiffResult {
 
     const title = bTitle;
 
-    if (aF.length === 0 && bF.length > 0) {
-      groups.gainedScreenshots.push({ kind: "gained-screenshots", id, title, frames: bF });
+    // Only frames past the boot sequence count as "having screenshots";
+    // every game produces BIOS frames, so without this gained/lost never fires.
+    const aGameF = aF.filter((f) => f.i >= firstGameFrame);
+    const bGameF = bF.filter((f) => f.i >= firstGameFrame);
+
+    if (aGameF.length === 0 && bGameF.length > 0) {
+      groups.gainedScreenshots.push({ kind: "gained-screenshots", id, title, frames: bGameF });
       continue;
     }
-    if (aF.length > 0 && bF.length === 0) {
-      groups.lostScreenshots.push({ kind: "lost-screenshots", id, title, frames: aF });
+    if (aGameF.length > 0 && bGameF.length === 0) {
+      groups.lostScreenshots.push({ kind: "lost-screenshots", id, title, frames: aGameF });
       continue;
     }
     if (aF.length === 0 && bF.length === 0) continue;

@@ -24,6 +24,10 @@ One file per emulator.
 - `slug`: matches the filename and the R2 key prefix. `[a-z0-9-]+`.
 - `commit_url_template`: the site substitutes `{sha}` when rendering commit links.
 - `icon` (optional): an [Iconify](https://icon-sets.iconify.design/) slug in `prefix:name` form.
+- `first_game_frame` (optional): frames below this index are BIOS/boot animation.
+  The compare view only counts frames from this index onwards when deciding
+  whether a game gained or lost screenshots — without it, every game "has
+  screenshots" because the BIOS always renders. Defaults to 0 (all frames count).
 
 ## `submissions/<emulator>/<YYYY-MM-DD>-<short_sha>.json`
 

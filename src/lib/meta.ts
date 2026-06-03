@@ -72,6 +72,19 @@ export function getSubmission(emulator: string, commitShort: string): Submission
   return getCommits(emulator).find((s) => s.commit_short === commitShort) ?? null;
 }
 
+// Counts games with at least one frame from `firstGameFrame` onwards. With the
+// default of 0 this is simply "has any screenshot"; with an emulator's
+// first_game_frame set, BIOS-only games no longer count.
+export function countGamesWithFrames(sub: Submission, firstGameFrame = 0): number {
+  const ids = new Set<string>();
+
+  for (const s of sub.screenshots) {
+    if (s.frame_index >= firstGameFrame) ids.add(s.game_id);
+  }
+
+  return ids.size;
+}
+
 export function toCommitData(emulator: string, commitShort: string): CommitData | null {
   const sub = getSubmission(emulator, commitShort);
   if (!sub) return null;

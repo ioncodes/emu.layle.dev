@@ -1,5 +1,5 @@
 ---
-import { getCommits, getEmulators, getGameRows } from "@/lib/meta";
+import { countGamesWithFrames, getCommits, getEmulators, getGameRows } from "@/lib/meta";
 import { siteConfig } from "../../../site.config";
 import HeadMeta from "@/components/HeadMeta.astro";
 import "../../styles/global.css";
@@ -19,12 +19,15 @@ if (commits.length === 0) {
 const latest = commits[0];
 const target = `/${emu}/${latest.commit_short}`;
 
+const firstGameFrame = emulator.first_game_frame ?? 0;
 const framesTotal = latest.screenshots.length;
 const gamesTotal = latest.games.length;
-const gamesWithFrames = new Set(latest.screenshots.map((s) => s.game_id)).size;
+const gamesWithFrames = countGamesWithFrames(latest, firstGameFrame);
+const withFramesLabel = firstGameFrame > 0 ? "in-game" : "with screenshots";
+
 const description = [
   emulator.description,
-  `Latest: ${latest.commit_short} · ${gamesTotal} games · ${gamesWithFrames} with screenshots · ${framesTotal} frames`,
+  `Latest: ${latest.commit_short} · ${gamesTotal} games · ${gamesWithFrames} ${withFramesLabel} · ${framesTotal} frames`,
 ].join("\n");
 
 const coverRow = getGameRows(emu!, latest.commit_short).find((r) => r.frames.length > 0);

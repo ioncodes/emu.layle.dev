@@ -15,6 +15,7 @@ interface Config {
   name: string;
   base: string;
   commitUrlTemplate: string;
+  firstGameFrame: number;
 }
 
 const cfgTag = document.getElementById("compare-config");
@@ -26,6 +27,8 @@ const sectionsEl = document.getElementById("compare-sections");
 
 const aShort = cfg?.a ?? "";
 const bShort = cfg?.b ?? "";
+const firstGameFrame = cfg?.firstGameFrame ?? 0;
+const bootNote = firstGameFrame > 0 ? ` Boot frames (#0–#${firstGameFrame - 1}) are ignored.` : "";
 
 const SECTIONS: {
   id: string;
@@ -52,14 +55,14 @@ const SECTIONS: {
     id: "gained",
     key: "gainedScreenshots",
     title: "Gained screenshots",
-    desc: (a, b) => `Had 0 frames in ${a}, has frames in ${b}.`,
+    desc: (a, b) => `Had 0 frames in ${a}, has frames in ${b}.${bootNote}`,
     badge: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300",
   },
   {
     id: "lost",
     key: "lostScreenshots",
     title: "Lost screenshots",
-    desc: (a, b) => `Had frames in ${a}, has 0 frames in ${b}.`,
+    desc: (a, b) => `Had frames in ${a}, has 0 frames in ${b}.${bootNote}`,
     badge: "bg-amber-100 text-amber-800 dark:bg-amber-900/40 dark:text-amber-300",
   },
   {
@@ -91,7 +94,7 @@ async function main() {
     return;
   }
 
-  const diff = computeDiff(a, b);
+  const diff = computeDiff(a, b, { firstGameFrame });
   renderHeader(a, b, diff.totals);
 
   const total =

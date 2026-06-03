@@ -10,6 +10,9 @@ export const EmulatorSchema = z.object({
   accent_color: z.string(),
   icon: z.string().optional(),
   author: z.string().optional(),
+  // Frames below this index are BIOS/boot animation; gained/lost screenshot
+  // detection only considers frames from this index onwards.
+  first_game_frame: z.number().int().nonnegative().optional(),
 });
 export type Emulator = z.infer<typeof EmulatorSchema>;
 
