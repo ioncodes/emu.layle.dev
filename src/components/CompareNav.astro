@@ -43,7 +43,7 @@ const otherCommits = allCommits.filter((c) => c.commit_short !== current.commit_
   </ul>
   <noscript>
     <select
-      onchange={`if(this.value) location.href = '/${emu}/compare?a=${current.commit_short}&b=' + this.value`}
+      onchange={`if(this.value) location.href = '/${emu}/compare/${current.commit_short}/' + this.value`}
       class="ml-2 rounded border border-neutral-300 bg-white px-2 py-1 font-mono text-xs dark:border-neutral-700 dark:bg-neutral-900"
     >
       <option value="">Compare with...</option>

@@ -1,0 +1,41 @@
+---
+export interface OgImage {
+  url: string;
+  width: number;
+  height: number;
+  alt: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  image?: OgImage | null;
+  accentColor?: string;
+}
+
+const { title, description, image = null, accentColor } = Astro.props;
+const pageUrl = new URL(Astro.url.pathname, Astro.site);
+---
+
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{title}</title>
+
+<meta name="description" content={description} />
+{accentColor && <meta name="theme-color" content={accentColor} />}
+
+<meta property="og:site_name" content="emu.layle.dev" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content={pageUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+
+{image && <meta property="og:image" content={image.url} />}
+{image && <meta property="og:image:width" content={String(image.width)} />}
+{image && <meta property="og:image:height" content={String(image.height)} />}
+{image && <meta property="og:image:alt" content={image.alt} />}
+
+<meta name="twitter:card" content={image ? "summary_large_image" : "summary"} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+{image && <meta name="twitter:image" content={image.url} />}

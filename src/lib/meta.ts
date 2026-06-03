@@ -12,6 +12,10 @@ import type { CommitData, CompactFrame } from "./diff";
 
 const META_ROOT = path.resolve(process.cwd(), "meta");
 
+const USE_CACHE = !import.meta.env.DEV;
+let emulatorsCache: Emulator[] | null = null;
+const commitsCache = new Map<string, Submission[]>();
+
 function readJson(filePath: string): unknown {
   return JSON.parse(fs.readFileSync(filePath, "utf-8"));
 }
@@ -22,6 +26,8 @@ export function formatTimestamp(iso: string): string {
 }
 
 export function getEmulators(): Emulator[] {
+  if (emulatorsCache) return emulatorsCache;
+
   const dir = path.join(META_ROOT, "emulators");
   if (!fs.existsSync(dir)) return [];
 
@@ -35,10 +41,15 @@ export function getEmulators(): Emulator[] {
     });
   list.sort((a, b) => a.slug.localeCompare(b.slug));
 
+  if (USE_CACHE) emulatorsCache = list;
+
   return list;
 }
 
 export function getCommits(emulator: string): Submission[] {
+  const cached = commitsCache.get(emulator);
+  if (cached) return cached;
+
   const dir = path.join(META_ROOT, "submissions", emulator);
   if (!fs.existsSync(dir)) return [];
 
@@ -51,6 +62,8 @@ export function getCommits(emulator: string): Submission[] {
       return parsed.data;
     });
   list.sort((a, b) => b.commit_timestamp.localeCompare(a.commit_timestamp));
+
+  if (USE_CACHE) commitsCache.set(emulator, list);
 
   return list;
 }

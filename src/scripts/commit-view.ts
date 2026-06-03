@@ -360,7 +360,7 @@ function wireCompareCombo() {
 
   function navTo(short: string) {
     if (!short || short === currentShort) return;
-    window.location.href = `/${emu}/compare?a=${encodeURIComponent(currentShort)}&b=${encodeURIComponent(short)}`;
+    window.location.href = `/${emu}/compare/${encodeURIComponent(currentShort)}/${encodeURIComponent(short)}`;
   }
 
   trigger.addEventListener("click", () => {

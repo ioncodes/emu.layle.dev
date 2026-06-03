@@ -1,5 +1,6 @@
 ---
 import { getCommits, getEmulators } from "@/lib/meta";
+import HeadMeta from "@/components/HeadMeta.astro";
 import "../styles/global.css";
 
 function iconUrl(slug: string, color: string): string {
@@ -19,14 +20,18 @@ const emulators = getEmulators().map((e) => {
 
 const mine = emulators.filter((e) => !e.author);
 const friends = emulators.filter((e) => !!e.author);
+
+const tracked = emulators.filter((e) => e.latestCommit);
+const description = [
+  "Per-commit screenshot snapshots for emulators. Useful to track regressions and improvements over time.",
+  `Currently tracking ${tracked.length} emulator${tracked.length === 1 ? "" : "s"}: ${tracked.map((e) => `${e.name} (${e.console})`).join(", ")}.`,
+].join("\n");
 ---
 
 <!doctype html>
 <html lang="en" class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>emu.layle.dev</title>
+    <HeadMeta title="emu.layle.dev" description={description} />
   </head>
   <body class="min-h-screen font-sans antialiased">
     <main class="mx-auto max-w-3xl px-6 py-16">

@@ -6,6 +6,7 @@ import FrameViewer from "@/components/FrameViewer.astro";
 import CommitNav from "@/components/CommitNav.astro";
 import CompareNav from "@/components/CompareNav.astro";
 import EmulatorTabs from "@/components/EmulatorTabs.astro";
+import HeadMeta from "@/components/HeadMeta.astro";
 import "../../styles/global.css";
 
 export function getStaticPaths() {
@@ -34,14 +35,32 @@ const framesTotal = submission.screenshots.length;
 const gamesTotal = submission.games.length;
 const gamesWithFrames = new Set(submission.screenshots.map((s) => s.game_id)).size;
 
+const coverRow = rows.find((r) => r.frames.length > 0);
+const cover = coverRow?.frames.at(-1);
+const description = [
+  `${gamesTotal} games · ${gamesWithFrames} with screenshots · ${framesTotal} frames`,
+  `${submission.commit_message} (${formatTimestamp(submission.commit_timestamp)})`,
+].join("\n");
+const ogImage = cover
+  ? {
+      url: `${siteConfig.screenshotsBaseUrl}/${cover.r2_key}`,
+      width: cover.width,
+      height: cover.height,
+      alt: `${coverRow!.game.game_title} running on ${emulator.name} at ${submission.commit_short}`,
+    }
+  : null;
+
 ---
 
 <!doctype html>
 <html lang="en" class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{emulator.name} / {submission.commit_short}</title>
+    <HeadMeta
+      title={`${emulator.name} / ${submission.commit_short}`}
+      description={description}
+      image={ogImage}
+      accentColor={emulator.accent_color}
+    />
   </head>
   <body class="min-h-screen font-sans antialiased">
     <div class="border-b border-neutral-200 dark:border-neutral-800">

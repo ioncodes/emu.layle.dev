@@ -10,6 +10,8 @@ import {
 
 interface Config {
   emu: string;
+  a: string;
+  b: string;
   name: string;
   base: string;
   commitUrlTemplate: string;
@@ -22,9 +24,8 @@ const statusEl = document.getElementById("compare-status");
 const headerEl = document.getElementById("compare-header");
 const sectionsEl = document.getElementById("compare-sections");
 
-const params = new URLSearchParams(window.location.search);
-const aShort = params.get("a") ?? "";
-const bShort = params.get("b") ?? "";
+const aShort = cfg?.a ?? "";
+const bShort = cfg?.b ?? "";
 
 const SECTIONS: {
   id: string;
@@ -75,7 +76,7 @@ void main();
 async function main() {
   if (!cfg || !headerEl || !sectionsEl || !statusEl) return;
   if (!aShort || !bShort) {
-    statusEl.textContent = "Pick two commits to compare (missing ?a= / ?b=).";
+    statusEl.textContent = "Pick two commits to compare.";
     return;
   }
 
@@ -90,7 +91,6 @@ async function main() {
     return;
   }
 
-  document.title = `${cfg.name} / ${a.commit_short} to ${b.commit_short}`;
   const diff = computeDiff(a, b);
   renderHeader(a, b, diff.totals);
 
@@ -136,7 +136,7 @@ const ARROW_LEFT_RIGHT =
 function renderHeader(a: CommitData, b: CommitData, totals: Record<keyof DiffGroups, number>) {
   const aUrl = cfg!.commitUrlTemplate.replace("{sha}", a.commit);
   const bUrl = cfg!.commitUrlTemplate.replace("{sha}", b.commit);
-  const swapHref = `/${cfg!.emu}/compare?a=${encodeURIComponent(b.commit_short)}&b=${encodeURIComponent(a.commit_short)}`;
+  const swapHref = `/${cfg!.emu}/compare/${encodeURIComponent(b.commit_short)}/${encodeURIComponent(a.commit_short)}`;
 
   const linkCls = "font-mono text-neutral-600 hover:underline dark:text-neutral-400";
   const extCls =

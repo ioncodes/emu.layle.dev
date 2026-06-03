@@ -1,15 +1,61 @@
 ---
-import { getCommits, getEmulators } from "@/lib/meta";
+import { getCommits, getEmulators, getGameRows } from "@/lib/meta";
+import { siteConfig } from "../../../site.config";
+import HeadMeta from "@/components/HeadMeta.astro";
+import "../../styles/global.css";
 
 export function getStaticPaths() {
   return getEmulators().map((e) => ({ params: { emu: e.slug } }));
 }
 
 const { emu } = Astro.params;
+const emulator = getEmulators().find((e) => e.slug === emu);
 const commits = getCommits(emu!);
+if (!emulator) throw new Error(`no emulator ${emu}`);
 if (commits.length === 0) {
   return Astro.redirect("/");
 }
 
-return Astro.redirect(`/${emu}/${commits[0].commit_short}`);
+const latest = commits[0];
+const target = `/${emu}/${latest.commit_short}`;
+
+const framesTotal = latest.screenshots.length;
+const gamesTotal = latest.games.length;
+const gamesWithFrames = new Set(latest.screenshots.map((s) => s.game_id)).size;
+const description = [
+  emulator.description,
+  `Latest: ${latest.commit_short} · ${gamesTotal} games · ${gamesWithFrames} with screenshots · ${framesTotal} frames`,
+].join("\n");
+
+const coverRow = getGameRows(emu!, latest.commit_short).find((r) => r.frames.length > 0);
+const cover = coverRow?.frames.at(-1);
+const ogImage = cover
+  ? {
+      url: `${siteConfig.screenshotsBaseUrl}/${cover.r2_key}`,
+      width: cover.width,
+      height: cover.height,
+      alt: `${coverRow!.game.game_title} running on ${emulator.name} at ${latest.commit_short}`,
+    }
+  : null;
 ---
+
+<!doctype html>
+<html lang="en" class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+  <head>
+    <HeadMeta
+      title={`${emulator.name} — ${emulator.console}`}
+      description={description}
+      image={ogImage}
+      accentColor={emulator.accent_color}
+    />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <link rel="canonical" href={new URL(target, Astro.site)} />
+  </head>
+  <body class="min-h-screen font-sans antialiased">
+    <main class="mx-auto max-w-6xl px-6 py-8">
+      <p class="text-sm text-neutral-500">
+        Redirecting to <a href={target} class="underline">{emulator.name} / {latest.commit_short}</a>…
+      </p>
+    </main>
+  </body>
+</html>

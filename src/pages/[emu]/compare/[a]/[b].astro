@@ -1,0 +1,123 @@
+---
+import { formatTimestamp, getCommits, getEmulators, toCommitData } from "@/lib/meta";
+import { computeDiff, type DiffEntry, type Frame } from "@/lib/diff";
+import { siteConfig } from "../../../../../site.config";
+import EmulatorTabs from "@/components/EmulatorTabs.astro";
+import FrameViewer from "@/components/FrameViewer.astro";
+import HeadMeta from "@/components/HeadMeta.astro";
+import "../../../../styles/global.css";
+
+export function getStaticPaths() {
+  const paths: { params: { emu: string; a: string; b: string } }[] = [];
+
+  for (const emu of getEmulators()) {
+    const commits = getCommits(emu.slug);
+
+    for (const a of commits) {
+      for (const b of commits) {
+        if (a.commit_short === b.commit_short) continue;
+        paths.push({ params: { emu: emu.slug, a: a.commit_short, b: b.commit_short } });
+      }
+    }
+  }
+
+  return paths;
+}
+
+const { emu, a, b } = Astro.params;
+const allEmulators = getEmulators();
+const emulator = allEmulators.find((e) => e.slug === emu);
+const dataA = toCommitData(emu!, a!);
+const dataB = toCommitData(emu!, b!);
+if (!emulator || !dataA || !dataB) {
+  throw new Error(`no comparison ${emu}/${a}/${b}`);
+}
+
+const { groups, totals } = computeDiff(dataA, dataB);
+
+const parts: string[] = [];
+if (totals.gameAdded > 0) parts.push(`${totals.gameAdded} games added`);
+if (totals.gameRemoved > 0) parts.push(`${totals.gameRemoved} games removed`);
+if (totals.gainedScreenshots > 0) parts.push(`${totals.gainedScreenshots} gained screenshots`);
+if (totals.lostScreenshots > 0) parts.push(`${totals.lostScreenshots} lost screenshots`);
+if (totals.framesChanged > 0) parts.push(`${totals.framesChanged} frames changed`);
+
+const description = [
+  parts.length > 0 ? parts.join(" · ") : "No differences detected",
+  `${dataA.commit_short} (${formatTimestamp(dataA.commit_timestamp)}) → ${dataB.commit_short} (${formatTimestamp(dataB.commit_timestamp)})`,
+].join("\n");
+
+function lastNewFrame(entries: DiffEntry[]): { frame: Frame; title: string } | null {
+  for (const entry of entries) {
+    if (entry.kind === "frames-changed") {
+      for (let i = entry.perFrame.length - 1; i >= 0; i--) {
+        const pf = entry.perFrame[i];
+        if (pf.k === "c") return { frame: pf.b, title: entry.title };
+        if (pf.k === "a") return { frame: pf.f, title: entry.title };
+      }
+    } else if (entry.frames.length > 0) {
+      return { frame: entry.frames[entry.frames.length - 1], title: entry.title };
+    }
+  }
+
+  return null;
+}
+
+const cover =
+  lastNewFrame(groups.gainedScreenshots) ??
+  lastNewFrame(groups.gameAdded) ??
+  lastNewFrame(groups.framesChanged);
+
+const ogImage = cover
+  ? {
+      url: `${siteConfig.screenshotsBaseUrl}/${cover.frame.key}`,
+      width: cover.frame.w,
+      height: cover.frame.h,
+      alt: `${cover.title} running on ${emulator.name} at ${dataB.commit_short}`,
+    }
+  : null;
+---
+
+<!doctype html>
+<html lang="en" class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+  <head>
+    <HeadMeta
+      title={`${emulator.name} / ${dataA.commit_short} → ${dataB.commit_short}`}
+      description={description}
+      image={ogImage}
+      accentColor={emulator.accent_color}
+    />
+  </head>
+  <body class="min-h-screen font-sans antialiased">
+    <div class="border-b border-neutral-200 dark:border-neutral-800">
+      <div class="mx-auto max-w-6xl px-6 py-4">
+        <EmulatorTabs emulators={allEmulators} currentSlug={emu!} />
+      </div>
+    </div>
+
+    <main class="mx-auto max-w-6xl px-6 py-8">
+      <header id="compare-header" class="mb-8 border-b border-neutral-200 pb-6 dark:border-neutral-800" />
+      <div id="compare-status" class="text-sm text-neutral-500" />
+      <div id="compare-sections" />
+    </main>
+
+    <FrameViewer />
+
+    <script
+      is:inline
+      type="application/json"
+      id="compare-config"
+      set:html={JSON.stringify({
+        emu,
+        a: dataA.commit_short,
+        b: dataB.commit_short,
+        name: emulator.name,
+        base: siteConfig.screenshotsBaseUrl,
+        commitUrlTemplate: emulator.commit_url_template,
+      })}
+    />
+    <script>
+      import "../../../../scripts/compare-view";
+    </script>
+  </body>
+</html>
