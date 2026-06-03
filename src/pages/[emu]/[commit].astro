@@ -25,24 +25,15 @@ const submission = getSubmission(emu!, commit!);
 if (!emulator || !submission) {
   throw new Error(`no submission ${emu}/${commit}`);
 }
+
 const rows = getGameRows(emu!, commit!);
 const allCommits = getCommits(emu!);
 const commitUrl = emulator.commit_url_template.replace("{sha}", submission.commit);
+
 const framesTotal = submission.screenshots.length;
 const gamesTotal = submission.games.length;
 const gamesWithFrames = new Set(submission.screenshots.map((s) => s.game_id)).size;
 
-const framesData = rows
-  .filter((r) => r.frames.length > 0)
-  .map((r) => ({
-    game_id: r.game.game_id,
-    frames: r.frames.map((f) => ({
-      src: `${siteConfig.screenshotsBaseUrl}/${f.r2_key}`,
-      w: f.width,
-      h: f.height,
-      i: f.frame_index,
-    })),
-  }));
 ---
 
 <!doctype html>
@@ -98,7 +89,16 @@ const framesData = rows
 
     <FrameViewer />
 
-    <script is:inline type="application/json" id="frames-data" set:html={JSON.stringify(framesData)} />
+    <script
+      is:inline
+      type="application/json"
+      id="commit-config"
+      set:html={JSON.stringify({
+        emu,
+        commit: submission.commit_short,
+        base: siteConfig.screenshotsBaseUrl,
+      })}
+    />
     <script>
       import "../../scripts/commit-view";
     </script>

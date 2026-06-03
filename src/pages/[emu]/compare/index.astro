@@ -1,0 +1,55 @@
+---
+import { getEmulators } from "@/lib/meta";
+import { siteConfig } from "../../../../site.config";
+import EmulatorTabs from "@/components/EmulatorTabs.astro";
+import FrameViewer from "@/components/FrameViewer.astro";
+import "../../../styles/global.css";
+
+export function getStaticPaths() {
+  return getEmulators().map((e) => ({ params: { emu: e.slug } }));
+}
+
+const { emu } = Astro.params;
+const allEmulators = getEmulators();
+const emulator = allEmulators.find((e) => e.slug === emu);
+if (!emulator) throw new Error(`no emulator ${emu}`);
+---
+
+<!doctype html>
+<html lang="en" class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{emulator.name} / compare</title>
+  </head>
+  <body class="min-h-screen font-sans antialiased">
+    <div class="border-b border-neutral-200 dark:border-neutral-800">
+      <div class="mx-auto max-w-6xl px-6 py-4">
+        <EmulatorTabs emulators={allEmulators} currentSlug={emu!} />
+      </div>
+    </div>
+
+    <main class="mx-auto max-w-6xl px-6 py-8">
+      <header id="compare-header" class="mb-8 border-b border-neutral-200 pb-6 dark:border-neutral-800" />
+      <div id="compare-status" class="text-sm text-neutral-500" />
+      <div id="compare-sections" />
+    </main>
+
+    <FrameViewer />
+
+    <script
+      is:inline
+      type="application/json"
+      id="compare-config"
+      set:html={JSON.stringify({
+        emu,
+        name: emulator.name,
+        base: siteConfig.screenshotsBaseUrl,
+        commitUrlTemplate: emulator.commit_url_template,
+      })}
+    />
+    <script>
+      import "../../../scripts/compare-view";
+    </script>
+  </body>
+</html>

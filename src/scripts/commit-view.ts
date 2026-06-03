@@ -1,3 +1,5 @@
+import type { CommitData } from "@/lib/diff";
+
 interface Frame {
   src: string;
   w: number;
@@ -5,20 +7,41 @@ interface Frame {
   i: number;
 }
 
-interface GameFrames {
-  game_id: string;
-  frames: Frame[];
+interface CommitConfig {
+  emu: string;
+  commit: string;
+  base: string;
 }
 
-const dataTag = document.getElementById("frames-data");
-const entries: GameFrames[] = dataTag ? JSON.parse(dataTag.textContent ?? "[]") : [];
-const framesByGame = new Map(entries.map((e) => [e.game_id, e.frames]));
+const cfgTag = document.getElementById("commit-config");
+const cfg: CommitConfig | null = cfgTag ? JSON.parse(cfgTag.textContent ?? "null") : null;
 
-hydrateRowsOnScroll();
+let framesByGame = new Map<string, Frame[]>();
+
 wireFilter();
 wireFrameViewer();
 wireCommitCombo();
 wireCompareCombo();
+if (cfg) void loadFrames(cfg);
+
+async function loadFrames(c: CommitConfig) {
+  try {
+    const res = await fetch(`/data/${c.emu}/${c.commit}.json`);
+    if (!res.ok) return;
+
+    const data = (await res.json()) as CommitData;
+    framesByGame = new Map(
+      Object.entries(data.shots).map(([id, shots]) => [
+        id,
+        shots.map(([i, key, w, h]) => ({ src: `${c.base}/${key}`, w, h, i })),
+      ]),
+    );
+  } catch {
+    return;
+  }
+
+  hydrateRowsOnScroll();
+}
 
 function hydrateRowsOnScroll() {
   const rows = document.querySelectorAll<HTMLElement>('.game-row[data-has-frames="true"]');
@@ -32,6 +55,7 @@ function hydrateRowsOnScroll() {
     },
     { rootMargin: "400px 0px" },
   );
+
   rows.forEach((row) => io.observe(row));
 }
 
@@ -41,6 +65,7 @@ function hydrate(row: HTMLElement) {
   const frames = framesByGame.get(gameId);
   const container = row.querySelector<HTMLElement>(".frames-container");
   if (!frames || !container) return;
+
   container.innerHTML = frames
     .map(
       (f, idx) =>
@@ -51,7 +76,7 @@ function hydrate(row: HTMLElement) {
     )
     .join("");
   container.style.minHeight = "";
-  // scroll to rightmost frame on first reveal
+
   requestAnimationFrame(() => {
     container.scrollLeft = container.scrollWidth;
   });
@@ -64,6 +89,7 @@ function escapeAttr(s: string): string {
 function wireFilter() {
   const input = document.getElementById("game-filter") as HTMLInputElement | null;
   if (!input) return;
+
   let timer: number | undefined;
   input.addEventListener("input", () => {
     window.clearTimeout(timer);
@@ -101,10 +127,12 @@ function wireFrameViewer() {
     const frames = framesByGame.get(gameId);
     if (!frames) return;
     const idx = parseInt(clickedImg.dataset.frameIdx ?? "0", 10);
+
     open(frames, idx);
   });
 
   closeBtn.addEventListener("click", close);
+
   viewer.addEventListener("click", (ev) => {
     if (ev.target === viewer) close();
   });
@@ -125,6 +153,7 @@ function wireFrameViewer() {
     currentFrames = frames;
     currentIdx = idx;
     update();
+
     viewer!.classList.remove("hidden");
     viewer!.classList.add("flex");
     document.body.style.overflow = "hidden";
@@ -186,6 +215,7 @@ function wireCommitCombo() {
         )
         .join("");
     }
+
     highlight = -1;
     list!.classList.remove("hidden");
     input!.setAttribute("aria-expanded", "true");
@@ -204,6 +234,7 @@ function wireCommitCombo() {
     items.forEach((el, idx) =>
       el.classList.toggle("dark:bg-neutral-800", idx === i),
     );
+
     highlight = i;
     const el = items[i];
     if (el) el.scrollIntoView({ block: "nearest" });
@@ -222,11 +253,14 @@ function wireCommitCombo() {
     input.select();
     render("");
   });
+
   input.addEventListener("input", () => render(input.value));
+
   input.addEventListener("blur", () => {
     // defer so click on item fires first
     setTimeout(hide, 120);
   });
+
   input.addEventListener("keydown", (ev) => {
     const items = list!.querySelectorAll<HTMLElement>("li[role='option']");
     if (ev.key === "ArrowDown") {
@@ -290,6 +324,7 @@ function wireCompareCombo() {
         )
         .join("");
     }
+
     highlight = -1;
     list!.classList.remove("hidden");
     input!.setAttribute("aria-expanded", "true");
@@ -317,6 +352,7 @@ function wireCompareCombo() {
       el.classList.toggle("bg-neutral-100", idx === i);
       el.classList.toggle("dark:bg-neutral-800", idx === i);
     });
+
     highlight = i;
     const el = items[i];
     if (el) el.scrollIntoView({ block: "nearest" });
@@ -324,15 +360,18 @@ function wireCompareCombo() {
 
   function navTo(short: string) {
     if (!short || short === currentShort) return;
-    window.location.href = `/${emu}/compare/${currentShort}/${short}`;
+    window.location.href = `/${emu}/compare?a=${encodeURIComponent(currentShort)}&b=${encodeURIComponent(short)}`;
   }
 
   trigger.addEventListener("click", () => {
     trigger.setAttribute("aria-expanded", "true");
     show();
   });
+
   input.addEventListener("input", () => render(input.value));
+
   input.addEventListener("blur", () => setTimeout(hide, 120));
+
   input.addEventListener("keydown", (ev) => {
     const items = list!.querySelectorAll<HTMLElement>("li[role='option']");
     if (ev.key === "ArrowDown") {
