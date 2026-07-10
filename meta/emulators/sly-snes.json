@@ -1,0 +1,10 @@
+{
+  "slug": "sly-snes",
+  "name": "sly",
+  "console": "Super Nintendo",
+  "description": "A modern, multi-system, cross-platform emulator and debugger written in Rust.",
+  "repo_url": "https://github.com/ioncodes/sly",
+  "commit_url_template": "https://github.com/ioncodes/sly/commit/{sha}",
+  "accent_color": "#B5B6E4",
+  "icon": "cbi:snes"
+}
