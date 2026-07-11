@@ -39,6 +39,11 @@ const rows = getGameRows(emu!, commit!);
 const allCommits = getCommits(emu!);
 const commitUrl = emulator.commit_url_template.replace("{sha}", submission.commit);
 
+// The demos-only matrix view and its toggle only exist when there are demos.
+const screenshotsBase = siteConfig.screenshotsBaseUrl;
+const demoRows = rows.filter((r) => r.demo);
+const hasDemos = demoRows.length > 0;
+
 const firstGameFrame = emulator.first_game_frame ?? 0;
 const framesTotal = submission.screenshots.length;
 const gamesTotal = submission.games.length;
@@ -51,6 +56,7 @@ const description = [
   `${gamesTotal} games · ${gamesWithFrames} ${withFramesLabel} · ${framesTotal} frames`,
   `${submission.commit_message} (${formatTimestamp(submission.commit_timestamp)})`,
 ].join("\n");
+
 const ogImage = cover
   ? {
       url: `${siteConfig.screenshotsBaseUrl}/${cover.r2_key}`,
@@ -95,6 +101,31 @@ const ogImage = cover
           {allCommits.length > 1 && (
             <CompareNav emu={emu!} current={submission} allCommits={allCommits} />
           )}
+          {hasDemos && (
+            <div
+              id="view-toggle"
+              role="group"
+              aria-label="View mode"
+              class="inline-flex overflow-hidden rounded border border-neutral-300 dark:border-neutral-700"
+            >
+              <button
+                type="button"
+                data-view="list"
+                aria-pressed="true"
+                class="px-2.5 py-1 text-sm text-neutral-600 hover:bg-neutral-100 aria-pressed:bg-neutral-200 aria-pressed:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:aria-pressed:bg-neutral-800 dark:aria-pressed:text-neutral-100"
+              >
+                List
+              </button>
+              <button
+                type="button"
+                data-view="demos"
+                aria-pressed="false"
+                class="border-l border-neutral-300 px-2.5 py-1 text-sm text-neutral-600 hover:bg-neutral-100 aria-pressed:bg-neutral-200 aria-pressed:text-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:aria-pressed:bg-neutral-800 dark:aria-pressed:text-neutral-100"
+              >
+                Demos
+              </button>
+            </div>
+          )}
           <input
             id="game-filter"
             type="search"
@@ -114,9 +145,34 @@ const ogImage = cover
         </div>
       </header>
 
-      <ul class="space-y-10">
+      <ul id="games-list" class="space-y-10">
         {rows.map((row) => <GameRow row={row} />)}
       </ul>
+
+      {hasDemos && (
+        <div
+          id="games-matrix"
+          hidden
+          class="grid gap-4"
+          style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));"
+        >
+          {demoRows.map((r) => (
+            <figure class="matrix-cell" data-game-id={r.game.game_id} data-title={r.game.game_title}>
+              <img
+                src={`${screenshotsBase}/${r.demo!.r2_key}`}
+                width={r.demo!.width}
+                height={r.demo!.height}
+                loading="lazy"
+                class="w-full cursor-pointer rounded border border-neutral-200 [image-rendering:pixelated] dark:border-neutral-800"
+                alt={`${r.game.game_title} demo`}
+              />
+              <figcaption class="mt-1 truncate text-xs text-neutral-500" title={r.game.game_title}>
+                {r.game.game_title}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      )}
     </main>
 
     <FrameViewer />

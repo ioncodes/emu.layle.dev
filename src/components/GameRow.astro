@@ -41,7 +41,9 @@ const colClass = [
       <div class="mt-2 flex gap-2" style="min-height:140px">
         {hasDemo && <div class="demo-container flex shrink-0 items-start" />}
         <div class={colClass}>
-          <div class="frames-container flex gap-2 overflow-x-auto" />
+          <div class="frames-scroll relative min-w-0">
+            <div class="frames-container flex gap-2 overflow-x-auto" />
+          </div>
           {hasFrames && (
             <div class="frames-scrollbar" hidden>
               <div class="frames-scrollbar-thumb" />

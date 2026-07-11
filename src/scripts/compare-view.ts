@@ -7,6 +7,7 @@ import {
   type Frame,
   type PerFrame,
 } from "@/lib/diff";
+import { wireScrollShadows } from "./scroll-shadows";
 
 interface Config {
   emu: string;
@@ -253,7 +254,9 @@ function renderRow(entry: DiffEntry, aShortC: string, bShortC: string): string {
     `<h3 class="flex items-baseline gap-3 text-sm"><span class="font-medium">${escapeText(entry.title)}</span>` +
     `<span class="font-mono text-xs text-neutral-500">${escapeText(entry.id)}</span></h3>` +
     meta +
-    `<div class="frames-row mt-3 flex gap-3 overflow-x-auto pb-1" style="min-height:148px"></div>` +
+    `<div class="frames-scroll relative mt-3">` +
+    `<div class="frames-row flex gap-3 overflow-x-auto pb-1" style="min-height:148px"></div>` +
+    `</div>` +
     `</li>`
   );
 }
@@ -321,7 +324,10 @@ function hydrateRowsOnScroll() {
         const container = row.querySelector<HTMLElement>(".frames-row");
         const fn = hydrators[id];
 
-        if (container && fn) fn(container);
+        if (container && fn) {
+          fn(container);
+          wireScrollShadows(container);
+        }
         io.unobserve(row);
       }
     },

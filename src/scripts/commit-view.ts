@@ -1,4 +1,5 @@
 import type { CommitData } from "@/lib/diff";
+import { wireScrollShadows } from "./scroll-shadows";
 
 interface Frame {
   src: string;
@@ -20,6 +21,7 @@ const cfg: CommitConfig | null = cfgTag ? JSON.parse(cfgTag.textContent ?? "null
 let framesByGame = new Map<string, Frame[]>();
 
 wireFilter();
+wireViewToggle();
 wireFrameViewer();
 wireCommitCombo();
 wireCompareCombo();
@@ -115,6 +117,7 @@ function hydrate(row: HTMLElement) {
   requestAnimationFrame(() => {
     container.scrollLeft = container.scrollWidth;
     if (bar && thumb) wireScrollbar(container, bar, thumb);
+    wireScrollShadows(container);
   });
 }
 
@@ -192,13 +195,66 @@ function wireFilter() {
 }
 
 function applyFilter(q: string) {
-  const rows = document.querySelectorAll<HTMLElement>(".game-row");
+  const rows = document.querySelectorAll<HTMLElement>(".game-row, .matrix-cell");
   for (const row of rows) {
     const title = (row.dataset.title ?? "").toLowerCase();
     const id = (row.dataset.gameId ?? "").toLowerCase();
     const match = !q || title.includes(q) || id.includes(q);
     row.classList.toggle("hidden", !match);
   }
+}
+
+// List <-> demos-only grid switch. The toggle only exists in the DOM when the
+// commit has demos, so this no-ops otherwise. The demos view is URL-addressable
+// via ?view=demos so it can be linked and bookmarked directly.
+function wireViewToggle() {
+  const toggle = document.getElementById("view-toggle");
+  const listEl = document.getElementById("games-list");
+  const matrixEl = document.getElementById("games-matrix");
+  if (!toggle || !listEl || !matrixEl) return;
+
+  const buttons = Array.from(toggle.querySelectorAll<HTMLButtonElement>("button[data-view]"));
+
+  function setView(view: string, updateUrl: boolean) {
+    const demos = view === "demos";
+    listEl!.hidden = demos;
+    matrixEl!.hidden = !demos;
+
+    for (const b of buttons) {
+      b.setAttribute("aria-pressed", String(b.dataset.view === view));
+    }
+
+    try {
+      localStorage.setItem("emu-demo-view", view);
+    } catch {
+      // ignore storage failures (private mode, etc.)
+    }
+
+    if (updateUrl) {
+      const url = new URL(window.location.href);
+      if (demos) url.searchParams.set("view", "demos");
+      else url.searchParams.delete("view");
+      history.replaceState(null, "", url);
+    }
+  }
+
+  for (const b of buttons) {
+    b.addEventListener("click", () => setView(b.dataset.view ?? "list", true));
+  }
+
+  // URL wins, then the last-used preference, else the list.
+  const fromUrl = new URLSearchParams(window.location.search).get("view");
+  let initial = fromUrl;
+
+  if (initial !== "demos" && initial !== "list") {
+    try {
+      initial = localStorage.getItem("emu-demo-view");
+    } catch {
+      initial = null;
+    }
+  }
+
+  setView(initial === "demos" ? "demos" : "list", false);
 }
 
 function wireFrameViewer() {
@@ -214,15 +270,18 @@ function wireFrameViewer() {
   document.addEventListener("click", (ev) => {
     const target = ev.target as HTMLElement;
     const clickedImg = target.closest(
-      ".frames-container img, .demo-container img",
+      ".frames-container img, .demo-container img, .matrix-cell img",
     ) as HTMLImageElement | null;
     if (!clickedImg) return;
-    const row = clickedImg.closest(".game-row") as HTMLElement | null;
+    const row = clickedImg.closest(".game-row, .matrix-cell") as HTMLElement | null;
     if (!row) return;
     const gameId = row.dataset.gameId!;
     const frames = framesByGame.get(gameId);
     if (!frames) return;
-    const idx = parseInt(clickedImg.dataset.frameIdx ?? "0", 10);
+
+    // Matrix cells carry no per-frame index; open them on the demo tile.
+    let idx = parseInt(clickedImg.dataset.frameIdx ?? "", 10);
+    if (Number.isNaN(idx)) idx = Math.max(0, frames.findIndex((f) => f.demo));
 
     open(frames, idx);
   });

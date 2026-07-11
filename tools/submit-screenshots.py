@@ -541,10 +541,11 @@ def run_submission(
                     )
 
     demos: list[Demo] = []
-    demo_counts = {"uploaded": 0, "skipped": 0}
+    demo_counts = {"done": 0, "uploaded": 0, "skipped": 0}
     if all_demo_plans:
+        demo_total = len(all_demo_plans)
         click.echo(
-            f"processing {len(all_demo_plans)} demo gif(s) with {workers} worker(s)", err=True
+            f"encoding + uploading {demo_total} demo(s) with {workers} worker(s)", err=True
         )
 
         def demo_work(plan: DemoPlan) -> tuple[Demo, bool]:
@@ -560,7 +561,13 @@ def run_submission(
                 demo, uploaded = fut.result()
                 with lock:
                     demos.append(demo)
+                    demo_counts["done"] += 1
                     demo_counts["uploaded" if uploaded else "skipped"] += 1
+                    click.echo(
+                        f"  {demo_counts['done']}/{demo_total} demos "
+                        f"({demo_counts['uploaded']} uploaded, {demo_counts['skipped']} skipped)",
+                        err=True,
+                    )
 
     submission = build_submission(
         emulator=emulator, commit=commit, games=games_meta, screenshots=screenshots,

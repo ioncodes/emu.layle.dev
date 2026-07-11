@@ -36,6 +36,42 @@ html {
   --color-border: var(--border);
 }
 
+/* Scroll affordance: a soft dark shadow at whichever edge of a frame strip has
+   more content to scroll to. The strip scrolls inside .frames-scroll; these
+   overlays sit on the non-scrolling wrapper so they stay pinned to the edges.
+   The gradient darkens the frame images at the edge, so it reads in light and
+   dark alike. wireScrollShadows() toggles the data attributes. */
+.frames-scroll::before,
+.frames-scroll::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 56px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.frames-scroll::before {
+  left: 0;
+  background: linear-gradient(to right, rgb(0 0 0 / 0.7), rgb(0 0 0 / 0.28) 40%, transparent);
+}
+
+.frames-scroll::after {
+  right: 0;
+  background: linear-gradient(to left, rgb(0 0 0 / 0.7), rgb(0 0 0 / 0.28) 40%, transparent);
+}
+
+.frames-scroll[data-overflow-start]::before {
+  opacity: 1;
+}
+
+.frames-scroll[data-overflow-end]::after {
+  opacity: 1;
+}
+
 /* Compare view strips keep a styled native scrollbar. */
 .frames-row {
   scrollbar-width: thin;
