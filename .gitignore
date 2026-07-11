@@ -1,6 +1,7 @@
 # build
 dist/
 .astro/
+.wrangler/
 
 # deps
 node_modules/

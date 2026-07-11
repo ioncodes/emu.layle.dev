@@ -1,0 +1,21 @@
+---
+import HeadMeta from "@/components/HeadMeta.astro";
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en" class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+  <head>
+    <HeadMeta title="Not found / emu.layle.dev" description="This page does not exist." />
+  </head>
+  <body class="min-h-screen font-sans antialiased">
+    <main class="mx-auto flex min-h-screen max-w-3xl flex-col items-start justify-center px-6 py-16">
+      <p class="font-mono text-sm text-neutral-500">404</p>
+      <h1 class="mt-2 text-2xl font-semibold">Page not found</h1>
+      <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+        That page does not exist, or it moved.
+      </p>
+      <a href="/" class="mt-6 text-sm underline">Back to emu.layle.dev</a>
+    </main>
+  </body>
+</html>

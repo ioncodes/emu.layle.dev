@@ -1,40 +1,73 @@
 ---
 import { getEmulators } from "@/lib/meta";
+import { compareMetaBlock } from "@/lib/compare-meta";
+import { siteConfig } from "../../../../site.config";
+import EmulatorTabs from "@/components/EmulatorTabs.astro";
+import FrameViewer from "@/components/FrameViewer.astro";
+import "../../../styles/global.css";
 
+// One page per emulator. It renders itself entirely on the client from the two
+// commits named in the URL (either /:emu/compare/:a/:b via the Pages Function,
+// or /:emu/compare?a=..&b=.. directly). This same HTML is the template the
+// Function reuses — it fetches it, then swaps the compare-meta block for a
+// per-pair one so link embeds work without pre-generating any page.
 export function getStaticPaths() {
   return getEmulators().map((e) => ({ params: { emu: e.slug } }));
 }
 
 const { emu } = Astro.params;
-const emulator = getEmulators().find((e) => e.slug === emu);
+const allEmulators = getEmulators();
+const emulator = allEmulators.find((e) => e.slug === emu);
 if (!emulator) throw new Error(`no emulator ${emu}`);
+
+const config = {
+  emu,
+  name: emulator.name,
+  base: siteConfig.screenshotsBaseUrl,
+  accentColor: emulator.accent_color,
+  commitUrlTemplate: emulator.commit_url_template,
+  firstGameFrame: emulator.first_game_frame ?? 0,
+};
+
+// Generic defaults. The Function overrides these per pair; a direct query-string
+// visit keeps them.
+const metaBlock = compareMetaBlock({
+  title: `${emulator.name} / compare`,
+  description: `Compare screenshots across ${emulator.name} commits.`,
+  pageUrl: new URL(Astro.url.pathname, Astro.site).toString(),
+  accentColor: emulator.accent_color,
+  image: null,
+});
 ---
 
 <!doctype html>
 <html lang="en" class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>{emulator.name} / compare</title>
+    <Fragment set:html={metaBlock} />
   </head>
   <body class="min-h-screen font-sans antialiased">
+    <div class="border-b border-neutral-200 dark:border-neutral-800">
+      <div class="mx-auto max-w-6xl px-6 py-4">
+        <EmulatorTabs emulators={allEmulators} currentSlug={emu!} />
+      </div>
+    </div>
+
     <main class="mx-auto max-w-6xl px-6 py-8">
-      <p class="text-sm text-neutral-500">
-        Redirecting… <a href={`/${emu}`} class="underline">Back to {emulator.name}</a>
-      </p>
+      <header id="compare-header" class="mb-8 border-b border-neutral-200 pb-6 dark:border-neutral-800" />
+      <div id="compare-status" class="text-sm text-neutral-500" />
+      <div id="compare-sections" />
     </main>
 
-    <script define:vars={{ emu }}>
-      const params = new URLSearchParams(window.location.search);
-      const a = params.get("a");
-      const b = params.get("b");
+    <FrameViewer />
 
-      if (a && b && a !== b) {
-        window.location.replace(`/${emu}/compare/${encodeURIComponent(a)}/${encodeURIComponent(b)}`);
-      } else {
-        window.location.replace(`/${emu}`);
-      }
+    <script
+      is:inline
+      type="application/json"
+      id="compare-config"
+      set:html={JSON.stringify(config)}
+    />
+    <script>
+      import "../../../scripts/compare-view";
     </script>
   </body>
 </html>

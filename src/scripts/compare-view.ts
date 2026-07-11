@@ -11,8 +11,6 @@ import { wireScrollShadows } from "./scroll-shadows";
 
 interface Config {
   emu: string;
-  a: string;
-  b: string;
   name: string;
   base: string;
   commitUrlTemplate: string;
@@ -26,8 +24,21 @@ const statusEl = document.getElementById("compare-status");
 const headerEl = document.getElementById("compare-header");
 const sectionsEl = document.getElementById("compare-sections");
 
-const aShort = cfg?.a ?? "";
-const bShort = cfg?.b ?? "";
+// The pair comes from the URL, not baked config: the path form
+// /:emu/compare/:a/:b (served by the Pages Function) or the query form
+// /:emu/compare?a=..&b=.. both render from the same template.
+function resolvePair(): { a: string; b: string } {
+  const segs = window.location.pathname.split("/").filter(Boolean);
+  const ci = segs.indexOf("compare");
+  if (ci >= 0 && segs.length >= ci + 3) {
+    return { a: decodeURIComponent(segs[ci + 1]), b: decodeURIComponent(segs[ci + 2]) };
+  }
+
+  const q = new URLSearchParams(window.location.search);
+  return { a: q.get("a") ?? "", b: q.get("b") ?? "" };
+}
+
+const { a: aShort, b: bShort } = resolvePair();
 const firstGameFrame = cfg?.firstGameFrame ?? 0;
 const bootNote = firstGameFrame > 0 ? ` Boot frames (#0–#${firstGameFrame - 1}) are ignored.` : "";
 
