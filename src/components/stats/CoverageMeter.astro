@@ -1,0 +1,87 @@
+---
+// A small dithered bar showing games with a screenshot vs games without, for a
+// single commit. Filled portion uses the emulator's accent colour. No inline
+// text; the percentage shows on hover.
+interface Props {
+  covered: number;
+  total: number;
+  accent: string;
+}
+
+const { covered, total, accent } = Astro.props;
+const pct = total > 0 ? Math.round((covered / total) * 100) : 0;
+const label = `${pct}% (${covered} of ${total} games with a screenshot)`;
+---
+
+<div class="coverage-meter-wrap" role="img" aria-label={label}>
+  <div class="coverage-meter">
+    <div class="coverage-fill" style={`width:${pct}%; --accent:${accent};`}></div>
+  </div>
+  <span class="coverage-tip">{pct}%</span>
+</div>
+
+<style>
+  .coverage-meter-wrap {
+    position: relative;
+    display: inline-block;
+    line-height: 0;
+  }
+
+  .coverage-meter {
+    position: relative;
+    height: 12px;
+    width: 180px;
+    max-width: 45vw;
+    overflow: hidden;
+    border-radius: 3px;
+    background-color: rgb(229 229 229); /* neutral-200 track */
+  }
+
+  .coverage-fill {
+    height: 100%;
+    background-color: var(--accent);
+    /* Ordered-dither nod: a fine dot grid over the accent fill. */
+    background-image: radial-gradient(rgba(0, 0, 0, 0.28) 0.5px, transparent 0.6px);
+    background-size: 3px 3px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+  }
+
+  .coverage-tip {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 2px 6px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background-color: var(--popover);
+    color: var(--popover-foreground);
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    line-height: 1.4;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.12s ease;
+  }
+
+  .coverage-meter-wrap:hover .coverage-tip {
+    opacity: 1;
+  }
+
+  .coverage-meter-wrap:focus-within .coverage-tip {
+    opacity: 1;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .coverage-meter {
+      background-color: rgb(38 38 38); /* neutral-800 track */
+    }
+
+    .coverage-fill {
+      /* Light dots in dark mode keep dark accents (e.g. navy) legible. */
+      background-image: radial-gradient(rgba(255, 255, 255, 0.22) 0.5px, transparent 0.6px);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14);
+    }
+  }
+</style>

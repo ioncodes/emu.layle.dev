@@ -109,9 +109,71 @@ function hydrate(row: HTMLElement) {
     demoContainer.style.minHeight = "";
   }
 
+  const bar = row.querySelector<HTMLElement>(".frames-scrollbar");
+  const thumb = bar?.querySelector<HTMLElement>(".frames-scrollbar-thumb") ?? null;
+
   requestAnimationFrame(() => {
     container.scrollLeft = container.scrollWidth;
+    if (bar && thumb) wireScrollbar(container, bar, thumb);
   });
+}
+
+// A custom always-visible horizontal scrollbar for a frame strip. Firefox on
+// Linux auto-hides native overlay scrollbars with no CSS opt-out, so we draw and
+// drive our own thumb from the strip's scroll position.
+function wireScrollbar(strip: HTMLElement, bar: HTMLElement, thumb: HTMLElement) {
+  function sync() {
+    const overflow = strip.scrollWidth - strip.clientWidth;
+    if (overflow <= 1) {
+      bar.hidden = true;
+      return;
+    }
+
+    bar.hidden = false;
+
+    const track = bar.clientWidth;
+    const thumbWidth = Math.max(24, Math.round(track * (strip.clientWidth / strip.scrollWidth)));
+    const maxLeft = track - thumbWidth;
+    const left = Math.round((strip.scrollLeft / overflow) * maxLeft);
+
+    thumb.style.width = `${thumbWidth}px`;
+    thumb.style.transform = `translateX(${left}px)`;
+  }
+
+  strip.addEventListener("scroll", sync, { passive: true });
+  new ResizeObserver(sync).observe(strip);
+
+  // Images can widen the strip after they decode; re-sync when they load.
+  strip.querySelectorAll("img").forEach((img) => {
+    if (!img.complete) img.addEventListener("load", sync, { once: true });
+  });
+
+  let startX = 0;
+  let startScroll = 0;
+
+  function onMove(ev: PointerEvent) {
+    const overflow = strip.scrollWidth - strip.clientWidth;
+    const maxLeft = bar.clientWidth - thumb.clientWidth;
+    if (maxLeft <= 0) return;
+
+    const dx = ev.clientX - startX;
+    strip.scrollLeft = startScroll + (dx / maxLeft) * overflow;
+  }
+
+  function onUp() {
+    document.removeEventListener("pointermove", onMove);
+    document.removeEventListener("pointerup", onUp);
+  }
+
+  thumb.addEventListener("pointerdown", (ev) => {
+    ev.preventDefault();
+    startX = ev.clientX;
+    startScroll = strip.scrollLeft;
+    document.addEventListener("pointermove", onMove);
+    document.addEventListener("pointerup", onUp);
+  });
+
+  sync();
 }
 
 function escapeAttr(s: string): string {

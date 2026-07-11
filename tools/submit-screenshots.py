@@ -26,6 +26,7 @@ import threading
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass, replace
 from datetime import datetime, timezone
+from io import BytesIO
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -108,6 +109,33 @@ def sha256_file(path: Path) -> str:
 def read_dimensions(path: Path) -> tuple[int, int]:
     with Image.open(path) as im:
         return im.size
+
+
+def encode_webp_lossless(gif_path: Path) -> bytes:
+    """Re-encode an animated GIF as lossless WebP.
+
+    The output is pixel-for-pixel identical, just in a far better codec. SNES-era
+    demos shrink around 80% with no quality loss. method=0 keeps the encode fast
+    (well under a second even for long clips); higher methods barely help here and
+    get very slow on many-frame demos.
+    """
+    with Image.open(gif_path) as im:
+        loop = im.info.get("loop", 0)
+
+        frames: list[Image.Image] = []
+        durations: list[int] = []
+        for i in range(im.n_frames):
+            im.seek(i)
+            frames.append(im.convert("RGBA").copy())
+            durations.append(im.info.get("duration", 100))
+
+    buf = BytesIO()
+    frames[0].save(
+        buf, format="WEBP", save_all=True, append_images=frames[1:],
+        lossless=True, quality=100, method=0,
+        duration=durations, loop=loop, disposal=2,
+    )
+    return buf.getvalue()
 
 
 def parse_title_map(path: Path | None) -> dict[str, str]:
@@ -256,14 +284,20 @@ def v2_key_for(sha256: str, ext: str = "png") -> str:
     return f"v2/{sha256}.{ext}"
 
 
+def upload_body(  # type: ignore[no-untyped-def]
+    client, cfg: R2Config, key: str, body, content_type: str
+) -> None:
+    client.put_object(
+        Bucket=cfg.bucket, Key=key, Body=body,
+        ContentType=content_type, CacheControl=IMMUTABLE_CACHE,
+    )
+
+
 def upload_one(  # type: ignore[no-untyped-def]
     client, cfg: R2Config, key: str, source: Path, content_type: str
 ) -> None:
     with source.open("rb") as f:
-        client.put_object(
-            Bucket=cfg.bucket, Key=key, Body=f,
-            ContentType=content_type, CacheControl=IMMUTABLE_CACHE,
-        )
+        upload_body(client, cfg, key, f, content_type)
 
 
 def list_existing_keys(client, cfg: R2Config, prefix: str) -> set[str]:  # type: ignore[no-untyped-def]
@@ -306,19 +340,42 @@ def process_plan(
     return shot, uploaded
 
 
+def prepare_demo(source: Path) -> tuple[bytes, str, str]:
+    """Return the bytes to upload for a demo, plus its extension and content type.
+
+    The GIF is re-encoded to lossless WebP and we keep whichever is smaller, so a
+    demo can never come out larger than the source. Encoding is best-effort: if it
+    fails for any reason we fall back to the original GIF.
+    """
+    gif_bytes = source.read_bytes()
+
+    try:
+        webp_bytes = encode_webp_lossless(source)
+    except Exception as e:  # noqa: BLE001 - one odd GIF must not abort the whole run
+        click.echo(f"warning: WebP encode failed for {source.name}, keeping GIF: {e}", err=True)
+        return gif_bytes, "gif", "image/gif"
+
+    if len(webp_bytes) < len(gif_bytes):
+        return webp_bytes, "webp", "image/webp"
+
+    return gif_bytes, "gif", "image/gif"
+
+
 def process_demo(
     plan: DemoPlan, *, client, cfg: R2Config,
     existing: set[str], seen: set[str], lock: threading.Lock,
     dry_run: bool, skip_existing: bool,
 ) -> tuple[Demo, bool]:  # type: ignore[no-untyped-def]
-    """Upload a game's demo.gif unless it's already present. Returns (demo, uploaded).
+    """Encode a game's demo to lossless WebP (keeping GIF only if it's smaller),
+    then upload unless it's already present. Returns (demo, uploaded).
 
-    Keys are content-addressed (v2/<sha256>.gif) just like screenshots, so an
-    unchanged demo across commits collapses to one R2 object.
+    Keys are content-addressed (v2/<sha256>.<ext>) over the bytes we actually
+    upload, so an unchanged demo across commits collapses to one R2 object.
     """
     w, h = read_dimensions(plan.source_path)
-    sha = sha256_file(plan.source_path)
-    key = v2_key_for(sha, "gif")
+    body, ext, content_type = prepare_demo(plan.source_path)
+    sha = hashlib.sha256(body).hexdigest()
+    key = v2_key_for(sha, ext)
 
     uploaded = False
     if not dry_run:
@@ -327,7 +384,7 @@ def process_demo(
             if not already:
                 seen.add(key)
         if not already:
-            upload_one(client, cfg, key, plan.source_path, "image/gif")
+            upload_body(client, cfg, key, body, content_type)
             uploaded = True
 
     demo = Demo(game_id=plan.game_id, r2_key=key, width=w, height=h, sha256=sha)

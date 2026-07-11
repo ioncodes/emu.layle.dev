@@ -1,0 +1,94 @@
+---
+import { getStatsOverview } from "@/lib/stats";
+import HeadMeta from "@/components/HeadMeta.astro";
+import StatsCharts from "@/components/stats/StatsCharts.tsx";
+import "../styles/global.css";
+
+const overview = getStatsOverview();
+
+const tiles = [
+  { label: "Emulators", value: overview.totals.emulators },
+  { label: "Submissions", value: overview.totals.submissions },
+  { label: "Frames", value: overview.totals.frames },
+  { label: "Covered", value: overview.totals.covered },
+  { label: "Missing", value: overview.totals.missing },
+];
+
+const description = [
+  "Aggregate stats across every tracked emulator. It covers submissions, screenshots archived over time, and how many games still have no screenshot.",
+  `${overview.totals.frames.toLocaleString()} frames across ${overview.totals.submissions} submissions from ${overview.totals.emulators} emulators.`,
+].join("\n");
+---
+
+<!doctype html>
+<html lang="en" class="bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+  <head>
+    <HeadMeta title="Stats — emu.layle.dev" description={description} />
+  </head>
+  <body class="min-h-screen font-sans antialiased">
+    <main class="mx-auto max-w-4xl px-6 py-16">
+      <p class="text-sm text-neutral-500">
+        <a href="/" class="underline">emu.layle.dev</a> / stats
+      </p>
+      <h1 class="mt-2 text-2xl font-semibold">Stats overview</h1>
+      <p class="mt-2 text-sm text-neutral-600 dark:text-neutral-400">
+        Aggregate numbers across every tracked emulator. It shows how the screenshot archive has grown
+        and how much each emulator covers right now.
+      </p>
+
+      <dl class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-5">
+        {
+          tiles.map((t) => (
+            <div class="rounded border border-neutral-200 p-4 dark:border-neutral-800">
+              <dt class="text-xs font-medium uppercase tracking-wide text-neutral-500">{t.label}</dt>
+              <dd class="mt-1 text-2xl font-semibold tabular-nums">{t.value.toLocaleString()}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="mt-12">
+        <StatsCharts overview={overview} client:only="react" />
+      </div>
+
+      <table class="mt-12 w-full text-sm">
+        <thead>
+          <tr class="border-b border-neutral-200 text-left text-xs uppercase tracking-wide text-neutral-500 dark:border-neutral-800">
+            <th class="py-2 font-medium">Emulator</th>
+            <th class="py-2 font-medium">Console</th>
+            <th class="py-2 text-right font-medium">Submissions</th>
+            <th class="py-2 text-right font-medium">Covered</th>
+            <th class="py-2 text-right font-medium">Missing</th>
+            <th class="py-2 text-right font-medium">Frames</th>
+            <th class="py-2 text-right font-medium">Latest</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            overview.perEmulator.map((e) => (
+              <tr class="border-b border-neutral-100 dark:border-neutral-900">
+                <td class="py-2">
+                  <a href={`/${e.slug}/${e.latestCommit}`} class="font-medium hover:underline">
+                    {e.name}
+                  </a>
+                </td>
+                <td class="py-2 text-neutral-500">{e.console}</td>
+                <td class="py-2 text-right tabular-nums">{e.submissionCount}</td>
+                <td class="py-2 text-right tabular-nums">{e.gamesCovered}</td>
+                <td class="py-2 text-right tabular-nums">
+                  {e.gamesMissing > 0 ? (
+                    <span class="text-neutral-500">{e.gamesMissing}</span>
+                  ) : (
+                    <span class="text-neutral-300 dark:text-neutral-700">0</span>
+                  )}
+                </td>
+                <td class="py-2 text-right tabular-nums">{e.framesTotal.toLocaleString()}</td>
+                <td class="py-2 text-right font-mono text-xs text-neutral-500">{e.latestCommit}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </main>
+  </body>
+</html>

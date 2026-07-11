@@ -61,7 +61,7 @@ One file per submission. A submission pins one emulator commit to a set of known
   "demos": [
     {
       "game_id": "GALE01",
-      "r2_key": "v2/1b4f0e98...gif",
+      "r2_key": "v2/1b4f0e98...webp",
       "width": 640,
       "height": 480,
       "sha256": "1b4f0e98..."
@@ -80,11 +80,13 @@ One file per submission. A submission pins one emulator commit to a set of known
   older data but are no longer referenced.
 - `screenshots`: sorted by `(game_id, frame_index)`. `game_title` is only in `games`.
 - `demos` (optional): at most one animated demo per game, keyed by `game_id` and
-  sorted by it. Sourced from a `demo.gif` in the game's input directory. Same
-  content-addressed scheme as screenshots but with a `.gif` extension
-  (`v2/<sha256>.gif`), so an unchanged demo across commits shares one R2 object.
-  Older submissions predate this field and omit it. The site pins the demo to the
-  left of a game's screenshot strip so it stays visible while the frames scroll.
+  sorted by it. Sourced from a `demo.gif` in the game's input directory, then
+  re-encoded to lossless WebP (the tool keeps the original GIF only if it happens
+  to be smaller). Content-addressed like screenshots over the uploaded bytes, so
+  the key ends in `.webp` or `.gif` (`v2/<sha256>.<ext>`) and an unchanged demo
+  shares one R2 object. Older submissions predate this field and omit it. The site
+  pins the demo to the left of a game's screenshot strip so it stays visible while
+  the frames scroll.
 
 ## `games/<emulator>/<game_id>.json`
 

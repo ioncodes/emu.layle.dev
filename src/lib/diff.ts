@@ -9,7 +9,7 @@ export interface CommitData {
   commit_timestamp: string;
   games: [string, string][];
   shots: Record<string, CompactFrame[]>;
-  // Per-game demo gif, keyed by game_id: [r2_key, width, height].
+  // Per-game demo (lossless WebP, or GIF), keyed by game_id: [r2_key, width, height].
   demos: Record<string, CompactDemo>;
 }
 

@@ -32,7 +32,8 @@ export const ScreenshotSchema = z.object({
 });
 export type Screenshot = z.infer<typeof ScreenshotSchema>;
 
-// An optional per-game animated demo (demo.gif). At most one per game per commit.
+// An optional per-game animated demo, stored as lossless WebP (or GIF if smaller).
+// At most one per game per commit.
 export const DemoSchema = z.object({
   game_id: z.string(),
   r2_key: z.string(),

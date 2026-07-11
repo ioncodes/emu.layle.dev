@@ -10,10 +10,10 @@ const hasFrames = row.frames.length > 0;
 const hasDemo = row.demo !== null;
 const hasMedia = hasFrames || hasDemo;
 
-// The strip only grows to fill the row when there are frames to scroll; with a
-// demo alone it collapses so the row is just the demo with no trailing gap.
-const stripClass = [
-  "frames-container flex gap-2 overflow-x-auto pb-2",
+// The strip column grows to fill the row only when there are frames to scroll;
+// with a demo alone it collapses so the row is just the demo with no trailing gap.
+const colClass = [
+  "strip-col flex flex-col",
   hasFrames ? "min-w-0 flex-1" : "",
 ]
   .join(" ")
@@ -40,7 +40,14 @@ const stripClass = [
     hasMedia ? (
       <div class="mt-2 flex gap-2" style="min-height:140px">
         {hasDemo && <div class="demo-container flex shrink-0 items-start" />}
-        <div class={stripClass} />
+        <div class={colClass}>
+          <div class="frames-container flex gap-2 overflow-x-auto" />
+          {hasFrames && (
+            <div class="frames-scrollbar" hidden>
+              <div class="frames-scrollbar-thumb" />
+            </div>
+          )}
+        </div>
       </div>
     ) : (
       <p class="mt-2 text-sm italic text-neutral-500">No screenshots available</p>
