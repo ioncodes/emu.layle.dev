@@ -4,19 +4,25 @@ import Icon from "./Icon.astro";
 
 <div
   id="frame-viewer"
-  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 p-4"
+  class="fixed inset-0 z-50 hidden bg-black/85"
   role="dialog"
   aria-modal="true"
   aria-label="Screenshot viewer"
 >
-  <img
-    id="frame-viewer-img"
-    class="max-h-[95vh] max-w-[95vw] object-contain"
-    alt=""
-  />
+  <div
+    id="frame-viewer-scroll"
+    class="flex h-full w-full items-center justify-center overflow-auto p-4"
+  >
+    <img
+      id="frame-viewer-img"
+      class="m-auto max-w-none select-none"
+      draggable="false"
+      alt=""
+    />
+  </div>
   <div
     id="frame-viewer-indicator"
-    class="absolute bottom-4 left-1/2 -translate-x-1/2 rounded bg-black/60 px-2 py-1 font-mono text-xs text-white"
+    class="pointer-events-none absolute bottom-4 left-1/2 -translate-x-1/2 rounded bg-black/60 px-2 py-1 font-mono text-xs text-white"
   >
   </div>
   <button

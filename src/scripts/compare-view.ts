@@ -7,6 +7,7 @@ import {
   type Frame,
   type PerFrame,
 } from "@/lib/diff";
+import { createFrameZoom } from "./frame-zoom";
 import { wireScrollShadows } from "./scroll-shadows";
 
 interface Config {
@@ -379,10 +380,13 @@ function applyFilter(q: string) {
 
 function wireFrameViewer() {
   const viewer = document.getElementById("frame-viewer");
+  const scroll = document.getElementById("frame-viewer-scroll");
   const img = document.getElementById("frame-viewer-img") as HTMLImageElement | null;
   const indicator = document.getElementById("frame-viewer-indicator");
   const closeBtn = document.getElementById("frame-viewer-close");
-  if (!viewer || !img || !indicator || !closeBtn) return;
+  if (!viewer || !scroll || !img || !indicator || !closeBtn) return;
+
+  const zoom = createFrameZoom(scroll, img, indicator, close);
 
   let currentList: HTMLImageElement[] = [];
   let currentIdx = 0;
@@ -420,11 +424,12 @@ function wireFrameViewer() {
   function open(imgs: HTMLImageElement[], idx: number) {
     currentList = imgs;
     currentIdx = idx;
-    update();
 
     viewer!.classList.remove("hidden");
     viewer!.classList.add("flex");
     document.body.style.overflow = "hidden";
+
+    update();
   }
 
   function close() {
@@ -437,7 +442,11 @@ function wireFrameViewer() {
   function update() {
     const el = currentList[currentIdx];
     if (!el) return;
+
     img!.src = el.src;
-    indicator!.textContent = `${currentIdx + 1} / ${currentList.length}`;
+
+    const w = el.naturalWidth || el.width;
+    const h = el.naturalHeight || el.height;
+    zoom.setImage(w, h, `${currentIdx + 1} / ${currentList.length}`);
   }
 }
