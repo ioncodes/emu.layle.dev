@@ -3,12 +3,13 @@ import path from "node:path";
 import {
   EmulatorSchema,
   SubmissionSchema,
+  type Demo,
   type Emulator,
   type GameRef,
   type Screenshot,
   type Submission,
 } from "./schema";
-import type { CommitData, CompactFrame } from "./diff";
+import type { CommitData, CompactDemo, CompactFrame } from "./diff";
 
 const META_ROOT = path.resolve(process.cwd(), "meta");
 
@@ -93,9 +94,14 @@ export function toCommitData(emulator: string, commitShort: string): CommitData 
   for (const s of sub.screenshots) {
     (shots[s.game_id] ??= []).push([s.frame_index, s.r2_key, s.width, s.height]);
   }
-  
+
   for (const arr of Object.values(shots)) arr.sort((x, y) => x[0] - y[0]);
-  
+
+  const demos: Record<string, CompactDemo> = {};
+  for (const d of sub.demos ?? []) {
+    demos[d.game_id] = [d.r2_key, d.width, d.height];
+  }
+
   return {
     emulator: sub.emulator,
     commit: sub.commit,
@@ -104,12 +110,14 @@ export function toCommitData(emulator: string, commitShort: string): CommitData 
     commit_timestamp: sub.commit_timestamp,
     games: sub.games.map((g) => [g.game_id, g.game_title]),
     shots,
+    demos,
   };
 }
 
 export interface GameRow {
   game: GameRef;
   frames: Screenshot[];
+  demo: Demo | null;
 }
 
 export function getGameRows(emulator: string, commitShort: string): GameRow[] {
@@ -122,21 +130,28 @@ export function getGameRows(emulator: string, commitShort: string): GameRow[] {
     if (arr) arr.push(s);
     else framesByGame.set(s.game_id, [s]);
   }
-  
+
   for (const arr of framesByGame.values()) {
     arr.sort((a, b) => a.frame_index - b.frame_index);
   }
-  
+
+  const demosByGame = new Map<string, Demo>();
+  for (const d of sub.demos ?? []) {
+    demosByGame.set(d.game_id, d);
+  }
+
   const rows: GameRow[] = sub.games.map((g) => ({
     game: g,
     frames: framesByGame.get(g.game_id) ?? [],
+    demo: demosByGame.get(g.game_id) ?? null,
   }));
   rows.sort((a, b) => {
-    const aHas = a.frames.length > 0;
-    const bHas = b.frames.length > 0;
+    // A game with only a demo still counts as having media to show.
+    const aHas = a.frames.length > 0 || a.demo !== null;
+    const bHas = b.frames.length > 0 || b.demo !== null;
     if (aHas !== bHas) return aHas ? -1 : 1;
     return a.game.game_title.localeCompare(b.game.game_title);
   });
-  
+
   return rows;
 }

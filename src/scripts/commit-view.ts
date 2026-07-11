@@ -5,6 +5,7 @@ interface Frame {
   w: number;
   h: number;
   i: number;
+  demo?: boolean;
 }
 
 interface CommitConfig {
@@ -30,12 +31,29 @@ async function loadFrames(c: CommitConfig) {
     if (!res.ok) return;
 
     const data = (await res.json()) as CommitData;
-    framesByGame = new Map(
-      Object.entries(data.shots).map(([id, shots]) => [
-        id,
-        shots.map(([i, key, w, h]) => ({ src: `${c.base}/${key}`, w, h, i })),
-      ]),
-    );
+    const demos = data.demos ?? {};
+
+    // A game can have a demo, screenshots, or both. Keep the demo first (it's
+    // pinned on the left) followed by the frames in order; hydrate() splits them
+    // into the pinned demo container and the scrolling strip, but the combined
+    // order drives the viewer.
+    framesByGame = new Map();
+    const ids = new Set([...Object.keys(data.shots), ...Object.keys(demos)]);
+    for (const id of ids) {
+      const media: Frame[] = [];
+
+      const demo = demos[id];
+      if (demo) {
+        const [key, w, h] = demo;
+        media.push({ src: `${c.base}/${key}`, w, h, i: -1, demo: true });
+      }
+
+      for (const [i, key, w, h] of data.shots[id] ?? []) {
+        media.push({ src: `${c.base}/${key}`, w, h, i });
+      }
+
+      framesByGame.set(id, media);
+    }
   } catch {
     return;
   }
@@ -44,7 +62,9 @@ async function loadFrames(c: CommitConfig) {
 }
 
 function hydrateRowsOnScroll() {
-  const rows = document.querySelectorAll<HTMLElement>('.game-row[data-has-frames="true"]');
+  const rows = document.querySelectorAll<HTMLElement>(
+    '.game-row[data-has-frames="true"], .game-row[data-has-demo="true"]',
+  );
   const io = new IntersectionObserver(
     (events) => {
       for (const e of events) {
@@ -62,20 +82,32 @@ function hydrateRowsOnScroll() {
 function hydrate(row: HTMLElement) {
   const gameId = row.dataset.gameId!;
   const title = row.dataset.title ?? gameId;
-  const frames = framesByGame.get(gameId);
+  const media = framesByGame.get(gameId);
   const container = row.querySelector<HTMLElement>(".frames-container");
-  if (!frames || !container) return;
+  if (!media || !container) return;
 
-  container.innerHTML = frames
-    .map(
-      (f, idx) =>
-        `<img src="${f.src}" width="${f.w}" height="${f.h}" loading="lazy"` +
-        ` data-frame-idx="${idx}"` +
-        ` class="h-32 w-auto shrink-0 cursor-pointer rounded border border-neutral-200 dark:border-neutral-800"` +
-        ` alt="${escapeAttr(title)} frame ${f.i}" />`,
-    )
-    .join("");
+  const tile = (f: Frame, idx: number) => {
+    const alt = f.demo ? `${escapeAttr(title)} demo` : `${escapeAttr(title)} frame ${f.i}`;
+    return (
+      `<img src="${f.src}" width="${f.w}" height="${f.h}" loading="lazy"` +
+      ` data-frame-idx="${idx}"` +
+      ` class="h-32 w-auto shrink-0 cursor-pointer rounded border border-neutral-200 dark:border-neutral-800"` +
+      ` alt="${alt}" />`
+    );
+  };
+
+  // Screenshots go in the scrolling strip; the demo lives in its own pinned
+  // container beside it so it stays visible while the strip scrolls. Both keep
+  // their index into `media` so the fullscreen viewer can navigate all tiles.
+  container.innerHTML = media.map((f, idx) => (f.demo ? "" : tile(f, idx))).join("");
   container.style.minHeight = "";
+
+  const demoContainer = row.querySelector<HTMLElement>(".demo-container");
+  if (demoContainer) {
+    const demoIdx = media.findIndex((f) => f.demo);
+    if (demoIdx >= 0) demoContainer.innerHTML = tile(media[demoIdx], demoIdx);
+    demoContainer.style.minHeight = "";
+  }
 
   requestAnimationFrame(() => {
     container.scrollLeft = container.scrollWidth;
@@ -119,7 +151,9 @@ function wireFrameViewer() {
 
   document.addEventListener("click", (ev) => {
     const target = ev.target as HTMLElement;
-    const clickedImg = target.closest(".frames-container img") as HTMLImageElement | null;
+    const clickedImg = target.closest(
+      ".frames-container img, .demo-container img",
+    ) as HTMLImageElement | null;
     if (!clickedImg) return;
     const row = clickedImg.closest(".game-row") as HTMLElement | null;
     if (!row) return;

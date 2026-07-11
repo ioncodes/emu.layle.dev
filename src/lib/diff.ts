@@ -1,4 +1,5 @@
 export type CompactFrame = [number, string, number, number];
+export type CompactDemo = [string, number, number];
 
 export interface CommitData {
   emulator: string;
@@ -8,6 +9,8 @@ export interface CommitData {
   commit_timestamp: string;
   games: [string, string][];
   shots: Record<string, CompactFrame[]>;
+  // Per-game demo gif, keyed by game_id: [r2_key, width, height].
+  demos: Record<string, CompactDemo>;
 }
 
 export interface Frame {

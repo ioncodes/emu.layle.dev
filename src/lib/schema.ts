@@ -32,6 +32,16 @@ export const ScreenshotSchema = z.object({
 });
 export type Screenshot = z.infer<typeof ScreenshotSchema>;
 
+// An optional per-game animated demo (demo.gif). At most one per game per commit.
+export const DemoSchema = z.object({
+  game_id: z.string(),
+  r2_key: z.string(),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+  sha256: z.string(),
+});
+export type Demo = z.infer<typeof DemoSchema>;
+
 export const SubmissionSchema = z.object({
   emulator: z.string(),
   commit: z.string(),
@@ -44,5 +54,7 @@ export const SubmissionSchema = z.object({
   submitted_by: z.string(),
   games: z.array(GameRefSchema),
   screenshots: z.array(ScreenshotSchema),
+  // Optional: older submissions predate demos.
+  demos: z.array(DemoSchema).optional(),
 });
 export type Submission = z.infer<typeof SubmissionSchema>;

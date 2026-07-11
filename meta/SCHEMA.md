@@ -57,6 +57,15 @@ One file per submission. A submission pins one emulator commit to a set of known
       "height": 480,
       "sha256": "9f86d081..."
     }
+  ],
+  "demos": [
+    {
+      "game_id": "GALE01",
+      "r2_key": "v2/1b4f0e98...gif",
+      "width": 640,
+      "height": 480,
+      "sha256": "1b4f0e98..."
+    }
   ]
 }
 ```
@@ -70,6 +79,12 @@ One file per submission. A submission pins one emulator commit to a set of known
   `<emulator>/<short>/<game_id>/<frame>.png` objects still exist in the bucket for
   older data but are no longer referenced.
 - `screenshots`: sorted by `(game_id, frame_index)`. `game_title` is only in `games`.
+- `demos` (optional): at most one animated demo per game, keyed by `game_id` and
+  sorted by it. Sourced from a `demo.gif` in the game's input directory. Same
+  content-addressed scheme as screenshots but with a `.gif` extension
+  (`v2/<sha256>.gif`), so an unchanged demo across commits shares one R2 object.
+  Older submissions predate this field and omit it. The site pins the demo to the
+  left of a game's screenshot strip so it stays visible while the frames scroll.
 
 ## `games/<emulator>/<game_id>.json`
 

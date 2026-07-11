@@ -7,6 +7,17 @@ interface Props {
 
 const { row } = Astro.props;
 const hasFrames = row.frames.length > 0;
+const hasDemo = row.demo !== null;
+const hasMedia = hasFrames || hasDemo;
+
+// The strip only grows to fill the row when there are frames to scroll; with a
+// demo alone it collapses so the row is just the demo with no trailing gap.
+const stripClass = [
+  "frames-container flex gap-2 overflow-x-auto pb-2",
+  hasFrames ? "min-w-0 flex-1" : "",
+]
+  .join(" ")
+  .trim();
 ---
 
 <li
@@ -14,6 +25,7 @@ const hasFrames = row.frames.length > 0;
   data-game-id={row.game.game_id}
   data-title={row.game.game_title}
   data-has-frames={hasFrames}
+  data-has-demo={hasDemo}
 >
   <h2 class="flex items-baseline gap-3 text-sm">
     <span class="font-medium">{row.game.game_title}</span>
@@ -25,8 +37,11 @@ const hasFrames = row.frames.length > 0;
     }
   </h2>
   {
-    hasFrames ? (
-      <div class="frames-container mt-2 flex gap-2 overflow-x-auto pb-2" style="min-height:140px" />
+    hasMedia ? (
+      <div class="mt-2 flex gap-2" style="min-height:140px">
+        {hasDemo && <div class="demo-container flex shrink-0 items-start" />}
+        <div class={stripClass} />
+      </div>
     ) : (
       <p class="mt-2 text-sm italic text-neutral-500">No screenshots available</p>
     )

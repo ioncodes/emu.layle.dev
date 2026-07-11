@@ -66,15 +66,31 @@ class ScreenshotPlan:
 
 
 @dataclass(frozen=True)
+class DemoPlan:
+    game_id: str
+    source_path: Path
+
+
+@dataclass(frozen=True)
 class GameScan:
     game_id: str
     frames: list[ScreenshotPlan]
+    demo: DemoPlan | None = None
 
 
 @dataclass(frozen=True)
 class Screenshot:
     game_id: str
     frame_index: int
+    r2_key: str
+    width: int
+    height: int
+    sha256: str
+
+
+@dataclass(frozen=True)
+class Demo:
+    game_id: str
     r2_key: str
     width: int
     height: int
@@ -200,7 +216,12 @@ def scan_input(input_dir: Path) -> list[GameScan]:
         indices = [f.frame_index for f in frames]
         if len(indices) != len(set(indices)):
             raise click.ClickException(f"duplicate frame indices in {game_id}")
-        games.append(GameScan(game_id, frames))
+
+        # Optional per-game animated demo. Always named demo.gif.
+        demo_path = game_dir / "demo.gif"
+        demo = DemoPlan(game_id, demo_path) if demo_path.is_file() else None
+
+        games.append(GameScan(game_id, frames, demo))
     return games
 
 
@@ -230,16 +251,18 @@ def make_r2_client(cfg: R2Config):  # type: ignore[no-untyped-def]
     )
 
 
-def v2_key_for(sha256: str) -> str:
-    """Content-addressed key. Byte-identical PNGs collapse to one R2 object."""
-    return f"v2/{sha256}.png"
+def v2_key_for(sha256: str, ext: str = "png") -> str:
+    """Content-addressed key. Byte-identical files collapse to one R2 object."""
+    return f"v2/{sha256}.{ext}"
 
 
-def upload_one(client, cfg: R2Config, key: str, source: Path) -> None:  # type: ignore[no-untyped-def]
+def upload_one(  # type: ignore[no-untyped-def]
+    client, cfg: R2Config, key: str, source: Path, content_type: str
+) -> None:
     with source.open("rb") as f:
         client.put_object(
             Bucket=cfg.bucket, Key=key, Body=f,
-            ContentType="image/png", CacheControl=IMMUTABLE_CACHE,
+            ContentType=content_type, CacheControl=IMMUTABLE_CACHE,
         )
 
 
@@ -274,7 +297,7 @@ def process_plan(
             if not already:
                 seen.add(key)
         if not already:
-            upload_one(client, cfg, key, plan.source_path)
+            upload_one(client, cfg, key, plan.source_path, "image/png")
             uploaded = True
     shot = Screenshot(
         game_id=plan.game_id, frame_index=plan.frame_index, r2_key=key,
@@ -283,10 +306,38 @@ def process_plan(
     return shot, uploaded
 
 
+def process_demo(
+    plan: DemoPlan, *, client, cfg: R2Config,
+    existing: set[str], seen: set[str], lock: threading.Lock,
+    dry_run: bool, skip_existing: bool,
+) -> tuple[Demo, bool]:  # type: ignore[no-untyped-def]
+    """Upload a game's demo.gif unless it's already present. Returns (demo, uploaded).
+
+    Keys are content-addressed (v2/<sha256>.gif) just like screenshots, so an
+    unchanged demo across commits collapses to one R2 object.
+    """
+    w, h = read_dimensions(plan.source_path)
+    sha = sha256_file(plan.source_path)
+    key = v2_key_for(sha, "gif")
+
+    uploaded = False
+    if not dry_run:
+        with lock:
+            already = (skip_existing and key in existing) or key in seen
+            if not already:
+                seen.add(key)
+        if not already:
+            upload_one(client, cfg, key, plan.source_path, "image/gif")
+            uploaded = True
+
+    demo = Demo(game_id=plan.game_id, r2_key=key, width=w, height=h, sha256=sha)
+    return demo, uploaded
+
+
 def build_submission(
     *, emulator: str, commit: GitCommit,
     games: Iterable[dict[str, str]], screenshots: Iterable[Screenshot],
-    submitted_by: str, submitted_at: str,
+    demos: Iterable[Demo], submitted_by: str, submitted_at: str,
 ) -> dict[str, Any]:
     return {
         "emulator": emulator,
@@ -309,6 +360,16 @@ def build_submission(
                 "sha256": s.sha256,
             }
             for s in sorted(screenshots, key=lambda s: (s.game_id, s.frame_index))
+        ],
+        "demos": [
+            {
+                "game_id": d.game_id,
+                "r2_key": d.r2_key,
+                "width": d.width,
+                "height": d.height,
+                "sha256": d.sha256,
+            }
+            for d in sorted(demos, key=lambda d: d.game_id)
         ],
     }
 
@@ -360,6 +421,7 @@ def run_submission(
 
     games_meta: list[dict[str, str]] = []
     all_plans: list[ScreenshotPlan] = []
+    all_demo_plans: list[DemoPlan] = []
     for game in games_scanned:
         if whitelist and game.game_id not in title_map:
             click.echo(f"skip: {game.game_id} not in --title-map", err=True)
@@ -370,6 +432,11 @@ def run_submission(
             title_map=title_map, interactive=not dry_run,
         )
         games_meta.append({"game_id": game.game_id, "game_title": title})
+
+        # A game may ship a demo even with zero screenshots, so collect it
+        # before the no-frames short-circuit below.
+        if game.demo is not None:
+            all_demo_plans.append(game.demo)
 
         if not game.frames:
             click.echo(f"info: {game.game_id} has no screenshots", err=True)
@@ -416,9 +483,31 @@ def run_submission(
                         err=True,
                     )
 
+    demos: list[Demo] = []
+    demo_counts = {"uploaded": 0, "skipped": 0}
+    if all_demo_plans:
+        click.echo(
+            f"processing {len(all_demo_plans)} demo gif(s) with {workers} worker(s)", err=True
+        )
+
+        def demo_work(plan: DemoPlan) -> tuple[Demo, bool]:
+            return process_demo(
+                plan, client=client, cfg=r2_cfg,
+                existing=existing, seen=seen, lock=lock,
+                dry_run=dry_run, skip_existing=skip_existing,
+            )
+
+        with ThreadPoolExecutor(max_workers=workers) as ex:
+            futures = [ex.submit(demo_work, p) for p in all_demo_plans]
+            for fut in as_completed(futures):
+                demo, uploaded = fut.result()
+                with lock:
+                    demos.append(demo)
+                    demo_counts["uploaded" if uploaded else "skipped"] += 1
+
     submission = build_submission(
         emulator=emulator, commit=commit, games=games_meta, screenshots=screenshots,
-        submitted_by=submitter, submitted_at=submitted_at,
+        demos=demos, submitted_by=submitter, submitted_at=submitted_at,
     )
 
     date = commit.timestamp[:10]
@@ -452,7 +541,9 @@ def run_submission(
 
     click.echo(
         f"done: {counts['uploaded']} uploaded, {counts['skipped']} already present "
-        f"({len(screenshots)} total), submission at {json_path}"
+        f"({len(screenshots)} total), "
+        f"{len(demos)} demo(s) [{demo_counts['uploaded']} uploaded, "
+        f"{demo_counts['skipped']} already present], submission at {json_path}"
     )
     return submission
 
