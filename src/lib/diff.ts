@@ -92,12 +92,24 @@ export function computeDiff(a: CommitData, b: CommitData, opts: DiffOptions = {}
     const aF = framesOf(a, id);
     const bF = framesOf(b, id);
 
+    // Only frames past the boot sequence count as "having screenshots"; a
+    // roster-only game with just BIOS/boot frames isn't an interesting add/remove.
     if (!inA && inB) {
-      groups.gameAdded.push({ kind: "game-added", id, title: bTitle, frames: bF });
+      const bGameF = bF.filter((f) => f.i >= firstGameFrame);
+
+      if (bGameF.length > 0) {
+        groups.gameAdded.push({ kind: "game-added", id, title: bTitle, frames: bF });
+      }
+
       continue;
     }
     if (inA && !inB) {
-      groups.gameRemoved.push({ kind: "game-removed", id, title: aTitle, frames: aF });
+      const aGameF = aF.filter((f) => f.i >= firstGameFrame);
+
+      if (aGameF.length > 0) {
+        groups.gameRemoved.push({ kind: "game-removed", id, title: aTitle, frames: aF });
+      }
+
       continue;
     }
     if (!inA || !inB) continue;
