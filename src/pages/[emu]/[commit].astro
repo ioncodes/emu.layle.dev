@@ -45,6 +45,10 @@ const demoRows = rows.filter((r) => r.demo);
 const hasDemos = demoRows.length > 0;
 
 const firstGameFrame = emulator.first_game_frame ?? 0;
+const workingGameIds = new Set(
+  rows.filter((row) => row.frames.some((frame) => frame.frame_index >= firstGameFrame))
+    .map((row) => row.game.game_id),
+);
 const framesTotal = submission.screenshots.length;
 const gamesTotal = submission.games.length;
 const gamesWithFrames = countGamesWithFrames(submission, firstGameFrame);
@@ -142,11 +146,18 @@ const ogImage = cover
             {gamesTotal} games, {gamesWithFrames} {withFramesLabel}, {framesTotal} frames
           </p>
           <CoverageMeter covered={gamesWithFrames} total={gamesTotal} accent={emulator.accent_color} />
+          <label
+            class="ml-auto inline-flex cursor-pointer items-center gap-2 text-xs text-neutral-600 dark:text-neutral-400"
+            title={firstGameFrame > 0 ? "Hide games with in-game screenshots; BIOS/boot-only games remain visible." : "Hide games with screenshots."}
+          >
+            <input id="hide-working" type="checkbox" class="accent-neutral-600" />
+            Hide working games
+          </label>
         </div>
       </header>
 
       <ul id="games-list" class="space-y-10">
-        {rows.map((row) => <GameRow row={row} />)}
+        {rows.map((row) => <GameRow row={row} working={workingGameIds.has(row.game.game_id)} />)}
       </ul>
 
       {hasDemos && (
@@ -157,7 +168,7 @@ const ogImage = cover
           style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));"
         >
           {demoRows.map((r) => (
-            <figure class="matrix-cell" data-game-id={r.game.game_id} data-title={r.game.game_title}>
+            <figure class="matrix-cell" data-game-id={r.game.game_id} data-title={r.game.game_title} data-working={workingGameIds.has(r.game.game_id)}>
               <img
                 src={`${screenshotsBase}/${r.demo!.r2_key}`}
                 width={r.demo!.width}

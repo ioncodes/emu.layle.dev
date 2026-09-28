@@ -186,21 +186,27 @@ function escapeAttr(s: string): string {
 
 function wireFilter() {
   const input = document.getElementById("game-filter") as HTMLInputElement | null;
-  if (!input) return;
+  const hideWorking = document.getElementById("hide-working") as HTMLInputElement | null;
+  if (!input || !hideWorking) return;
+
+  const update = () => applyFilter(input.value.trim().toLowerCase(), hideWorking.checked);
 
   let timer: number | undefined;
   input.addEventListener("input", () => {
     window.clearTimeout(timer);
-    timer = window.setTimeout(() => applyFilter(input.value.trim().toLowerCase()), 100);
+    timer = window.setTimeout(update, 100);
   });
+  hideWorking.addEventListener("change", update);
+  update();
 }
 
-function applyFilter(q: string) {
+function applyFilter(q: string, hideWorking: boolean) {
   const rows = document.querySelectorAll<HTMLElement>(".game-row, .matrix-cell");
   for (const row of rows) {
     const title = (row.dataset.title ?? "").toLowerCase();
     const id = (row.dataset.gameId ?? "").toLowerCase();
-    const match = !q || title.includes(q) || id.includes(q);
+    const match = (!q || title.includes(q) || id.includes(q)) &&
+      (!hideWorking || row.dataset.working !== "true");
     row.classList.toggle("hidden", !match);
   }
 }
@@ -454,9 +460,9 @@ function wireCompareCombo() {
   const payload = JSON.parse(dataTag.textContent ?? "{}") as {
     emu: string;
     currentShort: string;
-    commits: CommitEntry[];
+    commits: (CommitEntry & { href: string })[];
   };
-  const { emu, currentShort, commits } = payload;
+  const { currentShort, commits } = payload;
   let highlight = -1;
 
   function escapeText(s: string): string {
@@ -518,7 +524,8 @@ function wireCompareCombo() {
 
   function navTo(short: string) {
     if (!short || short === currentShort) return;
-    window.location.href = `/${emu}/compare/${encodeURIComponent(currentShort)}/${encodeURIComponent(short)}`;
+    const selected = commits.find((c) => c.short === short);
+    if (selected) window.location.href = selected.href;
   }
 
   trigger.addEventListener("click", () => {

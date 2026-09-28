@@ -3,9 +3,10 @@ import type { GameRow } from "@/lib/meta";
 
 interface Props {
   row: GameRow;
+  working: boolean;
 }
 
-const { row } = Astro.props;
+const { row, working } = Astro.props;
 const hasFrames = row.frames.length > 0;
 const hasDemo = row.demo !== null;
 const hasMedia = hasFrames || hasDemo;
@@ -26,6 +27,7 @@ const colClass = [
   data-title={row.game.game_title}
   data-has-frames={hasFrames}
   data-has-demo={hasDemo}
+  data-working={working}
 >
   <h2 class="flex items-baseline gap-3 text-sm">
     <span class="font-medium">{row.game.game_title}</span>
