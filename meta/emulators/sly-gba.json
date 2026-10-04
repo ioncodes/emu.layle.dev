@@ -1,0 +1,10 @@
+{
+  "slug": "sly-gba",
+  "name": "sly",
+  "console": "Game Boy Advance",
+  "description": "A modern, multi-system, cross-platform emulator and debugger written in Rust.",
+  "repo_url": "https://github.com/ioncodes/sly",
+  "commit_url_template": "https://github.com/ioncodes/sly/commit/{sha}",
+  "accent_color": "#6957A6",
+  "icon": "teenyicons:gba-solid"
+}
